@@ -1,5 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import * as holaMundoServices from './api/holaMundoServices'
+
+import Routes from './routes';
 import './App.css';
 
 
@@ -19,6 +21,7 @@ const cargarOtros = async()=>{
 
   return (
     <div className="App">
+      <Routes/>
       <button onClick={cargarHola}>boton hola mundo</button>
       <button onClick={cargarOtros}>boton otros</button>
       {dato}
