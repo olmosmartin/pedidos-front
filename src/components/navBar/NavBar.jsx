@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import logo from '../../static/img/pediloya.png';
 
 import './NavBar.css'
 
@@ -8,7 +9,7 @@ export const NavBar = () => {
         <div>
             <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top sombra">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/">Navbar</Link>
+                    <Link className="navbar-brand" to="/"> <img src={logo} /> </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon" />
                     </button>
