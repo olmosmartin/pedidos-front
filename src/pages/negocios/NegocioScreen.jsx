@@ -1,5 +1,6 @@
 import React from 'react'
 import { useLocation } from "react-router-dom" 
+import ListaNegocios from '../../components/negocios/ListaNegocios';
 
 
 export const NegocioScreen = (props) => {
@@ -10,6 +11,7 @@ export const NegocioScreen = (props) => {
     return (
         <div>
             negocios:{idNegocio}
+            <ListaNegocios/>
         </div>
     )
 }
