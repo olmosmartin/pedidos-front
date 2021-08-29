@@ -2,6 +2,7 @@ import React, { useState, } from 'react'
 import { TextoPresentacion } from '../../components/home/TextoPresentacion';
 import { useHistory, } from "react-router-dom" // para cambiar de ruta
 
+import './formHome.css'
 
 export const FormHome = () => {
     const history = useHistory()
@@ -20,7 +21,7 @@ export const FormHome = () => {
         <div className="row justify-content-center">
             <div className="col-6 ">
                 <TextoPresentacion />
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="sombra">
                     <div className="input-group">
                         <select className="custom-select" style={{flex:"auto"}} id="inputGroupSelect04" onChange={handleChange}>
                             <option defaultValue>Choose...</option>

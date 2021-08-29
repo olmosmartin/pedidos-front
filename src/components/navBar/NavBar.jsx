@@ -9,7 +9,7 @@ export const NavBar = () => {
         <div>
             <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top sombra">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/"> <img src={logo} /> </Link>
+                    <Link className="navbar-brand" to="/"> <img src={logo} alt="logo" /> </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon" />
                     </button>
@@ -17,7 +17,7 @@ export const NavBar = () => {
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                         <ul className="navbar-nav">
                             <li>
-                            <span className="badge rounded-pill bg-secondary p-2 mt-2">Registrá tu negocio</span>
+                            <button className="badge rounded-pill bg-secondary p-2 mt-2">Registrá tu negocio</button>
                             </li>
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" to="#">Drop Down</Link>
