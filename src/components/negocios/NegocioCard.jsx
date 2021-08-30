@@ -1,14 +1,30 @@
-import React, {useEffect} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useHistory, } from "react-router-dom" // para cambiar de ruta
 
-import fetchPokemon from '../../redux/actions/buscadorAction';
+import './negocioCard.css'
 
 
-export const NegocioCard = () => {
+export const NegocioCard = (props) => {
+    
+    const history = useHistory()
 
     return (
-        <div>
-            card
+    <div className="row m-4">
+        <div className="col-sm-6">
+          <div className="card" onClick={() => history.push(`/negocio?nombre=${props.nombre}`)}>
+            <div className="card-body">
+              <div className="row">
+                <div className="col-sm-6">
+                  <h5 className="card-title">{props.nombre}</h5>
+                  <p className="card-text">Más texto acá</p>
+                </div>
+                <div className="col-sm-6 text-right">
+                  <img className src="//placehold.it/100" alt="sans" width="100px" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     )
 }
