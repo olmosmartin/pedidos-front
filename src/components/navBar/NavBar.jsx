@@ -1,10 +1,17 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import logo from '../../static/img/pediloya.png';
-
+import { useHistory, } from "react-router-dom" // para cambiar de ruta
 import './NavBar.css'
 
 export const NavBar = () => {
+    const history = useHistory()
+
+    const handleSubmit = () => {
+
+        history.push(`/negocioRegistro`);
+    }
+    
     return (
         <div>
             <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top sombra">
@@ -17,7 +24,7 @@ export const NavBar = () => {
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                         <ul className="navbar-nav">
                             <li>
-                            <button className="badge rounded-pill bg-secondary p-2 mt-2">Registrá tu negocio</button>
+                            <button className="badge rounded-pill bg-secondary p-2 mt-2" type="submit" onClick={handleSubmit}>Registrá tu negocio</button>
                             </li>
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" to="#">Drop Down</Link>
