@@ -15,7 +15,7 @@ export const Footer = () => {
                 <a style={{ color: '#000' }} href='https://www.freepik.es/fotos/comida'>Foto de Comida creado por timolina - www.freepik.es</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-dark">Link 2</a>
+                <a style={{ color: '#000' }} href='https://www.freepik.es/fotos/comida'>Foto de Comida creado por timolina - www.freepik.es</a>
                 </li>
                 <li>
                   <a href="#!" className="text-dark">Link 3</a>
