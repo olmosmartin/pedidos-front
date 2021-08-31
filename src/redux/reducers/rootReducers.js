@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import buscadorReducer from "./buscadorReducer";
+import negocioReducer from "./negocioReducer";
 
 const rootReducers = combineReducers({
-    buscadorReducer,
+    negocioReducer,
 });
 
 export default rootReducers;

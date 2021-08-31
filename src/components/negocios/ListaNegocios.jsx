@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import fetchPokemon from '../../redux/actions/buscadorAction';
+import fetchNegocio from '../../redux/actions/negocioAction';
 import { NegocioCard } from './NegocioCard';
 import './listaNegocios.css';
 
 const ListaNegocios = () => {
-    const buscador = useSelector((state) => state.buscadorReducer)
+    const buscador = useSelector((state) => state.negocioReducer)
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchPokemon())
+        dispatch(fetchNegocio())
 
     }, [])
 
@@ -25,11 +25,11 @@ const ListaNegocios = () => {
                             :
                             null
                     }
-                    {buscador.pokemon.length >= 1 && !buscador.error ?
+                    {buscador.negocio.length >= 1 && !buscador.error ?
 
                         <div className="text-success">
-                            {buscador.pokemon[0]?.results.map((pokemon, i) => (
-                                <NegocioCard key={i} nombre={pokemon.name} />
+                            {buscador.negocio[0]?.map((negocio, i) => (
+                                <NegocioCard key={i} nombre={negocio.nombre} imagen={negocio.imagen} email={negocio.email} />
                             ))
                             }
                         </div>
@@ -37,7 +37,7 @@ const ListaNegocios = () => {
                         null
                     }
                     {
-                        buscador.error !== '' && buscador.pokemon.length === 0 ?
+                        buscador.error !== '' && buscador.negocio.length === 0 ?
                             <span className="text-danger"> {buscador.error} </span>
                             :
                             null

@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Footer = () => {
     return (
-        <footer className="text-center text-white" style={{backgroundColor: '#dc4935'}}>
+        <footer className="text-center text-white mt-5" style={{backgroundColor: '#dc4935'}}>
         {/* Grid container */}
         <div className="container p-4">
           {/*Grid row*/}

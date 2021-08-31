@@ -1,32 +1,33 @@
-import { FETCH_POKEMON_REQUEST, FETCH_POKEMON_SUCCESS, FETCH_POKEMON_FAILURE } from '../actions/buscadorAction'
+import { FETCH_NEGOCIO_REQUEST, FETCH_NEGOCIO_SUCCESS, FETCH_NEGOCIO_FAILURE } from '../actions/negocioAction'
+
 
 const initialState = {
     isLoading: false,
-    pokemon: [],
+    negocio: [],
     error: ''
 }
 
 const buscadorReducer = (state = initialState, action ) => {
     switch (action.type) {
 
-    case FETCH_POKEMON_REQUEST:
+    case FETCH_NEGOCIO_REQUEST:
         return { 
             ...state,
             isLoading: true 
         }
     
-    case FETCH_POKEMON_SUCCESS:
+    case FETCH_NEGOCIO_SUCCESS:
         return { 
             ...state,
             isLoading: false,
-            pokemon: action.payload.pokemon
+            negocio: action.payload.negocio
         }
 
-    case FETCH_POKEMON_FAILURE:
+    case FETCH_NEGOCIO_FAILURE:
         return { 
             ...state,
             isLoading: false,
-            pokemon: [],
+            negocio: [],
             error: action.payload.error
         }
 
