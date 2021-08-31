@@ -29,7 +29,7 @@ const ListaNegocios = () => {
 
                         <div className="text-success">
                             {buscador.negocio[0]?.map((negocio, i) => (
-                                <NegocioCard key={i} nombre={negocio.nombre} imagen={negocio.imagen} email={negocio.email} />
+                                <NegocioCard key={i} negocio={negocio} nombre={negocio.nombre} imagen={negocio.imagen} email={negocio.email} />
                             ))
                             }
                         </div>

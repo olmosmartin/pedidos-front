@@ -28,8 +28,8 @@ const MenuLista = () => {
                     {buscador.negocio.length >= 1 && !buscador.error ?
 
                         <div className="text-success">
-                            {buscador.negocio[0]?.results.map((negocio, i) => (
-                                <MenuCard key={i} nombre={negocio.name} />
+                            {buscador.negocio[0]?.map((negocio, i) => (
+                                <MenuCard key={i} nombre={negocio.nombre} imagen={negocio.imagen} email={negocio.email} />
                             ))
                             }
                         </div>
