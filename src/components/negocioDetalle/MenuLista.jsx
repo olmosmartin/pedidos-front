@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import fetchPokemon from '../../redux/actions/buscadorAction';
-import { NegocioCard } from './NegocioCard';
-import './listaNegocios.css';
+import { MenuCard } from './MenuCard';
+import './menuLista.css';
 
-const ListaNegocios = () => {
+const MenuLista = () => {
     const buscador = useSelector((state) => state.buscadorReducer)
     const dispatch = useDispatch();
 
@@ -29,7 +29,7 @@ const ListaNegocios = () => {
 
                         <div className="text-success">
                             {buscador.pokemon[0]?.results.map((pokemon, i) => (
-                                <NegocioCard key={i} nombre={pokemon.name} />
+                                <MenuCard key={i} nombre={pokemon.name} />
                             ))
                             }
                         </div>
@@ -48,5 +48,5 @@ const ListaNegocios = () => {
     )
 }
 
-export default ListaNegocios;
+export default MenuLista;
 

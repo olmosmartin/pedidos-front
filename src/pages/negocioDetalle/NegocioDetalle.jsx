@@ -3,6 +3,7 @@ import React from 'react'
 import { NavBar } from '../../components/navBar/NavBar';
 import { NegocioHeader } from '../../components/negocioDetalle/NegocioHeader'
 import { Footer } from '../../components/footer/Footer';
+import { NegocioBody } from '../../components/negocioDetalle/NegocioBody';
 
 
 export const NegocioDetalle = () => {
@@ -10,9 +11,7 @@ export const NegocioDetalle = () => {
         <div>
             <NavBar/>
             <NegocioHeader/>
-            <div style={{margin:100}}>
-                <h3>MENU PROXIMAMENTE</h3>
-            </div>
+            <NegocioBody/>
             <Footer/>
         </div>
     )

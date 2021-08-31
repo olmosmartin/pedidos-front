@@ -1,10 +1,10 @@
 import React from 'react'
 import { useHistory, } from "react-router-dom" // para cambiar de ruta
 
-import './negocioCard.css'
+import './menuCard.css'
 
 
-export const NegocioCard = (props) => {
+export const MenuCard = (props) => {
     
     const history = useHistory()
 
