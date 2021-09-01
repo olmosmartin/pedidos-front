@@ -24,10 +24,10 @@ export const FormHome = () => {
                 <form onSubmit={handleSubmit} className="sombra">
                     <div className="input-group">
                         <select className="custom-select" style={{flex:"auto"}} id="inputGroupSelect04" onChange={handleChange}>
-                            <option defaultValue>Todos los restaurantes</option>
-                            <option value="1">Lanus</option>
-                            <option value="2">Lomas</option>
-                            <option value="3">Avellaneda</option>
+                            <option defaultValue>Todos los restaurantes.</option>
+                            <option value="1">Lanus.</option>
+                            <option value="2">Lomas.</option>
+                            <option value="3">Avellaneda.</option>
                         </select>
                         <div className="input-group-append">
                             <button className="btn btn-danger" type="submit">Button</button>
