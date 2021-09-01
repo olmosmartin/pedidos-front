@@ -26,6 +26,7 @@ export const NavBar = () => {
                             <li>
                             <button className="badge rounded-pill bg-secondary p-2 mt-2" type="submit" onClick={handleSubmit}>Registrá tu negocio</button>
                             </li>
+                            {/*
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" to="#">Drop Down</Link>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -33,6 +34,7 @@ export const NavBar = () => {
                                     <Link className="dropdown-item" to="#">Another action</Link>
                                 </ul>
                             </li>
+                            */}
 
                         </ul>
                     </div>

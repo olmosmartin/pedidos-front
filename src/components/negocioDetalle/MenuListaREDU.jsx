@@ -26,10 +26,25 @@ export const MenuListaREDU = () => {
                     {console.log("BUSCADOR: " + JSON.stringify(buscador))}
                     {
                         buscador.isLoading ?
-                            <div className="d-flex align-items-center">
-                                <strong>Loading...</strong>
-                                <div className="spinner-border ms-auto" role="status" aria-hidden="true" />
+                            <div className="spaces">
+                                <div className="d-flex align-items-center">
+                                    <strong>Loading...</strong>
+                                    <div className="spinner-border ms-auto" role="status" aria-hidden="true" />
+                                </div>
+                                <div class="spinner-grow text-dark" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <div class="spinner-grow text-dark" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <div class="spinner-grow text-dark" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <div class="spinner-grow text-dark" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
                             </div>
+                            
                             :
                             null
                     }

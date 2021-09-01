@@ -1,6 +1,5 @@
 import React from 'react'
 
-import MenuLista from './MenuLista'
 import { MenuListaREDU } from './MenuListaREDU'
 
 export const NegocioBody = () => {

@@ -6,8 +6,6 @@ import './menuCard.css'
 
 export const MenuCard = (props) => {
 
-  const history = useHistory()
-
   return (
     <div className="container">
       <div className="card mt-4" style={{ width: 400 }}>

@@ -2,7 +2,7 @@
     background-image: url('../../static/img/registro.jpg');
     background-position: center;
     background-size: cover;
-    height: 85vh;
+    height: 100vh;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
