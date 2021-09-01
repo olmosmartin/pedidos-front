@@ -20,7 +20,6 @@ export const NegocioHeader = () => {
         cargar(idNegocio)
     }, [])
 
-    console.log("negocio:"+JSON.stringify(negocio?.data) )
     return (
         <div className="fondoNegocioDetalle">
             <div className="container mb-3">

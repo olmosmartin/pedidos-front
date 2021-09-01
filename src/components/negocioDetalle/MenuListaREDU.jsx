@@ -1,17 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from "react-router-dom"
 
-import { fetchNegocio } from '../../redux/actions/negocioAction';
-import { NegocioCard } from './NegocioCard';
-import './listaNegocios.css';
+import './menuLista.css';
+import { fetchProductosIdNegocio } from '../../redux/actions/productoAction';
+import { MenuCard } from './MenuCard';
 
-const ListaNegocios = () => {
-    const buscador = useSelector((state) => state.negocioReducer)
+export const MenuListaREDU = () => {
+    const buscador = useSelector((state) => state.productoReducer)
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(fetchNegocio())
+    const { search } = useLocation();
+    const query = new URLSearchParams(search);
+    const idNegocio = query.get("id");
 
+    useEffect(() => {
+        dispatch(fetchProductosIdNegocio(idNegocio))
     }, [])
 
     return (
@@ -19,6 +23,7 @@ const ListaNegocios = () => {
             <div className="row justify-content-center">
                 <div className="mt-8">
                     <h3 className="text-black">Resultado</h3>
+                    {console.log("BUSCADOR: " + JSON.stringify(buscador))}
                     {
                         buscador.isLoading ?
                             <div className="d-flex align-items-center">
@@ -28,11 +33,11 @@ const ListaNegocios = () => {
                             :
                             null
                     }
-                    {buscador.negocio.length >= 1 && !buscador.error ?
+                    {buscador.productos.length >= 1 && !buscador.error ?
 
                         <div className="text-success">
-                            {buscador.negocio[0]?.map((negocio, i) => (
-                                <NegocioCard key={i} id={negocio._id} nombre={negocio.nombre} imagen={negocio.imagen} email={negocio.email} />
+                            {buscador.productos[0]?.map((producto, i) => (
+                                <MenuCard key={i} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} />
                             ))
                             }
                         </div>
@@ -40,7 +45,7 @@ const ListaNegocios = () => {
                         null
                     }
                     {
-                        buscador.error !== '' && buscador.negocio.length === 0 ?
+                        buscador.error !== '' && buscador.productos.length === 0 ?
                             <span className="text-danger"> {buscador.error} </span>
                             :
                             null
@@ -50,6 +55,3 @@ const ListaNegocios = () => {
         </div>
     )
 }
-
-export default ListaNegocios;
-

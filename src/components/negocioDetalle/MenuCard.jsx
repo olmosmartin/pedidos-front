@@ -9,12 +9,12 @@ export const MenuCard = (props) => {
   const history = useHistory()
 
   return (
-    <div class="container">
-      <div class="card mt-4" style={{ width: 400 }}>
+    <div className="container">
+      <div className="card mt-4" style={{ width: 400 }}>
         <img className="img-fluid" src={props.imagen} alt="sans" width="100px" />
-        <div class="card-body">
-          <h4 class="card-title">{props.nombre}</h4>
-          <p class="card-text">precio: ${props.precio}</p>
+        <div className="card-body">
+          <h4 className="card-title">{props.nombre}</h4>
+          <p className="card-text">precio: ${props.precio}</p>
         </div>
       </div>
     </div>

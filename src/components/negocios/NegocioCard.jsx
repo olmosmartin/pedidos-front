@@ -7,7 +7,6 @@ import './negocioCard.css'
 export const NegocioCard = (props) => {
 
   const history = useHistory()
-  console.log(props.negocio)
   return (
 
     <div class="container">

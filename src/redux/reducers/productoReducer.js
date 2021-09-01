@@ -1,33 +1,33 @@
-import { FETCH_NEGOCIO_REQUEST, FETCH_NEGOCIO_SUCCESS, FETCH_NEGOCIO_FAILURE } from '../actions/negocioAction'
+import { FETCH_PRODUCTO_REQUEST, FETCH_PRODUCTO_SUCCESS, FETCH_PRODUCTO_FAILURE } from '../actions/productoAction'
 
 
 const initialState = {
     isLoading: false,
-    negocio: [],
+    productos: [],
     error: ''
 }
 
-const negocioReducer = (state = initialState, action ) => {
+const productoReducer = (state = initialState, action ) => {
     switch (action.type) {
 
-    case FETCH_NEGOCIO_REQUEST:
+    case FETCH_PRODUCTO_REQUEST:
         return { 
             ...state,
             isLoading: true 
         }
     
-    case FETCH_NEGOCIO_SUCCESS:
+    case FETCH_PRODUCTO_SUCCESS:
         return { 
             ...state,
             isLoading: false,
-            negocio: action.payload.negocio
+            productos: action.payload.productos
         }
 
-    case FETCH_NEGOCIO_FAILURE:
+    case FETCH_PRODUCTO_FAILURE:
         return { 
             ...state,
             isLoading: false,
-            negocio: [],
+            productos: [],
             error: action.payload.error
         }
 
@@ -36,4 +36,4 @@ const negocioReducer = (state = initialState, action ) => {
     }
 }
 
-export default negocioReducer;
+export default productoReducer;
