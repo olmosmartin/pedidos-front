@@ -25,13 +25,22 @@ export const NegocioRegistroCard = () => {
                         </div>
                            
                         <div className="form-group">
-                            <label htmlFor="exampleInputEmail1">Correo electrónico</label>
+                            <label htmlFor="InputEmail">Correo electrónico</label>
                             <input className="form-control"
-                                id="exampleInputEmail1"
+                                id="InputEmail1"
                                 aria-describedby="emailHelp"
-                                placeholder="Ingrese su email"
+                                placeholder="Ingrese la dirección de email de su local"
                             />
                         </div>
+                        <div className="form-group">
+                            <label htmlFor="InputTel">Teléfono</label>
+                            <input className="form-control"
+                                id="InputTel"
+                                aria-describedby="Tel"
+                                placeholder="Ingrese el número de teléfono de su local"
+                            />
+                        </div>
+                        <div> </div>
                         <button type="submit" className="btn btn-danger">Comenzar</button>
                     </form> 
                 </div>
