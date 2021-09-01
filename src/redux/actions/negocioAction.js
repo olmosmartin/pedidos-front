@@ -35,7 +35,7 @@ const fetchNegocioFailure = (error) => {
 }
 
 //
-const fetchNegocio = () => {
+export const fetchNegocio = () => {
     return (dispatch) => {
         dispatch( fetchNegocioRequest() );
         //axios.get(`https://pokeapi.co/api/v2/pokemon?offset=300&limit=100`)
@@ -48,5 +48,3 @@ const fetchNegocio = () => {
         })
     }
 }
-
-export default fetchNegocio;

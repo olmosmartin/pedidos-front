@@ -14,7 +14,7 @@ export const MenuCard = (props) => {
         <img className="img-fluid" src={props.imagen} alt="sans" width="100px" />
         <div class="card-body">
           <h4 class="card-title">{props.nombre}</h4>
-          <p class="card-text">{props.email}</p>
+          <p class="card-text">precio: ${props.precio}</p>
         </div>
       </div>
     </div>

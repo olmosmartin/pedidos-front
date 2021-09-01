@@ -1,17 +1,25 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from "react-router-dom"
 
-import fetchNegocio from '../../redux/actions/negocioAction';
+import { fetchNegocio } from '../../redux/actions/negocioAction';
 import { MenuCard } from './MenuCard';
+import {  getNegocio } from '../../api/negocioServices'
 import './menuLista.css';
 
 const MenuLista = () => {
-    const buscador = useSelector((state) => state.negocioReducer)
-    const dispatch = useDispatch();
+
+    const [negocio, setNegocio] = useState([]);
+    const {search} = useLocation();
+    const query = new URLSearchParams(search);
+    const idNegocio = query.get("id"); 
+
+    const cargar = async (id)=>{
+        const res = await getNegocio(id);
+        setNegocio(() => res)
+    }
 
     useEffect(() => {
-        dispatch(fetchNegocio())
-
+        cargar(idNegocio)
     }, [])
 
     return (
@@ -20,28 +28,10 @@ const MenuLista = () => {
                 <div className="mt-8">
                     <h3 className="text-black">Resultado</h3>
                     {
-                        buscador.isLoading ?
-                            <div className="text-warning">buscando... </div>
-                            :
-                            null
-                    }
-                    {buscador.negocio.length >= 1 && !buscador.error ?
-
-                        <div className="text-success">
-                            {buscador.negocio[0]?.map((negocio, i) => (
-                                <MenuCard key={i} nombre={negocio.nombre} imagen={negocio.imagen} email={negocio.email} />
-                            ))
-                            }
-                        </div>
-                        :
-                        null
-                    }
-                    {
-                        buscador.error !== '' && buscador.negocio.length === 0 ?
-                            <span className="text-danger"> {buscador.error} </span>
-                            :
-                            null
-                    }
+                    negocio?.data?.productos?.map( (producto, i) => (
+                        <MenuCard key={i} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} />
+                    ))
+                }
                 </div>
             </div>
         </div>

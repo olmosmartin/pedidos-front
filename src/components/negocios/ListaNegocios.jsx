@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import fetchNegocio from '../../redux/actions/negocioAction';
+import { fetchNegocio } from '../../redux/actions/negocioAction';
 import { NegocioCard } from './NegocioCard';
 import './listaNegocios.css';
 
@@ -29,7 +29,7 @@ const ListaNegocios = () => {
 
                         <div className="text-success">
                             {buscador.negocio[0]?.map((negocio, i) => (
-                                <NegocioCard key={i} negocio={negocio} nombre={negocio.nombre} imagen={negocio.imagen} email={negocio.email} />
+                                <NegocioCard key={i} id={negocio._id} nombre={negocio.nombre} imagen={negocio.imagen} email={negocio.email} />
                             ))
                             }
                         </div>
