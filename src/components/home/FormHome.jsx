@@ -30,7 +30,7 @@ export const FormHome = () => {
                             <option value="3">Avellaneda.</option>
                         </select>
                         <div className="input-group-append">
-                            <button className="btn btn-danger" type="submit">Button</button>
+                            <button className="btn btn-danger" type="submit">Buscar</button>
                         </div>
                     </div>
                 </form>

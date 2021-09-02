@@ -9,3 +9,17 @@ export const getNegocios = async ()=>{
 export const getNegocio = async (id)=>{
     return await axios.get(`${path}negocios/${id}`);
 }
+
+export const createNegocio =async (negocio)=>{
+    return await axios.post(`${path}negocios`, negocio);
+}
+
+/*
+export const actualizarNegocio =async (id, negocio)=>{
+    return await axios.put(`${path}/negocios/${id}`, negocio);
+}
+
+export const deleteNegocio =async (id)=>{
+    return await axios.delete(`${path}/negocios/${id}`);
+}
+*/
