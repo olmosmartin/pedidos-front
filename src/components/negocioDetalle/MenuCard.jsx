@@ -7,8 +7,7 @@ import './menuCard.css'
 export const MenuCard = (props) => {
 
   return (
-    <div className="container">
-      <div className="card mt-4" style={{ width: 400 }}>
+      <div className="card col mt-4" style={{ width: 400 }}>
       <Link to='#' className="stretched-link"></Link>
         <img className="img-fluid" src={props.imagen} alt="sans" width="100px" />
         <div className="card-body">
@@ -16,6 +15,5 @@ export const MenuCard = (props) => {
           <p className="card-text">precio: ${props.precio}</p>
         </div>
       </div>
-    </div>
   )
 }

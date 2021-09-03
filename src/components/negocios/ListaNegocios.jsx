@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchNegocio } from '../../redux/actions/negocioAction';
 import { NegocioCard } from './NegocioCard';
+import { FiltrosAcordeon } from './FiltrosAcordeon';
 import './listaNegocios.css';
 
 const ListaNegocios = () => {
@@ -15,10 +16,9 @@ const ListaNegocios = () => {
     }, [])
 
     return (
-        <div className="">
-            <div className="row justify-content-center">
-                <div className="mt-8">
-                    <h3 className="text-black">Resultado</h3>
+        <div className="container">
+            <div className="row justify-content-center mt-4">
+                    <div className="space"></div>
                     {
                         buscador.isLoading ?
                             
@@ -43,9 +43,11 @@ const ListaNegocios = () => {
                             :
                             null
                     }
+                    <FiltrosAcordeon/>
+                    <div className="col">
                     {buscador.negocio.length >= 1 && !buscador.error ?
 
-                        <div className="text-success">
+                        <div className="">
                             {buscador.negocio[0]?.map((negocio, i) => (
                                 <NegocioCard key={i} id={negocio._id} nombre={negocio.nombre} imagen={negocio.imagen} email={negocio.email} />
                             ))
@@ -54,13 +56,17 @@ const ListaNegocios = () => {
                         :
                         null
                     }
+                    
                     {
                         buscador.error !== '' && buscador.negocio.length === 0 ?
                             <span className="text-danger"> {buscador.error} </span>
                             :
                             null
                     }
-                </div>
+                    </div>
+                    <div className="col">
+                    <p>Puntuacion y comentarios:</p>
+                    </div>
             </div>
         </div>
     )

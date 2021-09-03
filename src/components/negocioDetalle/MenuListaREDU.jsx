@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom"
 import './menuLista.css';
 import { fetchProductosIdNegocio } from '../../redux/actions/productoAction';
 import { MenuCard } from './MenuCard';
+import { FiltrosAcordeonNegocioDetalle } from './FiltrosAcordeonNegocioDetalle'
 
 export const MenuListaREDU = () => {
     const buscador = useSelector((state) => state.productoReducer)
@@ -20,9 +21,8 @@ export const MenuListaREDU = () => {
 
     return (
         <div className="">
-            <div className="row justify-content-center">
-                <div className="mt-8">
-                    <h3 className="text-black">Resultado</h3>
+            <div className="row justify-content-center ">
+                    <div className="space"></div>
                     {console.log("BUSCADOR: " + JSON.stringify(buscador))}
                     {
                         buscador.isLoading ?
@@ -48,9 +48,11 @@ export const MenuListaREDU = () => {
                             :
                             null
                     }
+                    <FiltrosAcordeonNegocioDetalle/>
+                    <div className="col">
                     {buscador.productos.length >= 1 && !buscador.error ?
 
-                        <div className="text-success">
+                        <div className="">
                             {buscador.productos[0]?.map((producto, i) => (
                                 <MenuCard key={i} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} />
                             ))
@@ -65,8 +67,11 @@ export const MenuListaREDU = () => {
                             :
                             null
                     }
+                    </div>
+                    <div className="col">
+                        <p>algo escrito acá</p>
+                    </div>
                 </div>
             </div>
-        </div>
     )
 }
