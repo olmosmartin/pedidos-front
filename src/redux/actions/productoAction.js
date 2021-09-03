@@ -1,4 +1,3 @@
-import axios from "axios"
 import { getNegocio } from '../../api/negocioServices'
 
 //types
