@@ -23,10 +23,7 @@ const ListaNegocios = () => {
                         buscador.isLoading ?
                             
                             <div className="spaces">
-                                <div className="d-flex align-items-center">
-                                    <strong>Loading...</strong>
-                                    <div className="spinner-border ms-auto" role="status" aria-hidden="true" />
-                                </div>
+                                
                                 <div className="spinner-grow text-dark" role="status">
                                     <span className="visually-hidden">Loading...</span>
                                 </div>
