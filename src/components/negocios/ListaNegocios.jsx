@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchNegocio } from '../../redux/actions/negocioAction';
 import { NegocioCard } from './NegocioCard';
 import { FiltrosAcordeon } from './FiltrosAcordeon';
+import { MapVista } from './map/MapVista';
 import './listaNegocios.css';
 
 const ListaNegocios = () => {
@@ -23,7 +24,6 @@ const ListaNegocios = () => {
                         buscador.isLoading ?
                             
                             <div className="spaces">
-                                
                                 <div className="spinner-grow text-dark" role="status">
                                     <span className="visually-hidden">Loading...</span>
                                 </div>
@@ -62,6 +62,7 @@ const ListaNegocios = () => {
                     }
                     </div>
                     <div className="col">
+                    <MapVista/>
                     <p>Puntuacion y comentarios:</p>
                     </div>
             </div>
