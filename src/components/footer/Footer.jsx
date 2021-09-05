@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Footer = () => {
     return (
-        <footer className="text-center text-white mt-5" style={{backgroundColor: '#dc4935'}}>
+        <footer className="text-center text-white mt-5" style={{backgroundColor: 'rgb(196,21,8)'}}>
         {/* Grid container */}
         <div className="container p-4">
           {/*Grid row*/}
@@ -20,9 +20,6 @@ export const Footer = () => {
                 <li>
                   <a href="#!" className="text-dark">Link 3</a>
                 </li>
-                <li>
-                  <a href="#!" className="text-dark">Link 4</a>
-                </li>
               </ul>
             </div>
             {/*Grid column*/}
@@ -38,9 +35,6 @@ export const Footer = () => {
                 </li>
                 <li>
                   <a href="#!" className="text-dark">Link 3</a>
-                </li>
-                <li>
-                  <a href="#!" className="text-dark">Link 4</a>
                 </li>
               </ul>
             </div>
@@ -58,9 +52,6 @@ export const Footer = () => {
                 <li>
                   <a href="#!" className="text-dark">Link 3</a>
                 </li>
-                <li>
-                  <a href="#!" className="text-dark">Link 4</a>
-                </li>
               </ul>
             </div>
             {/*Grid column*/}
@@ -71,7 +62,7 @@ export const Footer = () => {
         {/* Copyright */}
         <div className="text-center p-3" style={{backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
           © 2020 Copyright:
-          <p>algo</p>
+          <p>Grupo C</p>
         </div>
         {/* Copyright */}
       </footer>
