@@ -23,7 +23,6 @@ export const MenuListaREDU = () => {
         <div className="">
             <div className="row justify-content-center ">
                     <div className="space"></div>
-                    {console.log("BUSCADOR: " + JSON.stringify(buscador))}
                     {
                         buscador.isLoading ?
                             <div className="spaces">

@@ -9,8 +9,8 @@ import { MapContainer, TileLayer, Marker} from 'react-leaflet';
 //import { createNegocio } from '../../api/negocioServices'
 
 const center = {
-    lat: -34.733813,
-    lng: -58.392080,
+    lat: -34.734,
+    lng: -58.398,
 }
 export const NegocioRegistroCard = () => {
     const [position, setPosition] = useState(center)
@@ -48,10 +48,6 @@ export const NegocioRegistroCard = () => {
         var calle = JSON.stringify(direccionjson.data.address.road)
         var ciudad = ""
         JSON.stringify(direccionjson.data.address.town)?ciudad=JSON.stringify(direccionjson.data.address.town):ciudad=JSON.stringify(direccionjson.data.address.city)
-        console.log("numero: "+JSON.stringify(direccionjson.data.address.house_number))
-        console.log("calle: "+JSON.stringify(direccionjson.data.address.road))
-        console.log("town: "+JSON.stringify(direccionjson.data.address.town))
-        console.log("ciudad: "+JSON.stringify(direccionjson.data.address.city))
         setCalleNombre(calle.split('"').join(''))
         setCalleNumero(numero.split('"').join(''))
         setLocalidad(ciudad.split('"').join(''))
@@ -90,7 +86,6 @@ export const NegocioRegistroCard = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("SUBMIT: " + bodyFormData);
         axios({
             method: "POST",
             url: "https://pedidosya-api.herokuapp.com/negocios/",
@@ -153,7 +148,7 @@ export const NegocioRegistroCard = () => {
                             <label htmlFor="InputTel">Teléfono</label>
                         </div>
                         <div className="mb-3">
-                            <label for="formFile" class="form-label">Seleccionar imagen</label>
+                            <label htmlFor="formFile" className="form-label">Seleccionar imagen</label>
                             <input className="form-control" type="file" name="imagen" id="formFile" onChange={e => handleFileChosen(e.target.files[0])} />
                         </div>
 
@@ -175,7 +170,7 @@ export const NegocioRegistroCard = () => {
                                 onChange={e => handleChangeCalleNombre(e.target.value)}
                                 value={calleNombre}
                                 required
-                                
+                                disabled
                             />
                             <label htmlFor="InputTel">Calle</label>
                         </div>
@@ -189,7 +184,7 @@ export const NegocioRegistroCard = () => {
                                 onChange={e => handleChangecalleNumero(e.target.value)}
                                 value={calleNumero}
                                 required
-                                
+                                disabled
                             />
                             <label htmlFor="InputTel">Numero</label>
                         </div>
@@ -203,7 +198,7 @@ export const NegocioRegistroCard = () => {
                                 onChange={e => handleChangeLocalidad(e.target.value)}
                                 value={localidad}
                                 required
-                                
+                                disabled
                             />
                             <label htmlFor="InputTel">Localidad</label>
                         </div>
