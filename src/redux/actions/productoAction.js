@@ -39,7 +39,6 @@ export const fetchProductosIdNegocio = (id) => {
         //axios.get(`https://pokeapi.co/api/v2/pokemon?offset=300&limit=100`)
         getNegocio(id)
         .then(response => {
-            console.log("RESPONSEDATA:"+JSON.stringify(response?.data?.productos))
             dispatch( fetchProductoSuccess([response?.data?.productos]) );
         })
         .catch(error => {

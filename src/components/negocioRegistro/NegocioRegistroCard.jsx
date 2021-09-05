@@ -5,7 +5,7 @@ import axios from 'axios';
 import { getNominatimReverse } from '../../api/nominatim';
 import logo from '../../static/img/pediloya.png';
 import FormData from 'form-data';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker} from 'react-leaflet';
 //import { createNegocio } from '../../api/negocioServices'
 
 const center = {
@@ -63,15 +63,12 @@ export const NegocioRegistroCard = () => {
     var bodyFormData = new FormData();
 
     function handleChangeNombre(evt) {
-        console.log("nombre:" + evt.target.value)
         bodyFormData.append('nombre', evt.target.value);
     }
     function handleChangeEmail(evt) {
-        console.log("email:" + evt.target.value)
         bodyFormData.append('email', evt.target.value);
     }
     function handleChangeTelefono(evt) {
-        console.log("telefono:" + evt.target.value)
         bodyFormData.append('telefono', evt.target.value);
     }
     function handleFileChosen(file) {
@@ -80,7 +77,7 @@ export const NegocioRegistroCard = () => {
     }
 
     function handleChangeCalleNombre (value){
-            setCalleNombre(value)
+        setCalleNombre(value)
     }
 
     function handleChangecalleNumero (value){
