@@ -13,10 +13,14 @@ const center = {
     lng: -58.398,
 }
 export const NegocioRegistroCard = () => {
+    const [nombre, setNombre] = useState(" ")
+    const [email, setEmail] = useState(" ")
+    const [telefono, setTelefono] = useState(" ")
+    const [file, setFile] = useState()
     const [position, setPosition] = useState(center)
-    const [calleNombre, setCalleNombre] = useState()
-    const [calleNumero, setCalleNumero] = useState()
-    const [localidad, setLocalidad] = useState()
+    const [calleNombre, setCalleNombre] = useState(" ")
+    const [calleNumero, setCalleNumero] = useState(" ")
+    const [localidad, setLocalidad] = useState(" ")
     function DraggableMarker() {
         const markerRef = useRef(null)
         const eventHandlers = useMemo(
@@ -59,33 +63,63 @@ export const NegocioRegistroCard = () => {
     var bodyFormData = new FormData();
 
     function handleChangeNombre(evt) {
-        bodyFormData.append('nombre', evt.target.value);
+        setNombre(evt.target.value)
+        //bodyFormData.append('nombre', evt.target.value);
     }
     function handleChangeEmail(evt) {
-        bodyFormData.append('email', evt.target.value);
+        setEmail(evt.target.value)
+        //bodyFormData.append('email', evt.target.value);
     }
     function handleChangeTelefono(evt) {
-        bodyFormData.append('telefono', evt.target.value);
+        setTelefono(evt.target.value)
+        //bodyFormData.append('telefono', evt.target.value);
     }
     function handleFileChosen(file) {
-
-        bodyFormData.append('file', file);
+        setFile(file)
+        //bodyFormData.append('file', file);
     }
 
-    function handleChangeCalleNombre (value){
-        setCalleNombre(value)
+    function handleChangeCalleNombre (e){
+        setCalleNombre(e.target.value)
+        //bodyFormData.append('calle', e.target.value)
     }
 
-    function handleChangecalleNumero (value){
-        setCalleNumero(value)
+    function handleChangecalleNumero (e){
+        setCalleNumero(e.target.value)
+        //bodyFormData.append('numero', e.target.value)
     }
 
-    function handleChangeLocalidad (value){
-        setLocalidad(value)
+    function handleChangeLocalidad (e){
+        setLocalidad(e.target.value)
+        //bodyFormData.append('ciudad', e.target.value)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        bodyFormData.append('nombre', nombre)
+        console.log("nombre: "+nombre)
+        bodyFormData.append('email', email)
+        console.log("email: "+email)
+        bodyFormData.append('telefono', telefono)
+        console.log("telefono: "+telefono)
+        bodyFormData.append('file', file);
+        console.log("file: "+file)
+
+        bodyFormData.append('calle', calleNombre)
+        console.log("CALLE: "+calleNombre)
+        bodyFormData.append('numero', calleNumero)
+        console.log("NUMERO: "+calleNumero)
+        bodyFormData.append('ciudad', localidad)
+        console.log("LOCALIDAD: "+localidad)
+        bodyFormData.append('latitud', position.lat)
+        console.log("LATITUD: "+position.lat)
+        bodyFormData.append('longitud', position.lng)
+        console.log("LONGITUD: "+position.lng)
+
+        for (var value of bodyFormData.values()){
+            console.log("BODYFORMDATA: "+value)
+        }
+        
         axios({
             method: "POST",
             url: "https://pedidosya-api.herokuapp.com/negocios/",
@@ -159,7 +193,7 @@ export const NegocioRegistroCard = () => {
                             />
                             <DraggableMarker />
                         </MapContainer>
-                        <button type="button" className="btn btn-danger" onClick={traerDireccion}>Traer Direccion</button>
+                        <p className="btn btn-danger" onClick={traerDireccion}>Traer Direccion</p>
 
                         <div className="form-floating mb-3">
                             <input className="form-control"
@@ -167,10 +201,11 @@ export const NegocioRegistroCard = () => {
                                 name="calleNombre"
                                 id="InputTel"
                                 placeholder=" "
-                                onChange={e => handleChangeCalleNombre(e.target.value)}
+                                //onChange={e => handleChangeCalleNombre(e.target.value)}
+                                onChange={handleChangeCalleNombre}
                                 value={calleNombre}
                                 required
-                                disabled
+                                
                             />
                             <label htmlFor="InputTel">Calle</label>
                         </div>
@@ -181,10 +216,11 @@ export const NegocioRegistroCard = () => {
                                 name="calleNumero"
                                 id="InputTel"
                                 placeholder=" "
-                                onChange={e => handleChangecalleNumero(e.target.value)}
+                                //onChange={e => handleChangecalleNumero(e.target.value)}
+                                onChange={handleChangecalleNumero}
                                 value={calleNumero}
                                 required
-                                disabled
+                                
                             />
                             <label htmlFor="InputTel">Numero</label>
                         </div>
@@ -195,10 +231,10 @@ export const NegocioRegistroCard = () => {
                                 name="localidad"
                                 id="InputTel"
                                 placeholder=" "
-                                onChange={e => handleChangeLocalidad(e.target.value)}
+                                onChange={handleChangeLocalidad}
                                 value={localidad}
                                 required
-                                disabled
+                                
                             />
                             <label htmlFor="InputTel">Localidad</label>
                         </div>
