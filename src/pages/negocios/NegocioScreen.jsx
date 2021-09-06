@@ -8,13 +8,13 @@ import { Footer } from '../../components/footer/Footer'
 export const NegocioScreen = (props) => {
     const {search} = useLocation();
     const query = new URLSearchParams(search);
-    const idNegocio = query.get("id");
+    const ciudad = query.get("ciudad");
     
     return (
         <div>
             <NavBar/>
-            negocios:{idNegocio}
-            <ListaNegocios/>
+            negocios:{ciudad}
+            <ListaNegocios ciudad = {ciudad}/>
             <Footer/>
         </div>
     )

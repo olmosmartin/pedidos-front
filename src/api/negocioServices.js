@@ -10,6 +10,10 @@ export const getNegocio = async (id)=>{
     return await axios.get(`${path}negocios/${id}`);
 }
 
+export const getNegocioLocalidad = async (localidad)=>{
+    return await axios.get(`${path}negocios?ciudad=${localidad}`);
+}
+
 export const createNegocio =async (negocio)=>{
     return await axios.post(`${path}negocios`, negocio);
 }

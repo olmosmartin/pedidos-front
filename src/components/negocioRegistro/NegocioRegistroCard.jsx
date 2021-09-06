@@ -205,7 +205,7 @@ export const NegocioRegistroCard = () => {
                                 onChange={handleChangeCalleNombre}
                                 value={calleNombre}
                                 required
-                                
+                                disabled
                             />
                             <label htmlFor="InputTel">Calle</label>
                         </div>
@@ -220,7 +220,7 @@ export const NegocioRegistroCard = () => {
                                 onChange={handleChangecalleNumero}
                                 value={calleNumero}
                                 required
-                                
+                                disabled
                             />
                             <label htmlFor="InputTel">Numero</label>
                         </div>
@@ -234,7 +234,7 @@ export const NegocioRegistroCard = () => {
                                 onChange={handleChangeLocalidad}
                                 value={localidad}
                                 required
-                                
+                                disabled
                             />
                             <label htmlFor="InputTel">Localidad</label>
                         </div>

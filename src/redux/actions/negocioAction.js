@@ -1,5 +1,5 @@
 //import axios from "axios"
-import { getNegocios, getNegocio } from '../../api/negocioServices'
+import { getNegocios, getNegocio, getNegocioLocalidad } from '../../api/negocioServices'
 
 //types
 export const FETCH_NEGOCIO_REQUEST = 'FETCH_NEGOCIO_REQUEST'
@@ -38,7 +38,6 @@ const fetchNegocioFailure = (error) => {
 export const fetchNegocio = () => {
     return (dispatch) => {
         dispatch( fetchNegocioRequest() );
-        //axios.get(`https://pokeapi.co/api/v2/pokemon?offset=300&limit=100`)
         getNegocios()
         .then(response => {
             dispatch( fetchNegocioSuccess([response.data]) );
@@ -52,8 +51,20 @@ export const fetchNegocio = () => {
 export const fetchNegocioId = (id) => {
     return (dispatch) => {
         dispatch( fetchNegocioRequest() );
-        //axios.get(`https://pokeapi.co/api/v2/pokemon?offset=300&limit=100`)
         getNegocio(id)
+        .then(response => {
+            dispatch( fetchNegocioSuccess([response.data]) );
+        })
+        .catch(error => {
+            dispatch( fetchNegocioFailure('negocios no encontrados') )
+        })
+    }
+}
+
+export const fetchNegocioLocalidad = (localidad) => {
+    return (dispatch) => {
+        dispatch( fetchNegocioRequest() );
+        getNegocioLocalidad(localidad)
         .then(response => {
             dispatch( fetchNegocioSuccess([response.data]) );
         })

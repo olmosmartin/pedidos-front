@@ -11,7 +11,7 @@ export const FormHome = () => {
     const [position, setPosition] = useState({ longitud:0, latitud:0 })
     const [errorPosition, setErrorPosition] = useState(true)
     const history = useHistory()
-    const [valueSelect, setValueSelect] = useState([]);
+    const [valueSelect, setValueSelect] = useState({title: 'Ver todos', codigo: 0});
     const [inputValue, setInputValue] = React.useState('');
 
     useEffect(() => {
@@ -33,7 +33,7 @@ export const FormHome = () => {
     }, [])
 
     const handleSubmit = (e) => {
-        history.push(`/negocios?id=${valueSelect.title}`);
+        history.push(`/negocios?ciudad=${valueSelect.title}`);
     }
 
     const traerDireccion = async() => {
@@ -46,7 +46,8 @@ export const FormHome = () => {
     const handleSubmitAutodetect = async(e) => {
         e.preventDefault()
         var ciudad = await traerDireccion()
-        history.push(`/negocios?id=${ciudad}`);
+        
+        history.push(`/negocios?ciudad=${ciudad.split('"').join('')}`);
     }
 
     const handleChange = (newValue) => {
@@ -54,11 +55,9 @@ export const FormHome = () => {
     }
 
     const localidades = [
-        { title: 'Lanus', codigo: 1 },
-        { title: 'Avellaneda', codigo: 2 },
-        { title: 'Banfield', codigo: 3 },
-        { title: 'Lomas', codigo: 4 },
-        { title: 'Escalada', codigo: 5 },
+        { title: 'Remedios de Escalada', codigo: 1 },
+        { title: 'Lanús Este', codigo: 2 },
+        { title: 'Lanús Oeste', codigo: 3 },
     ]
 
     return (

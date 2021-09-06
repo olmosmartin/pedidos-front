@@ -22,51 +22,53 @@ export const MenuListaREDU = () => {
     return (
         <div className="">
             <div className="row justify-content-center ">
-                    <div className="space"></div>
-                    {
-                        buscador.isLoading ?
-                            <div className="spaces">
-                                <div className="spinner-grow text-dark" role="status">
-                                    <span className="visually-hidden">Loading...</span>
-                                </div>
-                                <div className="spinner-grow text-dark" role="status">
-                                    <span className="visually-hidden">Loading...</span>
-                                </div>
-                                <div className="spinner-grow text-dark" role="status">
-                                    <span className="visually-hidden">Loading...</span>
-                                </div>
-                                <div className="spinner-grow text-dark" role="status">
-                                    <span className="visually-hidden">Loading...</span>
-                                </div>
+                <div className="space"></div>
+                {
+                    buscador.isLoading ?
+                        <div className="spaces">
+                            <div className="spinner-grow text-dark" role="status">
+                                <span className="visually-hidden">Loading...</span>
                             </div>
-                            
-                            :
-                            null
-                    }
-                    <FiltrosAcordeonNegocioDetalle/>
-                    <div className="col">
-                    {buscador.productos.length >= 1 && !buscador.error ?
-
-                        <div className="">
-                            {buscador.productos[0]?.map((producto, i) => (
-                                <MenuCard key={i} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} />
-                            ))
-                            }
+                            <div className="spinner-grow text-dark" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </div>
+                            <div className="spinner-grow text-dark" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </div>
+                            <div className="spinner-grow text-dark" role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </div>
                         </div>
+
                         :
-                        null
-                    }
-                    {
-                        buscador.error !== '' && buscador.productos.length === 0 ?
-                            <span className="text-danger"> {buscador.error} </span>
-                            :
-                            null
-                    }
-                    </div>
-                    <div className="col">
-                        <p>algo escrito acá</p>
-                    </div>
-                </div>
+                        <>
+                            <FiltrosAcordeonNegocioDetalle />
+                            <div className="col">
+                                {buscador.productos.length >= 1 && !buscador.error ?
+
+                                    <div className="">
+                                        {buscador.productos[0]?.map((producto, i) => (
+                                            <MenuCard key={i} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} />
+                                        ))
+                                        }
+                                    </div>
+                                    :
+                                    null
+                                }
+                                {
+                                    buscador.error !== '' && buscador.productos.length === 0 ?
+                                        <span className="text-danger"> {buscador.error} </span>
+                                        :
+                                        null
+                                }
+                            </div>
+                            <div className="col">
+                                <p>algo escrito acá</p>
+                            </div>
+                        </>
+                }
+
             </div>
+        </div>
     )
 }
