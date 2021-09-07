@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from "react-router-dom"
+import { useLocation, useHistory } from "react-router-dom"
+
 
 import './menuLista.css';
 import { fetchProductosIdNegocio } from '../../redux/actions/productoAction';
@@ -14,7 +15,12 @@ export const MenuListaREDU = () => {
     const { search } = useLocation();
     const query = new URLSearchParams(search);
     const idNegocio = query.get("id");
+    const history = useHistory()
 
+    const handleSubmit = () => {
+
+        history.push(`/platoIngreso?id=${idNegocio}`);
+    }
     useEffect(() => {
         dispatch(fetchProductosIdNegocio(idNegocio))
     }, [])
@@ -38,6 +44,7 @@ export const MenuListaREDU = () => {
                             <div className="spinner-grow text-dark" role="status">
                                 <span className="visually-hidden">Loading...</span>
                             </div>
+
                         </div>
 
                         :
@@ -51,9 +58,14 @@ export const MenuListaREDU = () => {
                                             <MenuCard key={i} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} />
                                         ))
                                         }
+                                        <div>
+                                            <button className="btn btn-danger" type="submit" onClick={handleSubmit}>Agregar plato al menú</button>
+                                        </div>
                                     </div>
+                                    
                                     :
                                     null
+                                    
                                 }
                                 {
                                     buscador.error !== '' && buscador.productos.length === 0 ?
