@@ -63,7 +63,7 @@ const ListaNegocios = (props) => {
                                 }
                             </div>
                             <div className="col">
-                                <MapVista />
+                                {/*<MapVista />*/}
                                 <p>Puntuacion y comentarios:</p>
                             </div>
                         </>
