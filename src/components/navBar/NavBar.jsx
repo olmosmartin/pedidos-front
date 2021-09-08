@@ -11,6 +11,11 @@ export const NavBar = () => {
 
         history.push(`/negocioRegistro`);
     }
+    const idNegocio = '612e72a068f079e9dd47813d'/*query.get("id")*/;/*hardcodeado hasta remplazar por login*/
+    const handleNegocio = () => {
+        history.push(`/negocioVista?id=${idNegocio}`);
+    }
+
     
     return (
         <div>
@@ -24,7 +29,11 @@ export const NavBar = () => {
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                         <ul className="navbar-nav">
                             <li>
-                            <button className="badge rounded-pill bg-secondary p-2 mt-2" type="submit" onClick={handleSubmit}>Registrá tu negocio</button>
+                                <button className="badge rounded-pill btn-danger  p-2 mt-2" type="submit" onClick={handleNegocio} style={{marginRight: '5px'}}>Vista de negocio</button>   
+                            </li>
+                            
+                            <li>
+                                <button className="badge rounded-pill bg-secondary p-2 mt-2" type="submit" onClick={handleSubmit}>Registrá tu negocio</button>
                             </li>
                             {/*
                             <li className="nav-item dropdown">
