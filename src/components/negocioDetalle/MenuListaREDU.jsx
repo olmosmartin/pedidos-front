@@ -68,7 +68,7 @@ export const MenuListaREDU = () => {
                                 }
                             </div>
                             <div className="col">
-                                <p>algo escrito acá</p>
+                                <p>Puntuacion</p>
                             </div>
                         </>
                 }

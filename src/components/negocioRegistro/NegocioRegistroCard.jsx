@@ -1,6 +1,7 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { useHistory } from "react-router-dom"
 
 import { getNominatimReverse } from '../../api/nominatim';
 import logo from '../../static/img/pediloya.png';
@@ -13,6 +14,7 @@ const center = {
     lng: -58.398,
 }
 export const NegocioRegistroCard = () => {
+    const history = useHistory()
     const [nombre, setNombre] = useState(" ")
     const [email, setEmail] = useState(" ")
     const [telefono, setTelefono] = useState(" ")
@@ -133,6 +135,8 @@ export const NegocioRegistroCard = () => {
                 //handle error
                 console.log(response);
             });
+
+        history.push("/")
     }
 
     return (
@@ -155,6 +159,20 @@ export const NegocioRegistroCard = () => {
                                 required
                             />
                             <label htmlFor="floatingInput1">Ingrese nombre del local</label>
+                        </div>
+
+                        <div className="form-floating mb-3">
+                            <input
+                                type="password"
+                                name="nombre"
+                                className="form-control"
+                                id="floatingInput1"
+                                placeholder="Ingrese contraseña"
+                                //onChange={}
+                                minLength="8"
+                                required
+                            />
+                            <label htmlFor="floatingInput1">Ingrese contraseña</label>
                         </div>
 
                         <div className="form-floating mb-3">

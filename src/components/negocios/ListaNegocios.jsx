@@ -64,7 +64,7 @@ const ListaNegocios = (props) => {
                             </div>
                             <div className="col">
                                 {/*<MapVista />*/}
-                                <p>Puntuacion y comentarios:</p>
+                                <p>Mapa proximamente:</p>
                             </div>
                         </>
                 }
