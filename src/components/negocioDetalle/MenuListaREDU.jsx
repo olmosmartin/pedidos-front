@@ -7,6 +7,7 @@ import './menuLista.css';
 import { fetchProductosIdNegocio } from '../../redux/actions/productoAction';
 import { MenuCard } from './MenuCard';
 import { FiltrosAcordeonNegocioDetalle } from './FiltrosAcordeonNegocioDetalle'
+import { Carrito } from '../carrito/Carrito';
 
 export const MenuListaREDU = () => {
     const buscador = useSelector((state) => state.productoReducer)
@@ -50,7 +51,7 @@ export const MenuListaREDU = () => {
 
                                     <div className="">
                                         {buscador.productos[0]?.map((producto, i) => (
-                                            <MenuCard key={i} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} />
+                                            <MenuCard key={i} id={producto._id} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} />
                                         ))
                                         }
                                         
@@ -68,7 +69,7 @@ export const MenuListaREDU = () => {
                                 }
                             </div>
                             <div className="col">
-                                <p>Puntuacion</p>
+                                <Carrito/>
                             </div>
                         </>
                 }
