@@ -162,6 +162,19 @@ export const NegocioRegistroCard = () => {
                         </div>
 
                         <div className="form-floating mb-3">
+                            <input className="form-control"
+                                type="email"
+                                name="email"
+                                id="InputEmail1"
+                                aria-describedby="emailHelp"
+                                placeholder="Ingrese la dirección de email de su local"
+                                onChange={handleChangeEmail}
+                                required
+                            />
+                            <label htmlFor="InputEmail1">Correo electrónico</label>
+                        </div>
+
+                        <div className="form-floating mb-3">
                             <input
                                 type="password"
                                 name="nombre"
@@ -176,17 +189,19 @@ export const NegocioRegistroCard = () => {
                         </div>
 
                         <div className="form-floating mb-3">
-                            <input className="form-control"
-                                type="email"
-                                name="email"
-                                id="InputEmail1"
-                                aria-describedby="emailHelp"
-                                placeholder="Ingrese la dirección de email de su local"
-                                onChange={handleChangeEmail}
+                            <input
+                                type="password"
+                                name="nombre"
+                                className="form-control"
+                                id="floatingInput1"
+                                placeholder="Ingrese contraseña"
+                                //onChange={}
+                                minLength="8"
                                 required
                             />
-                            <label htmlFor="InputEmail1">Correo electrónico</label>
+                            <label htmlFor="floatingInput1">Confirmar contraseña</label>
                         </div>
+
                         <div className="form-floating mb-3">
                             <input className="form-control"
                                 type="text"
