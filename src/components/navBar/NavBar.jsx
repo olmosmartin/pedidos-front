@@ -41,7 +41,7 @@ export const NavBar = () => {
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle px-5" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" to="#"> <img src={logoMin} alt="logomin" width="20"/> </Link>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <Link className="dropdown-item" to="#">Iniciar Sesion</Link>
+                                    <Link className="dropdown-item" to="/iniciarSesion">Iniciar Sesion</Link>
                                     <Link className="dropdown-item" to="#">Registrarse</Link>
                                 </ul>
                             </li>

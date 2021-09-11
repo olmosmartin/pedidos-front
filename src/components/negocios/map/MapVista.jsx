@@ -11,7 +11,7 @@ import { places } from './fakeTestPositions.json'
 export const MapVista = () => {
 
     return (
-        <MapContainer center={{ lat: '-34.733813', lon: '-58.392080' }} zoom={13}>
+        <MapContainer center={{ lat: '-34.713210', lon: '-58.379101' }} zoom={12}>
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

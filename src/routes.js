@@ -7,6 +7,7 @@ import { NegocioDetalle } from "./pages/negocioDetalle/NegocioDetalle";
 import { NegocioRegistro } from "./pages/negocioRegistro/NegocioRegistro"
 import { platoIngreso } from "./pages/platoIngreso/platoIngreso";
 import { NegocioVista } from "./pages/negocioVista/negocioVista";
+import { IniciarSesion } from "./pages/iniciarSesion/IniciarSesion";
 
 export default function Routes() {
     return (
@@ -17,7 +18,8 @@ export default function Routes() {
                 <Route exact path="/negocio" component={NegocioDetalle}/>
                 <Route exact path="/negocioRegistro" component={NegocioRegistro}/>
                 <Route exact path="/platoIngreso" component={platoIngreso}/>
-                <Route exact path="/negocioVista" component={NegocioVista}/>   
+                <Route exact path="/negocioVista" component={NegocioVista}/>
+                <Route exact path="/iniciarSesion" component={IniciarSesion}/>
             </Switch>
         </Router>
     )

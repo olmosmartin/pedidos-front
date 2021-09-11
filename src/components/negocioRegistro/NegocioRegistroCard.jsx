@@ -106,7 +106,6 @@ export const NegocioRegistroCard = () => {
         console.log("telefono: "+telefono)
         bodyFormData.append('file', file);
         console.log("file: "+file)
-
         bodyFormData.append('calle', calleNombre)
         console.log("CALLE: "+calleNombre)
         bodyFormData.append('numero', calleNumero)
@@ -218,14 +217,15 @@ export const NegocioRegistroCard = () => {
                             <label htmlFor="formFile" className="form-label">Seleccionar imagen</label>
                             <input className="form-control" type="file" name="imagen" id="formFile" onChange={e => handleFileChosen(e.target.files[0])} />
                         </div>
-
-                        <MapContainer center={center} zoom={13} scrollWheelZoom={true}>
+                        <small>Arrastra el marcador y preciona traer dirección</small>
+                        <MapContainer center={center} zoom={12} scrollWheelZoom={true}>
                             <TileLayer
                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             />
                             <DraggableMarker />
                         </MapContainer>
+
                         <p className="btn btn-danger" onClick={traerDireccion}>Traer Direccion</p>
 
                         <div className="form-floating mb-3">
