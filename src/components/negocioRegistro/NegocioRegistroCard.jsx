@@ -7,6 +7,7 @@ import { getNominatimReverse } from '../../api/nominatim';
 import logo from '../../static/img/pediloya.png';
 import FormData from 'form-data';
 import { MapContainer, TileLayer, Marker} from 'react-leaflet';
+import { toast } from 'react-toastify';
 //import { createNegocio } from '../../api/negocioServices'
 
 const center = {
@@ -128,13 +129,14 @@ export const NegocioRegistroCard = () => {
         })
             .then(function (response) {
                 //handle success
+                toast.success("Registro exitoso")
                 console.log(response);
             })
             .catch(function (response) {
                 //handle error
+                toast.error("Problemas en el registro")
                 console.log(response);
             });
-
         history.push("/")
     }
 

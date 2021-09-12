@@ -8,10 +8,13 @@ import { NegocioRegistro } from "./pages/negocioRegistro/NegocioRegistro"
 import { platoIngreso } from "./pages/platoIngreso/platoIngreso";
 import { NegocioVista } from "./pages/negocioVista/negocioVista";
 import { IniciarSesion } from "./pages/iniciarSesion/IniciarSesion";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Routes() {
     return (
         <Router>
+            <ToastContainer/>
             <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/negocios" component={NegocioScreen}/>
