@@ -47,7 +47,7 @@ const ListaNegocios = (props) => {
 
                                     <div className="">
                                         {buscador.negocio[0]?.map((negocio, i) => (
-                                            <NegocioCard key={i} id={negocio._id} nombre={negocio.nombre} imagen={negocio.imagen} email={negocio.email} />
+                                            <NegocioCard key={i} id={negocio._id} nombre={negocio.usuario.nombre} imagen={negocio.imagen} email={negocio.usuario.email} />
                                         ))
                                         }
                                     </div>

@@ -18,6 +18,7 @@ export const NegocioRegistroCard = () => {
     const history = useHistory()
     const [nombre, setNombre] = useState(" ")
     const [email, setEmail] = useState(" ")
+    const [password, setPassword] = useState(" ")
     const [telefono, setTelefono] = useState(" ")
     const [file, setFile] = useState()
     const [position, setPosition] = useState(center)
@@ -69,6 +70,12 @@ export const NegocioRegistroCard = () => {
         setNombre(evt.target.value)
         //bodyFormData.append('nombre', evt.target.value);
     }
+
+    function handleChangePassword(evt) {
+        setPassword(evt.target.value)
+        //bodyFormData.append('nombre', evt.target.value);
+    }
+
     function handleChangeEmail(evt) {
         setEmail(evt.target.value)
         //bodyFormData.append('email', evt.target.value);
@@ -103,6 +110,8 @@ export const NegocioRegistroCard = () => {
         console.log("nombre: "+nombre)
         bodyFormData.append('email', email)
         console.log("email: "+email)
+        bodyFormData.append('password', password)
+        console.log("password: "+password)
         bodyFormData.append('telefono', telefono)
         console.log("telefono: "+telefono)
         bodyFormData.append('file', file);
@@ -117,7 +126,7 @@ export const NegocioRegistroCard = () => {
         console.log("LATITUD: "+position.lat)
         bodyFormData.append('longitud', position.lng)
         console.log("LONGITUD: "+position.lng)
-
+        
         for (var value of bodyFormData.values()){
             console.log("BODYFORMDATA: "+value)
         }
@@ -182,7 +191,7 @@ export const NegocioRegistroCard = () => {
                                 className="form-control"
                                 id="floatingInput1"
                                 placeholder="Ingrese contraseña"
-                                //onChange={}
+                                onChange={handleChangePassword}
                                 minLength="8"
                                 required
                             />
