@@ -1,3 +1,46 @@
 .sombra{
     box-shadow: 1px 2px 20px 3px rgba(0, 0, 0, 0.5);
 }
+
+body 
+{
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    /*font-family: sans-serif;*/
+}
+Autocomplete [id="combo-box-demo"]
+{
+    color: #fff;
+}
+
+TextField [label="Selecciona una ciudad"]
+{
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 20px;
+    font-size: 20px;
+    padding: 0 25px;
+    border: none;
+    outline: none;    
+}
+
+
+/*boton buscar*/
+button[type="submit"]
+{
+    position: relative;
+    left: -5px;
+    width: 150px; 
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #fb0e5a;
+    color: #fff;
+}
+button[type="submit"]:hover
+{
+    background: #6c757d;
+    
+}
