@@ -1,0 +1,10 @@
+.fondoClienteRegistro{
+    background-image: url('../../static/img/cliente.jpg');
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}

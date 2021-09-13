@@ -10,6 +10,7 @@ import { NegocioVista } from "./pages/negocioVista/negocioVista";
 import { IniciarSesion } from "./pages/iniciarSesion/IniciarSesion";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ClienteRegistro } from "./pages/clienteRegistro/clienteRegistro";
 
 export default function Routes() {
     return (
@@ -23,6 +24,7 @@ export default function Routes() {
                 <Route exact path="/platoIngreso" component={platoIngreso}/>
                 <Route exact path="/negocioVista" component={NegocioVista}/>
                 <Route exact path="/iniciarSesion" component={IniciarSesion}/>
+                <Route exact path="/clienteRegistro" component={ClienteRegistro}/>
             </Switch>
         </Router>
     )

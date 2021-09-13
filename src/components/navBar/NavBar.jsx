@@ -44,7 +44,7 @@ export const NavBar = () => {
                                 
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     {sessionStorage.getItem('usuarioID')?<LogOut/>:<Link className="dropdown-item" to="/iniciarSesion">Iniciar Sesion</Link>}
-                                    {!sessionStorage.getItem('usuarioID')&&<Link className="dropdown-item" to="#">Registrarse</Link>}
+                                    {!sessionStorage.getItem('usuarioID')&&<Link className="dropdown-item" to="/clienteRegistro">Registrarse</Link>}
                                 </ul>
                                 
                             </li>
