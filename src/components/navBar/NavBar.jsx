@@ -4,6 +4,7 @@ import logo from '../../static/img/pediloya.png';
 import logoMin from '../../static/img/lap.png'
 import { useHistory, } from "react-router-dom" // para cambiar de ruta
 import './NavBar.css'
+import LogOut from '../logOut/LogOut';
 
 export const NavBar = () => {
     const history = useHistory()
@@ -29,21 +30,23 @@ export const NavBar = () => {
                     <div className="container m-2">
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                         <ul className="navbar-nav">
-                            {/*
+                            {sessionStorage.getItem('role')==='NEGOCIO'?
                             <li>
-                                <button className="badge rounded-pill btn-danger  p-2 mt-2" type="submit" onClick={handleNegocio} style={{marginRight: '5px'}}>Vista de negocio</button>   
+                                <button className="badge rounded-pill btn-danger  p-2 mt-2" type="submit" onClick={handleNegocio} style={{marginRight: '5px'}}>Mi negocio</button>   
                             </li>
-                            */}
+                            :
                             <li>
                                 <button className="badge rounded-pill bg-secondary p-2 mt-2" type="submit" onClick={handleSubmit}>Registrá tu negocio</button>
                             </li>
-                            
+                            }
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle px-5" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" to="#"> <img src={logoMin} alt="logomin" width="20"/> </Link>
+                                
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <Link className="dropdown-item" to="/iniciarSesion">Iniciar Sesion</Link>
-                                    <Link className="dropdown-item" to="#">Registrarse</Link>
+                                    {sessionStorage.getItem('usuarioID')?<LogOut/>:<Link className="dropdown-item" to="/iniciarSesion">Iniciar Sesion</Link>}
+                                    {!sessionStorage.getItem('usuarioID')&&<Link className="dropdown-item" to="#">Registrarse</Link>}
                                 </ul>
+                                
                             </li>
 
                         </ul>
