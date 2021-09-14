@@ -37,7 +37,8 @@ export const IniciarSesionCard = () => {
                 sessionStorage.setItem('role', res.data.role);
 
                 toast.success("Bienvenido!")
-                history.push("/negocioVista")
+                res.data.role==='NEGOCIO'&&history.push("/negocioVista")
+                res.data.role==='CLIENTE'&&history.push("/")
             }
             
         } catch (err) {

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import { useHistory } from "react-router-dom"
 
+import { createCliente } from '../../api/clienteServices';
 import { getNominatimReverse } from '../../api/nominatim';
 import logo from '../../static/img/pediloya.png';
 import FormData from 'form-data';
@@ -14,17 +15,28 @@ const center = {
     lat: -34.734,
     lng: -58.398,
 }
+
+const estadoInicialVacio = {
+    nombre: " ",
+    email: " ",
+    password: " ",
+    telefono: " ",
+    latitud: 0,
+    longitud: 0,
+    ciudad: " ",
+    calle: " ",
+    numero: 0
+}
+
 export const ClienteRegistroCard = () => {
     const history = useHistory()
-    const [nombre, setNombre] = useState(" ")
-    const [email, setEmail] = useState(" ")
-    const [password, setPassword] = useState(" ")
-    const [telefono, setTelefono] = useState(" ")
+    let objeto={}
+    const [cliente, setCliente] = useState(estadoInicialVacio)
     const [position, setPosition] = useState(center)
     const [calleNombre, setCalleNombre] = useState(" ")
     const [calleNumero, setCalleNumero] = useState(" ")
     const [localidad, setLocalidad] = useState(" ")
-    const rol =  'CLIENTE'
+    
     function DraggableMarker() {
         const markerRef = useRef(null)
         const eventHandlers = useMemo(
@@ -64,85 +76,38 @@ export const ClienteRegistroCard = () => {
 
     }
 
-    var bodyFormData = new FormData();
-
-    function handleChangeNombre(evt) {
-        setNombre(evt.target.value)
-        //bodyFormData.append('nombre', evt.target.value);
+    const handleInputChange = (e) => {
+        setCliente({ ...cliente, [e.target.name]: e.target.value });
     }
 
-    function handleChangePassword(evt) {
-        setPassword(evt.target.value)
-        //bodyFormData.append('nombre', evt.target.value);
-    }
 
-    function handleChangeEmail(evt) {
-        setEmail(evt.target.value)
-        //bodyFormData.append('email', evt.target.value);
-    }
-    function handleChangeTelefono(evt) {
-        setTelefono(evt.target.value)
-        //bodyFormData.append('telefono', evt.target.value);
-    }
-
-    function handleChangeCalleNombre (e){
-        setCalleNombre(e.target.value)
-        //bodyFormData.append('calle', e.target.value)
-    }
-
-    function handleChangecalleNumero (e){
-        setCalleNumero(e.target.value)
-        //bodyFormData.append('numero', e.target.value)
-    }
-
-    function handleChangeLocalidad (e){
-        setLocalidad(e.target.value)
-        //bodyFormData.append('ciudad', e.target.value)
-    }
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        bodyFormData.append('nombre', nombre)
-        console.log("nombre: "+nombre)
-        bodyFormData.append('email', email)
-        console.log("email: "+email)
-        bodyFormData.append('password', password)
-        console.log("password: "+password)
-        bodyFormData.append('telefono', telefono)
-        console.log("telefono: "+telefono)
-        bodyFormData.append('calle', calleNombre)
-        console.log("CALLE: "+calleNombre)
-        bodyFormData.append('rol', rol)
-        console.log("rol: "+rol)/*REVISAR*/
-        bodyFormData.append('numero', calleNumero)
-        console.log("NUMERO: "+calleNumero)
-        bodyFormData.append('ciudad', localidad)
-        console.log("LOCALIDAD: "+localidad)
-        bodyFormData.append('latitud', position.lat)
-        console.log("LATITUD: "+position.lat)
-        bodyFormData.append('longitud', position.lng)
-        console.log("LONGITUD: "+position.lng)
-        
-        for (var value of bodyFormData.values()){
-            console.log("BODYFORMDATA: "+value)
-        }
-        
-        axios({
-            method: "POST",
-           /* url: "https://pedidosya-api.herokuapp.com/negocios/",*/
-            data: bodyFormData
-        })
-            .then(function (response) {
-                //handle success
-                toast.success("Registro exitoso")
-                console.log(response);
-            })
-            .catch(function (response) {
-                //handle error
-                toast.error("Problemas en el registro")
-                console.log(response);
-            });
-        history.push("/")
+            objeto.nombre=cliente.nombre
+            objeto.email=cliente.email
+            objeto.password=cliente.password
+            objeto.telefono=cliente.telefono
+            objeto.calle=calleNombre
+            objeto.numero= calleNumero
+            objeto.ciudad= localidad
+            objeto.latitud= position.lat
+            objeto.longitud= position.lng
+            
+            try {
+                const res = await createCliente(objeto);
+                console.log("RES: " +JSON.stringify(res))
+    
+                if (res.status===200){
+                    toast.success("registro exitoso!")
+                    history.push("/")
+                }
+                
+            } catch (err) {
+                if (err.response && err.response.data) {
+                    toast.error("error, intente nuevamente")
+                    console.log(err.response.data.message) // error message
+                }
+            }
     }
 
     return (
@@ -161,7 +126,7 @@ export const ClienteRegistroCard = () => {
                                 className="form-control"
                                 id="floatingInput1"
                                 placeholder="Ingrese su nombre"
-                                onChange={handleChangeNombre}
+                                onChange={handleInputChange}
                                 required
                             />
                             <label htmlFor="floatingInput1">Ingrese su nombre</label>
@@ -174,7 +139,7 @@ export const ClienteRegistroCard = () => {
                                 id="InputEmail1"
                                 aria-describedby="emailHelp"
                                 placeholder="Ingrese su dirección de email"
-                                onChange={handleChangeEmail}
+                                onChange={handleInputChange}
                                 required
                             />
                             <label htmlFor="InputEmail1">Correo electrónico</label>
@@ -183,29 +148,29 @@ export const ClienteRegistroCard = () => {
                         <div className="form-floating mb-3">
                             <input
                                 type="password"
-                                name="nombre"
+                                name="password"
                                 className="form-control"
-                                id="floatingInput1"
+                                id="floatingInput2"
                                 placeholder="Ingrese contraseña"
-                                onChange={handleChangePassword}
+                                onChange={handleInputChange}
                                 minLength="8"
                                 required
                             />
-                            <label htmlFor="floatingInput1">Ingrese contraseña</label>
+                            <label htmlFor="floatingInput2">Ingrese contraseña</label>
                         </div>
 
                         <div className="form-floating mb-3">
                             <input
                                 type="password"
-                                name="nombre"
+                                name=" "
                                 className="form-control"
-                                id="floatingInput1"
+                                id="floatingInput3"
                                 placeholder="Ingrese contraseña"
                                 //onChange={}
                                 minLength="8"
                                 required
                             />
-                            <label htmlFor="floatingInput1">Confirmar contraseña</label>
+                            <label htmlFor="floatingInput3">Confirmar contraseña</label>
                         </div>
 
                         <div className="form-floating mb-3">
@@ -215,13 +180,13 @@ export const ClienteRegistroCard = () => {
                                 id="InputTel"
                                 aria-describedby="Tel"
                                 placeholder="Ingrese su número de teléfono "
-                                onChange={handleChangeTelefono}
+                                onChange={handleInputChange}
                                 required
                             />
                             <label htmlFor="InputTel">Teléfono</label>
                         </div>
                         <small>Arrastra el marcador y preciona traer dirección</small>
-                        <MapContainer center={center} zoom={12} scrollWheelZoom={true}>
+                        <MapContainer center={center} zoom={11} scrollWheelZoom={true}>
                             <TileLayer
                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -234,11 +199,11 @@ export const ClienteRegistroCard = () => {
                         <div className="form-floating mb-3">
                             <input className="form-control"
                                 type="text"
-                                name="calleNombre"
+                                name="calle"
                                 id="InputTel"
                                 placeholder=" "
                                 //onChange={e => handleChangeCalleNombre(e.target.value)}
-                                onChange={handleChangeCalleNombre}
+                                onChange={handleInputChange}
                                 value={calleNombre}
                                 required
                                 disabled
@@ -249,14 +214,14 @@ export const ClienteRegistroCard = () => {
                         <div className="form-floating mb-3">
                             <input className="form-control"
                                 type="text"
-                                name="calleNumero"
+                                name="numero"
                                 id="InputTel"
                                 placeholder=" "
                                 //onChange={e => handleChangecalleNumero(e.target.value)}
-                                onChange={handleChangecalleNumero}
+                                onChange={handleInputChange}
                                 value={calleNumero}
                                 required
-                                /*disabled*/
+                                disabled
                             />
                             <label htmlFor="InputTel">Número</label>
                         </div>
@@ -264,16 +229,19 @@ export const ClienteRegistroCard = () => {
                         <div className="form-floating mb-3">
                             <input className="form-control"
                                 type="text"
-                                name="localidad"
+                                name="ciudad"
                                 id="InputTel"
                                 placeholder=" "
-                                onChange={handleChangeLocalidad}
+                                onChange={handleInputChange}
                                 value={localidad}
                                 required
                                 disabled
                             />
                             <label htmlFor="InputTel">Localidad</label>
                         </div>
+
+                        <input type="hidden" value={position.lat}/>
+                        <input type="hidden" value={position.lgn}/>
 
                         <button type="submit" className="btn btn-danger">Comenzar</button>
                     </form>

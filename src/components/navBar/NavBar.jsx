@@ -35,6 +35,9 @@ export const NavBar = () => {
                                 <button className="badge rounded-pill btn-danger  p-2 mt-2" type="submit" onClick={handleNegocio} style={{marginRight: '5px'}}>Mi negocio</button>   
                             </li>
                             :
+                            sessionStorage.getItem('role')==='CLIENTE'?
+                            null
+                            :
                             <li>
                                 <button className="badge rounded-pill bg-secondary p-2 mt-2" type="submit" onClick={handleSubmit}>Registrá tu negocio</button>
                             </li>

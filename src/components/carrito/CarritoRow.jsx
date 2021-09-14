@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { agregarProductoAction, removerProductoAction } from '../../redux/actions/carritoAction';
+import './carritoRow.css'
 
 
 export const CarritoRow = (props) => {
@@ -23,7 +24,7 @@ export const CarritoRow = (props) => {
     }
 
     return (
-        <div>
+        <div className="carritoItem">
             {props.nombre}
             <button type="button" class="btn btn-success" onClick={handleClickAdd}>+</button>
             {props.cantidad}
