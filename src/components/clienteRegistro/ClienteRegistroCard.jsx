@@ -1,12 +1,12 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { Link } from "react-router-dom";
-import axios from 'axios';
 import { useHistory } from "react-router-dom"
+//import { useDispatch, useSelector } from 'react-redux';
 
+//import { registrarCliente } from '../../redux/actions/clienteAction';
 import { createCliente } from '../../api/clienteServices';
 import { getNominatimReverse } from '../../api/nominatim';
 import logo from '../../static/img/pediloya.png';
-import FormData from 'form-data';
 import { MapContainer, TileLayer, Marker} from 'react-leaflet';
 import { toast } from 'react-toastify';
 
@@ -29,6 +29,11 @@ const estadoInicialVacio = {
 }
 
 export const ClienteRegistroCard = () => {
+    /*
+    const buscador = useSelector((state) => state.clienteReducer)
+    const dispatch = useDispatch();
+    */
+
     const history = useHistory()
     let objeto={}
     const [cliente, setCliente] = useState(estadoInicialVacio)
@@ -93,6 +98,8 @@ export const ClienteRegistroCard = () => {
             objeto.latitud= position.lat
             objeto.longitud= position.lng
             
+            //dispatch( registrarCliente(objeto) )
+            //console.log("buscador: "+ JSON.stringify(buscador))
             try {
                 const res = await createCliente(objeto);
                 console.log("RES: " +JSON.stringify(res))
