@@ -13,7 +13,8 @@ export const NavBar = () => {
 
         history.push(`/negocioRegistro`);
     }
-    const idNegocio = '612e72a068f079e9dd47813d'/*query.get("id")*/;/*hardcodeado hasta remplazar por login*/
+
+    const idNegocio = sessionStorage.getItem('usuarioID')/*query.get("id")*/;/*hardcodeado hasta remplazar por login*/
     const handleNegocio = () => {
         history.push(`/negocioVista?id=${idNegocio}`);
     }

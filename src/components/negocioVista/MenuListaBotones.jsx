@@ -15,7 +15,7 @@ export const MenuListaBotones = () => {
 
     const { search } = useLocation();
     const query = new URLSearchParams(search);
-    const idNegocio = '612e72a068f079e9dd47813d'/*query.get("id")*/;
+    const idNegocio = query.get("id");
     const history = useHistory()
 
     const handleSubmit = () => {
