@@ -1,4 +1,4 @@
-import { AGREGAR_PRODUCTO, REMOVER_PRODUCTO } from "../actions/carritoAction";
+import { AGREGAR_PRODUCTO, REMOVER_PRODUCTO, REMOVER_TODO } from "../actions/carritoAction";
 
 const inicial_state = {
     productos:[
@@ -55,6 +55,15 @@ const carritoShopping = (state = inicial_state, action) => {
                 ...state,
                 productos: listanueva
             }
+        }
+
+        case REMOVER_TODO: {
+
+            return {
+                ...state,
+                productos: []
+            }
+
         }
 
         default:
