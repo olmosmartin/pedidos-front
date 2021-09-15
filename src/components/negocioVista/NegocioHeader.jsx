@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from "react-router-dom"
 
 import './negocioHeader.css'
-import { getNegocio } from '../../api/negocioServices';
+import { getUsuario } from '../../api/usuariosServices';
 
 
 export const NegocioHeader = () => {
@@ -12,10 +12,14 @@ export const NegocioHeader = () => {
     const idNegocio = query.get("id"); 
 
     const cargar = async (id)=>{
-
-        const res = await getNegocio(id);
-        console.log("RES: "+JSON.stringify(res.data))
-        setNegocio(res.data)
+        /*
+        const resnegocios = await getNegocios();
+        const negociodelusuario=resnegocios.data.filter( negocio=> negocio.usuario._id === idNegocio)
+        console.log("negociodelusuario: "+negociodelusuario)
+        */
+        const res = await getUsuario(id);
+        //console.log("RES: "+JSON.stringify(res.data))
+        setNegocio(res.data[0])
     }
 
     useEffect(() => {
