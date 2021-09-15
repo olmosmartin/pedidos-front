@@ -24,12 +24,23 @@ export const CarritoRow = (props) => {
     }
 
     return (
+    
         <div className="carritoItem">
-            {props.nombre}
-            <button type="button" class="btn btn-success" onClick={handleClickAdd}>+</button>
-            {props.cantidad}
-            <button type="button" class="btn btn-danger" onClick={handleClickDelete}>-</button>
-            ${props.precio}
+            <div class="container "style={{ margin: '5px'}}>
+                <div class="row g-1">
+                    <div class="col-6">
+                    <   p>{props.nombre}</p>
+                    </div>
+                    <div class="col-6">
+                    <button type="button" class="btn btn-success" onClick={handleClickAdd}>+</button>
+                        <a class="btn btn-default" >{props.cantidad}</a>
+                        <button type="button" class="btn btn-danger" onClick={handleClickDelete}>-</button>
+                        
+                    </div>
+                    Precio: ${props.precio}
+                </div>
+            </div>
         </div>
+       
     )
 }

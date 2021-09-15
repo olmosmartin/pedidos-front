@@ -23,10 +23,10 @@ export const Carrito = () => {
         console.log("ITEM: "+item.nombre)
     })
     return (
-        <div className="card"  style={{ flexDirection: 'column' }}>
+        <div className="card"  style={{ flexDirection: 'column', padding: '10px'}}>
             {carrito.productos.length>1?
-            <p>Carrito</p>
-            :<p>Haz click en un producto para agregarlo</p>}
+            <h4><i class="fa fa-shopping-cart" aria-hidden="true"></i>  Carrito</h4>
+            :<p style={{ textAlign: 'center'}}>Haz click en un producto para agregarlo</p>}
             {
             carrito.productos.map( (item, i) => {
                 if(item.id!==0){
@@ -35,9 +35,9 @@ export const Carrito = () => {
                 }
             })
             }
-            total:{suma}
+            Total: ${suma}
             {carrito.productos.length>1 && <button type="button" class="btn btn-success">Finalizar pedido</button>}
-        
+            
         </div>
     )
 }

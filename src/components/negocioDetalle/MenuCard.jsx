@@ -29,8 +29,10 @@ export const MenuCard = (props) => {
         <div className="card-body">
           <h4 className="card-title">{props.nombre}</h4>
           <p className="card-text">precio: ${props.precio}</p>
+          <button type="button" class="btn btn-success" style={{borderRadius:10}} onClick={handleClick}><i class="fa fa-cart-plus fa-lg" aria-hidden="true"> Añadir al carrito</i></button>
         </div>
-        <button type="button" class="btn btn-success" style={{borderRadius:100}} onClick={handleClick}>+</button>
+        
       </div>
+      
   )
 }

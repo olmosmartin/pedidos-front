@@ -1,2 +1,4 @@
 .carritoItem{
+    border-style: ridge;
+    width: -webkit-fill-available;
 }
