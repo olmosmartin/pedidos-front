@@ -59,7 +59,7 @@ export const MenuListaREDU = () => {
 
                                     <div className="">
                                         {buscador.productos[0]?.map((producto, i) => (
-                                            <MenuCard key={i} id={producto._id} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} />
+                                            <MenuCard key={i} id={producto._id} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} descripcion={producto.descripcion} />
                                         ))
                                         }
                                         

@@ -13,7 +13,8 @@ export const MenuCardBotones = (props) => {
         <img className="img-fluid" src={props.imagen} alt="sans" width="100px" />
         <div className="card-body">
           <h4 className="card-title">{props.nombre}</h4>
-          <p className="card-text">precio: ${props.precio}</p>
+          <p className="card-text">{props.descripcion}</p>
+          <p className="card-text">Precio: ${props.precio}</p>
           <a className="btn btn-danger" href="#" style={{marginRight: '5px'}}>
             <i className="fa fa-trash-o fa-lg"></i> Eliminar</a>
           <a className="btn btn-secondary" href="#">

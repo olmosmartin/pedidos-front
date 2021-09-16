@@ -221,15 +221,16 @@ export const ClienteRegistroCard = () => {
                             <input className="form-control"
                                 type="text"
                                 name="numero"
-                                id="InputTel"
+                                id="InputNum"
                                 placeholder=" "
                                 //onChange={e => handleChangecalleNumero(e.target.value)}
                                 onChange={handleInputChange}
                                 value={calleNumero}
                                 required
                                 disabled
+                                
                             />
-                            <label htmlFor="InputTel">Número</label>
+                            <label htmlFor="InputNum">Número</label>
                         </div>
 
                         <div className="form-floating mb-3">
