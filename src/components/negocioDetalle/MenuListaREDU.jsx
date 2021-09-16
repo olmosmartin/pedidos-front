@@ -2,16 +2,18 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useHistory } from "react-router-dom"
 
-
 import './menuLista.css';
 import { fetchProductosIdNegocio } from '../../redux/actions/productoAction';
 import { MenuCard } from './MenuCard';
 import { FiltrosAcordeonNegocioDetalle } from './FiltrosAcordeonNegocioDetalle'
 import { Carrito } from '../carrito/Carrito';
+import { limpiarCarrito } from '../../redux/actions/carritoAction';
 
 export const MenuListaREDU = () => {
     const buscador = useSelector((state) => state.productoReducer)
     const dispatch = useDispatch();
+
+    const location = useLocation();
 
     const { search } = useLocation();
     const query = new URLSearchParams(search);
@@ -20,6 +22,11 @@ export const MenuListaREDU = () => {
     useEffect(() => {
         dispatch(fetchProductosIdNegocio(idNegocio))
     }, [])
+
+    useEffect(() => {
+        dispatch(limpiarCarrito())
+        console.log('Location changed');
+    }, [location]);
 
     return (
         <div className="">
@@ -45,7 +52,8 @@ export const MenuListaREDU = () => {
 
                         :
                         <>
-                            <FiltrosAcordeonNegocioDetalle />
+                            {/*<FiltrosAcordeonNegocioDetalle />*/}
+                            
                             <div className="col">
                                 {buscador.productos.length >= 1 && !buscador.error ?
 

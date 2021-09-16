@@ -102,7 +102,6 @@ export const ClienteRegistroCard = () => {
             //console.log("buscador: "+ JSON.stringify(buscador))
             try {
                 const res = await createCliente(objeto);
-                console.log("RES: " +JSON.stringify(res))
     
                 if (res.status===200){
                     toast.success("registro exitoso!")

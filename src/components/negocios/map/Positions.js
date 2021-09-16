@@ -11,7 +11,6 @@ export const Positions = () => {
         }
     })
 
-    console.log(marcadores);
 
     return {
         "places": marcadores

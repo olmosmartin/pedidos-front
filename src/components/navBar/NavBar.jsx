@@ -47,8 +47,10 @@ export const NavBar = () => {
                                 <Link className="nav-link dropdown-toggle px-5" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" to="#"> <img src={logoMin} alt="logomin" width="20"/> </Link>
                                 
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    {sessionStorage.getItem('usuarioID')?<LogOut/>:<Link className="dropdown-item" to="/iniciarSesion">Iniciar Sesion</Link>}
-                                    {!sessionStorage.getItem('usuarioID')&&<Link className="dropdown-item" to="/clienteRegistro">Registrarse</Link>}
+                                    {/*sessionStorage.getItem('usuarioID')?null<LogOut/>:<Link className="dropdown-item" to="/iniciarSesion">Iniciar Sesion</Link>*/}
+                                    <Link className="dropdown-item" to="/iniciarSesion">Iniciar Sesion</Link>
+                                    {/*!sessionStorage.getItem('usuarioID')&&<Link className="dropdown-item" to="/clienteRegistro">Registrarse</Link>*/}
+                                    <Link className="dropdown-item" to="/clienteRegistro">Registrarse</Link>
                                 </ul>
                                 
                             </li>

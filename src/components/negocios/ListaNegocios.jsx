@@ -41,7 +41,7 @@ const ListaNegocios = (props) => {
                         </div>
                         :
                         <>
-                            <FiltrosAcordeon />
+                            {/*<FiltrosAcordeon />*/}
                             <div className="col">
                                 {buscador.negocio.length >= 1 && !buscador.error ?
 

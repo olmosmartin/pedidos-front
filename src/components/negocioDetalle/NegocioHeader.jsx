@@ -14,7 +14,6 @@ export const NegocioHeader = () => {
     const cargar = async (id)=>{
 
         const res = await getNegocio(id);
-        console.log("RES: "+JSON.stringify(res.data))
         setNegocio(res.data)
     }
 

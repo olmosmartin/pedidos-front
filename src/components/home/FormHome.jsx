@@ -24,7 +24,6 @@ export const FormHome = () => {
                 setErrorPosition(false)
             },
             function (error){
-                console.log(error)
                 setErrorPosition(true)
             },
             { enableHighAccuracy:true }

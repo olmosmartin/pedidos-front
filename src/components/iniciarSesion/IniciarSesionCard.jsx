@@ -20,7 +20,6 @@ export const IniciarSesionCard = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(usuario);
         try {
             const res = await usuarioLogin(usuario);
             console.log("RES: " +JSON.stringify(res))
