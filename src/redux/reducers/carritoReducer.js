@@ -1,4 +1,4 @@
-import { AGREGAR_PRODUCTO, REMOVER_PRODUCTO, REMOVER_TODO } from "../actions/carritoAction";
+import { AGREGAR_PRODUCTO, REMOVER_PRODUCTO, REMOVER_TODO, SUMAR_UNO, RESTAR_UNO } from "../actions/carritoAction";
 
 const inicial_state = {
     productos:[
@@ -12,48 +12,39 @@ const carritoShopping = (state = inicial_state, action) => {
 
     switch (action.type) {
         case AGREGAR_PRODUCTO: {
-            let ItemEnCarritoObject = state.productos.find(producto=>producto.id===action.productos[0].id)
-            /*
-            console.log("PRODUCTOS: "+JSON.stringify(state.productos))
-            console.log("ELQUELLEGA: "+JSON.stringify(action.productos))
-            console.log("ITEMCARRITO"+ItemEnCarritoObject)
-            */
-            ItemEnCarritoObject?ItemEnCarritoObject.cantidad+=1:console.log("nuevo item")
-
-            return ItemEnCarritoObject?
-            {
-                ...state
-            }:
-            {
+            return{
                 ...state,
                 productos: [...state.productos, action.productos[0]]
             }
         }
 
         case REMOVER_PRODUCTO: {
-            let ItemEnCarritoObject = state.productos.find(producto=>producto.id===action.productos[0].id)
-            /*
-            console.log("PRODUCTOS: "+JSON.stringify(state.productos))
-            console.log("ELQUELLEGA: "+JSON.stringify(action.productos[0].id))
-            console.log("ITEMCARRITO"+JSON.stringify(ItemEnCarritoObject))
-            */
-            if(ItemEnCarritoObject ){
-                ItemEnCarritoObject.cantidad-=1
-            }
-            
             let listanueva=[]
 
-            if (ItemEnCarritoObject.cantidad===0){
-                listanueva=state.productos.filter( producto => producto.id !== action.productos[0].id )
-            }
+            listanueva=state.productos.filter( producto => producto.id !== action.productos[0].id )
 
-            return ItemEnCarritoObject.cantidad!==0?
-            {
-                ...state
-            }:
-            {
+            return {
                 ...state,
                 productos: listanueva
+            }
+        }
+
+        case SUMAR_UNO:{
+            let ItemEnCarritoObject = state.productos.find(producto=>producto.id===action.productos[0].id)
+
+            ItemEnCarritoObject.cantidad+=1
+            return {
+                ...state,
+                
+            }
+        }
+
+        case RESTAR_UNO:{
+            let ItemEnCarritoObject = state.productos.find(producto=>producto.id===action.productos[0].id)
+            ItemEnCarritoObject.cantidad-=1
+
+            return {
+                ...state,
             }
         }
 

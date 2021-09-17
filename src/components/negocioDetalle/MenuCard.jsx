@@ -1,14 +1,15 @@
 import React from 'react'
 //import { Link} from "react-router-dom" 
-import { useDispatch } from 'react-redux';
-import { agregarProductoAction } from '../../redux/actions/carritoAction';
+import { useDispatch, useSelector } from 'react-redux';
+import { agregarProductoAction, sumarUno } from '../../redux/actions/carritoAction';
 
 
 import './menuCard.css'
 
 export const MenuCard = (props) => {
+  const carrito = useSelector((state) => state.carritoShopping)
   const dispatch = useDispatch();
-
+  
   const producto = [
     {
         id: props.id,
@@ -20,9 +21,15 @@ export const MenuCard = (props) => {
 ]
 
   const handleClick = () => {
-    dispatch(agregarProductoAction(producto))
+    let itemEnCarrito=[]
+    itemEnCarrito = carrito.productos.filter( prod => prod.id === props.id )
+    
+    if(itemEnCarrito.length > 0){
+      dispatch(sumarUno(producto))
+    }else{
+      dispatch(agregarProductoAction(producto))
+    }
   }
-
   return (
       <div className="card col mt-4" style={{ width: 600 , marginLeft: 20, padding:20}}>
         {/*<Link to='#' className="stretched-link"></Link>*/}

@@ -1,10 +1,11 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
-import { agregarProductoAction, removerProductoAction } from '../../redux/actions/carritoAction';
+import { useDispatch, useSelector } from 'react-redux';
+import { sumarUno, restarUno, removerProductoAction } from '../../redux/actions/carritoAction';
 import './carritoRow.css'
 
 
 export const CarritoRow = (props) => {
+    const carrito = useSelector((state) => state.carritoShopping)
     const dispatch = useDispatch();
 
     const producto = [
@@ -16,31 +17,39 @@ export const CarritoRow = (props) => {
         }
     ]
     const handleClickAdd = () => {
-        dispatch(agregarProductoAction(producto))
+        dispatch(sumarUno(producto))
     }
 
     const handleClickDelete = () => {
-        dispatch(removerProductoAction(producto))
+        carrito.productos.map(item => {
+            if (item.id === props.id) {
+                if (item.cantidad === 1) {
+                    dispatch(removerProductoAction(producto))
+                } else {
+                    dispatch(restarUno(producto))
+                }
+            }
+        })
     }
 
     return (
-    
+
         <div className="carritoItem">
-            <div class="container "style={{ margin: '5px'}}>
-                <div class="row g-1">
-                    <div class="col-6">
-                    <   p>{props.nombre}</p>
+            <div className="container " style={{ margin: '5px' }}>
+                <div className="row g-1">
+                    <div className="col-6">
+                        <   p>{props.nombre}</p>
                     </div>
-                    <div class="col-6">
-                    <button type="button" class="btn btn-success" onClick={handleClickAdd}>+</button>
-                        <a class="btn btn-default" >{props.cantidad}</a>
+                    <div className="col-6">
+                        <button type="button" class="btn btn-success" onClick={handleClickAdd}>+</button>
+                        <a className="btn btn-default" >{props.cantidad}</a>
                         <button type="button" class="btn btn-danger" onClick={handleClickDelete}>-</button>
-                        
+
                     </div>
                     Precio: ${props.precio}
                 </div>
             </div>
         </div>
-       
+
     )
 }

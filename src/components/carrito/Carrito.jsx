@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux';
 
 import { CarritoRow } from './CarritoRow'
@@ -18,10 +18,7 @@ export const Carrito = () => {
     var suma=0
 
     const carrito = useSelector((state) => state.carritoShopping)
-    console.log("CARRITO: " +JSON.stringify(carrito))
-    carrito.productos.map(item => {
-        console.log("ITEM: "+item.nombre)
-    })
+    
     return (
         <div className="card"  style={{ flexDirection: 'column', padding: '10px'}}>
             {carrito.productos.length>1?
@@ -31,7 +28,7 @@ export const Carrito = () => {
             carrito.productos.map( (item, i) => {
                 if(item.id!==0){
                 suma=suma+((item.precio)*item.cantidad)
-                return <CarritoRow key={i} id={item.id} nombre={item.nombre} precio={item.precio} cantidad={item.cantidad}/>
+                return <CarritoRow key={i} id={item.id} nombre={item.nombre} precio={item.precio*item.cantidad} cantidad={item.cantidad}/>
                 }
             })
             }
