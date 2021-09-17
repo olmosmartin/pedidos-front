@@ -47,10 +47,10 @@ export const NavBar = () => {
                                 <Link className="nav-link dropdown-toggle px-5" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" to="#"> <img src={logoMin} alt="logomin" width="20"/> </Link>
                                 
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    {/*sessionStorage.getItem('usuarioID')?null<LogOut/>:<Link className="dropdown-item" to="/iniciarSesion">Iniciar Sesion</Link>*/}
-                                    <Link className="dropdown-item" to="/iniciarSesion"><i class="fa fa-sign-in" aria-hidden="true"></i>  Iniciar Sesion</Link>
-                                    {/*!sessionStorage.getItem('usuarioID')&&<Link className="dropdown-item" to="/clienteRegistro">Registrarse</Link>*/}
-                                    <Link className="dropdown-item" to="/clienteRegistro"><i class="fa fa-user-plus" aria-hidden="true"></i>  Registrarse</Link>
+                                    {sessionStorage.getItem('usuarioID')?<LogOut/>:<Link className="dropdown-item" to="/iniciarSesion">Iniciar Sesion</Link>}
+                                    {/*<Link className="dropdown-item" to="/iniciarSesion"><i class="fa fa-sign-in" aria-hidden="true"></i>  Iniciar Sesion</Link>*/}
+                                    {!sessionStorage.getItem('usuarioID')&&<Link className="dropdown-item" to="/clienteRegistro">Registrarse</Link>}
+                                    {/*<Link className="dropdown-item" to="/clienteRegistro"><i class="fa fa-user-plus" aria-hidden="true"></i>  Registrarse</Link>*/}
                                 </ul>
                                 
                             </li>
