@@ -18,10 +18,11 @@ export const MenuListaBotones = () => {
     const idNegocio = query.get("id");
     const history = useHistory()
 
-    const handleSubmit = () => {
 
+    const handleClickAgregarPlato = ()=>{
         history.push(`/platoIngreso?id=${idNegocio}`);
     }
+    
     useEffect(() => {
         dispatch(fetchProductosIdNegocio(idNegocio))
     }, [])
@@ -64,7 +65,7 @@ export const MenuListaBotones = () => {
                                         ))
                                         }
                                         <div>
-                                            <button className="btn btn-danger" type="submit" /*onClick={handleSubmit} */style={{marginTop: '25px'}}><i class="fa fa-plus" aria-hidden="true"></i> Agregar plato al menú</button>
+                                            <button className="btn btn-danger" type="submit" onClick={handleClickAgregarPlato} style={{marginTop: '25px'}}><i class="fa fa-plus" aria-hidden="true"></i> Agregar plato al menú</button>
                                             
                                         </div>
                                     </div>

@@ -18,6 +18,10 @@ export const createNegocio =async (negocio)=>{
     return await axios.post(`${path}negocios`, negocio);
 }
 
+export const agregarPlato =async (id, plato)=>{
+    return await axios.post(`${path}negocios/${id}/productos`, plato);
+}
+
 /*
 export const actualizarNegocio =async (id, negocio)=>{
     return await axios.put(`${path}/negocios/${id}`, negocio);
