@@ -6,6 +6,7 @@ import { NegocioCard } from './NegocioCard';
 import { FiltrosAcordeon } from './FiltrosAcordeon';
 import { MapVista } from './map/MapVista';
 import './listaNegocios.css';
+import { Loading } from '../loading/Loading';
 
 const ListaNegocios = (props) => {
     const buscador = useSelector((state) => state.negocioReducer)
@@ -25,20 +26,7 @@ const ListaNegocios = (props) => {
                 {
                     buscador.isLoading ?
 
-                        <div className="spaces">
-                            <div className="spinner-grow text-dark" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-                            <div className="spinner-grow text-dark" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-                            <div className="spinner-grow text-dark" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-                            <div className="spinner-grow text-dark" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-                        </div>
+                        <Loading/>
                         :
                         <>
                             {/*<FiltrosAcordeon />*/}

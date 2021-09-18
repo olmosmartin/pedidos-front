@@ -8,6 +8,8 @@ import { MenuCard } from './MenuCard';
 import { FiltrosAcordeonNegocioDetalle } from './FiltrosAcordeonNegocioDetalle'
 import { Carrito } from '../carrito/Carrito';
 import { limpiarCarrito } from '../../redux/actions/carritoAction';
+import { Loading } from '../loading/Loading';
+
 
 export const MenuListaREDU = () => {
     const buscador = useSelector((state) => state.productoReducer)
@@ -34,22 +36,7 @@ export const MenuListaREDU = () => {
                 <div className="space"></div>
                 {
                     buscador.isLoading ?
-                        <div className="spaces">
-                            <div className="spinner-grow text-dark" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-                            <div className="spinner-grow text-dark" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-                            <div className="spinner-grow text-dark" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-                            <div className="spinner-grow text-dark" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-
-                        </div>
-
+                        <Loading/>
                         :
                         <>
                             {/*<FiltrosAcordeonNegocioDetalle />*/}

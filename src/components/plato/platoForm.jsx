@@ -3,7 +3,7 @@ import { useHistory, useLocation } from "react-router-dom"
 import FormData from 'form-data';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-
+import { Loading } from '../loading/Loading';
 
 
 export const PlatoForm = () => {
@@ -18,6 +18,7 @@ export const PlatoForm = () => {
     const [descripcion, setDescripcion] = useState(" ")
     const [precio, setPrecio] = useState(" ")
     const [archivo, setArchivo] = useState(" ")
+    const [isLoading, setIsLoading] = useState(false)
 
 
     const handleChangeNombre = (e) => {
@@ -51,7 +52,7 @@ export const PlatoForm = () => {
         for (var value of bodyFormData.values()) {
             console.log("BODYFORMDATA: " + value)
         }
-
+        setIsLoading(true)
         axios({
             method: "POST",
             url: `https://pedidosya-api.herokuapp.com/negocios/${sessionStorage.getItem('usuarioID')}/productos`,
@@ -63,22 +64,22 @@ export const PlatoForm = () => {
         })
             .then(function (response) {
             //handle success
+            setIsLoading(false)
             console.log(JSON.stringify(response))
             toast.success("plato creado")
             console.log(response);
         })
             .catch(function (response) {
                 //handle error
+                setIsLoading(false)
                 toast.error("Problemas en la creacion")
                 console.log(response);
             });
-        history.push(`/negocioVista?id=${idNegocio}`);
+        //history.push(`/negocioVista?id=${idNegocio}`);
     }
 
     return (
-
-        <body>
-
+        isLoading?<Loading/>:
             <div className="card" style={{ width: "50%", left: "25%", textAlign: "center" }}>
                 <div className="card-body" >
                     <h5 className="card-title" >Ingrese su plato</h5>
@@ -132,8 +133,6 @@ export const PlatoForm = () => {
                 </div>
             </div>
 
-
-        </body>
     )
 }
 

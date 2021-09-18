@@ -8,6 +8,7 @@ import logo from '../../static/img/pediloya.png';
 import FormData from 'form-data';
 import { MapContainer, TileLayer, Marker} from 'react-leaflet';
 import { toast } from 'react-toastify';
+import { Loading } from '../loading/Loading'
 //import { createNegocio } from '../../api/negocioServices'
 
 const center = {
@@ -25,6 +26,7 @@ export const NegocioRegistroCard = () => {
     const [calleNombre, setCalleNombre] = useState(" ")
     const [calleNumero, setCalleNumero] = useState(" ")
     const [localidad, setLocalidad] = useState(" ")
+    const [isLoading, setIsLoading] = useState(false)
     function DraggableMarker() {
         const markerRef = useRef(null)
         const eventHandlers = useMemo(
@@ -130,7 +132,7 @@ export const NegocioRegistroCard = () => {
         for (var value of bodyFormData.values()){
             console.log("BODYFORMDATA: "+value)
         }
-        
+        setIsLoading(true)
         axios({
             method: "POST",
             url: "https://pedidosya-api.herokuapp.com/negocios/",
@@ -138,11 +140,13 @@ export const NegocioRegistroCard = () => {
         })
             .then(function (response) {
                 //handle success
+                setIsLoading(false)
                 toast.success("Registro exitoso")
                 console.log(response);
             })
             .catch(function (response) {
                 //handle error
+                setIsLoading(false)
                 toast.error("Problemas en el registro")
                 console.log(response);
             });
@@ -150,6 +154,7 @@ export const NegocioRegistroCard = () => {
     }
 
     return (
+        isLoading?<Loading/>:
         <div>
             <div className="card" style={{ width: "30rem", textAlign: "center" }}>
                 <div className="card-body" >

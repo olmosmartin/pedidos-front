@@ -7,11 +7,13 @@ import { fetchProductosIdNegocio } from '../../redux/actions/productoAction';
 import { MenuCard } from '../negocioDetalle/MenuCard';
 import { FiltrosAcordeonNegocioDetalle } from '../negocioDetalle/FiltrosAcordeonNegocioDetalle';
 import { MenuCardBotones } from './MenuCard-Botones';
+import { Loading } from '../loading/Loading';
 
 export const MenuListaBotones = () => {
     const buscador = useSelector((state) => state.productoReducer)
     const dispatch = useDispatch();
 
+    const location = useLocation();
     const { search } = useLocation();
     const query = new URLSearchParams(search);
     const idNegocio = query.get("id");
@@ -24,7 +26,7 @@ export const MenuListaBotones = () => {
     
     useEffect(() => {
         dispatch(fetchProductosIdNegocio(idNegocio))
-    }, [])
+    }, [location])
 
     return (
         <div className="">
@@ -32,22 +34,7 @@ export const MenuListaBotones = () => {
                 <div className="space"></div>
                 {
                     buscador.isLoading ?
-                        <div className="spaces">
-                            <div className="spinner-grow text-dark" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-                            <div className="spinner-grow text-dark" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-                            <div className="spinner-grow text-dark" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-                            <div className="spinner-grow text-dark" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-
-                        </div>
-
+                        <Loading/>
                         :
                         <>
                              
@@ -63,16 +50,17 @@ export const MenuListaBotones = () => {
                                             <MenuCardBotones key={i} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} descripcion={producto.descripcion} />
                                         ))
                                         }
-                                        <div>
-                                            <button className="btn btn-danger" type="submit" onClick={handleClickAgregarPlato} style={{marginTop: '25px'}}><i class="fa fa-plus" aria-hidden="true"></i> Agregar plato al menú</button>
-                                            
-                                        </div>
+                                        
                                     </div>
                                     
                                     :
                                     null
                                     
                                 }
+                                <div>
+                                    <button className="btn btn-danger" type="submit" onClick={handleClickAgregarPlato} style={{marginTop: '25px'}}><i class="fa fa-plus" aria-hidden="true"></i> Agregar plato al menú</button>
+                                            
+                                </div>
                                 {
                                     buscador.error !== '' && buscador.productos.length === 0 ?
                                         <span className="text-danger"> {buscador.error} </span>

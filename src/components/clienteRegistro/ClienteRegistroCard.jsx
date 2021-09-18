@@ -9,7 +9,7 @@ import { getNominatimReverse } from '../../api/nominatim';
 import logo from '../../static/img/pediloya.png';
 import { MapContainer, TileLayer, Marker} from 'react-leaflet';
 import { toast } from 'react-toastify';
-
+import { Loading } from '../loading/Loading';
 
 const center = {
     lat: -34.734,
@@ -41,6 +41,7 @@ export const ClienteRegistroCard = () => {
     const [calleNombre, setCalleNombre] = useState(" ")
     const [calleNumero, setCalleNumero] = useState(" ")
     const [localidad, setLocalidad] = useState(" ")
+    const [isLoading, setIsLoading] = useState(false)
     
     function DraggableMarker() {
         const markerRef = useRef(null)
@@ -101,22 +102,28 @@ export const ClienteRegistroCard = () => {
             //dispatch( registrarCliente(objeto) )
             //console.log("buscador: "+ JSON.stringify(buscador))
             try {
+                setIsLoading(true)
                 const res = await createCliente(objeto);
     
                 if (res.status===200){
+                    setIsLoading(false)
                     toast.success("registro exitoso!")
                     history.push("/")
                 }
                 
             } catch (err) {
+                setIsLoading(false)
                 if (err.response && err.response.data) {
                     toast.error("error, intente nuevamente")
                     console.log(err.response.data.message) // error message
                 }
+            } finally{
+                setIsLoading(false)
             }
     }
 
     return (
+        isLoading?<Loading/>:
         <div>
             <div className="card" style={{ width: "30rem", textAlign: "center" }}>
                 <div className="card-body" >

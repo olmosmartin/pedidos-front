@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom"
 
 import { getUsuario } from '../../api/usuariosServices';
 import { usuarioLogin } from '../../api/usuariosServices'
+import { Loading } from '../loading/Loading'
 
 const estadoInicialVacio = {
     email: "",
@@ -14,6 +15,7 @@ const estadoInicialVacio = {
 export const IniciarSesionCard = () => {
     const history = useHistory()
     const [usuario, setUsuario] = useState(estadoInicialVacio)
+    const [isLoading, setLoading] = useState(false)
 
     const handleInputChange = (e) => {
         setUsuario({ ...usuario, [e.target.name]: e.target.value });
@@ -21,12 +23,14 @@ export const IniciarSesionCard = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
         try {
+            setLoading(true)
             const res = await usuarioLogin(usuario)
             const res2 = await getUsuario(res.data.id); //id del negocio a partir de la id de usuario
 
             if (res.data.auth_token){
-                
+                setLoading(false)
                 sessionStorage.setItem('token', res.data.auth_token);
                 sessionStorage.setItem('usuarioID', res.data.id);
                 sessionStorage.setItem('role', res.data.role);
@@ -38,6 +42,7 @@ export const IniciarSesionCard = () => {
             }
             
         } catch (err) {
+            setLoading(false)
             if (err.response && err.response.data) {
                 toast.error("usuario o contraseña no válidas")
                 console.log(err.response.data.message) // error message
@@ -46,6 +51,7 @@ export const IniciarSesionCard = () => {
     }
 
     return (
+        isLoading? <Loading/>:
         <div className="card">
             <div className="card-body" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <h5 class="card-title">Iniciar sesion</h5>
