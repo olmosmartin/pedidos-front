@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 import { useHistory } from "react-router-dom"
 
+import { getUsuario } from '../../api/usuariosServices';
 import { usuarioLogin } from '../../api/usuariosServices'
 
 const estadoInicialVacio = {
@@ -21,22 +22,18 @@ export const IniciarSesionCard = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await usuarioLogin(usuario);
-            console.log("RES: " +JSON.stringify(res))
+            const res = await usuarioLogin(usuario)
+            const res2 = await getUsuario(res.data.id); //id del negocio a partir de la id de usuario
 
             if (res.data.auth_token){
-                
-                console.log("token: "+res.data.auth_token);
-                console.log("role: "+res.data.role);
-                console.log("id: "+res.data.id);
-                console.log("usuario: "+JSON.stringify(usuario));
                 
                 sessionStorage.setItem('token', res.data.auth_token);
                 sessionStorage.setItem('usuarioID', res.data.id);
                 sessionStorage.setItem('role', res.data.role);
-                const idNegocio =  res.data.id;
+                //const idUsuario =  res.data.id;
+                
                 toast.success("Bienvenido!")
-                res.data.role==='NEGOCIO'&&history.push('/negocioVista?id='+idNegocio+'')
+                res.data.role==='NEGOCIO'&&history.push('/negocioVista?id='+res2.data[0]._id+'')
                 res.data.role==='CLIENTE'&&history.push("/")
             }
             

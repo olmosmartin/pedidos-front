@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useHistory } from "react-router-dom"
 
-
 import '../negocioDetalle/menuLista.css';
 import { fetchProductosIdNegocio } from '../../redux/actions/productoAction';
 import { MenuCard } from '../negocioDetalle/MenuCard';

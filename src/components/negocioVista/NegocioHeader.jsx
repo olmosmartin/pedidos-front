@@ -6,19 +6,13 @@ import { getUsuario } from '../../api/usuariosServices';
 
 
 export const NegocioHeader = () => {
-    const [negocio, setNegocio] = useState();
     const {search} = useLocation();
     const query = new URLSearchParams(search);
     const idNegocio = query.get("id"); 
+    const [negocio, setNegocio] = useState();
 
     const cargar = async (id)=>{
-        /*
-        const resnegocios = await getNegocios();
-        const negociodelusuario=resnegocios.data.filter( negocio=> negocio.usuario._id === idNegocio)
-        console.log("negociodelusuario: "+negociodelusuario)
-        */
         const res = await getUsuario(id);
-        //console.log("RES: "+JSON.stringify(res.data))
         setNegocio(res.data[0])
     }
 
