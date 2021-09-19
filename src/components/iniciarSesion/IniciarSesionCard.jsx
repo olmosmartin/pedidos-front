@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify';
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 
 import { getUsuario } from '../../api/usuariosServices';
 import { usuarioLogin } from '../../api/usuariosServices'
@@ -83,7 +83,9 @@ export const IniciarSesionCard = () => {
                         <label htmlFor="floatingInput1">Ingrese contraseña</label>
                     </div>
 
-                    <button type="submit" className="btn btn-danger mt-2">Comenzar</button>
+                    <button type="submit" className="btn btn-danger mt-4">Comenzar</button>
+
+                    <p className="mt-4"><Link to={"/clienteRegistro"}>Registrarse</Link></p>
                 </form>
             </div>
         </div>

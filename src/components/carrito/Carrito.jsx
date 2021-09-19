@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 
 import { CarritoRow } from './CarritoRow'
+import { ModalCrearPedido } from './modal/ModalCrearPedido';
 
 /*
 const productoPrueba = [
@@ -21,7 +22,7 @@ export const Carrito = () => {
     
     return (
         <div className="card"  style={{ flexDirection: 'column', padding: '10px'}}>
-            {carrito.productos.length>1?
+            {carrito.productos.length>=1?
             <h4><i class="fa fa-shopping-cart" aria-hidden="true"></i>  Carrito</h4>
             :<p style={{ textAlign: 'center'}}>Haz click en un producto para agregarlo</p>}
             {
@@ -33,8 +34,11 @@ export const Carrito = () => {
             })
             }
             Total: ${suma}
-            {carrito.productos.length>1 && <button type="button" class="btn btn-success">Finalizar pedido</button>}
+
+            {carrito.productos.length>=1 && <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Finalizar pedido</button>}
             
+            <ModalCrearPedido/>
+
         </div>
     )
 }

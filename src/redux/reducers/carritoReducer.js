@@ -1,11 +1,7 @@
 import { AGREGAR_PRODUCTO, REMOVER_PRODUCTO, REMOVER_TODO, SUMAR_UNO, RESTAR_UNO } from "../actions/carritoAction";
 
 const inicial_state = {
-    productos:[
-        {
-            id:0
-        }
-    ],
+    productos:[],
 }
 
 const carritoShopping = (state = inicial_state, action) => {
