@@ -21,7 +21,8 @@ export const Carrito = () => {
     const carrito = useSelector((state) => state.carritoShopping)
     
     return (
-        <div className="card"  style={{ flexDirection: 'column', padding: '10px'}}>
+        <>
+        <div className="card sticky-top mt-4"  style={{ flexDirection: 'column', padding: '10px', top: "100px"}}>
             {carrito.productos.length>=1?
             <h4><i class="fa fa-shopping-cart" aria-hidden="true"></i>  Carrito</h4>
             :<p style={{ textAlign: 'center'}}>Haz click en un producto para agregarlo</p>}
@@ -37,8 +38,10 @@ export const Carrito = () => {
 
             {carrito.productos.length>=1 && <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Finalizar pedido</button>}
             
-            <ModalCrearPedido/>
 
         </div>
+        <ModalCrearPedido/>
+
+        </>
     )
 }
