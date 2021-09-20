@@ -54,6 +54,7 @@ export const FormHome = () => {
     }
 
     const localidades = [
+        { title: 'Ver todos', codigo: 0 },
         { title: 'Remedios de Escalada', codigo: 1 },
         { title: 'Lanús Este', codigo: 2 },
         { title: 'Lanús Oeste', codigo: 3 },
@@ -77,7 +78,7 @@ export const FormHome = () => {
                     </div>
                     */
                     }
-                    <div className="input-group">
+                    <div className="input-group" style={{flexDirection: "row", alignItems: "center", }}>
                     <Autocomplete
                         value={valueSelect}
                         id="combo-box-demo"
@@ -92,13 +93,13 @@ export const FormHome = () => {
                         renderInput={(params) => <TextField {...params} label="Selecciona una ciudad" style={{ backgroundColor: "white" }} />}
                     />
                     <div className="input-group-append">
-                            <button className="btn btn-danger m-2 p-2" type="submit">Buscar</button>
+                            <button className="btn btn-danger m-2 p-2" style={{borderRadius:30, height:50}} type="submit">Buscar</button>
                     </div>
                     </div>
                 </form>
                 <form onSubmit={handleSubmitAutodetect}>
                 <div className="input-group-append">
-                    {errorPosition?<p className="text-white">O habilita la ubicación para buscar por tu ciudad</p>:<button className="btn btn-danger m-2 p-2" type="submit">Buscar en mi ubicación</button>}     
+                    {errorPosition?<p className="text-white">O habilita la ubicación para buscar por tu ciudad</p>:<button className="btn btn-danger m-2 p-2" style={{borderRadius:30}} type="submit">Buscar en mi ubicación</button>}     
                 </div>
                 </form>
             </div>

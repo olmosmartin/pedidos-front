@@ -1,6 +1,7 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { limpiarCarrito } from '../../redux/actions/carritoAction';
 import { CarritoRow } from './CarritoRow'
 import { ModalCrearPedido } from './modal/ModalCrearPedido';
 
@@ -17,7 +18,7 @@ const productoPrueba = [
 
 export const Carrito = () => {
     var suma=0
-
+    const dispatch = useDispatch();
     const carrito = useSelector((state) => state.carritoShopping)
     
     return (
@@ -36,8 +37,10 @@ export const Carrito = () => {
             }
             Total: ${suma}
 
-            {carrito.productos.length>=1 && <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Finalizar pedido</button>}
-            
+            <div className="column">
+                {carrito.productos.length>=1 && <button type="button" class="btn btn-success m-4" data-toggle="modal" data-target="#exampleModalCenter">Finalizar pedido</button>}
+                {carrito.productos.length>=1 && <button type="button" class="btn btn-danger m-4" onClick={ () => {dispatch(limpiarCarrito())} } >Borrar todo</button>}
+            </div>
 
         </div>
         <ModalCrearPedido/>
