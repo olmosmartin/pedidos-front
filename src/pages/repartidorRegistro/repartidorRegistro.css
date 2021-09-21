@@ -1,0 +1,12 @@
+.fondoRepartidorRegistro{
+    background-image: url('../../static/img/repartidor.jpg');
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    padding-top: 10%;
+    padding-bottom: 15%;
+}

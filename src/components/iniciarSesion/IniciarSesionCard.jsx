@@ -40,6 +40,7 @@ export const IniciarSesionCard = () => {
                 toast.success("Bienvenido!")
                 res.data.role==='NEGOCIO'&&history.push('/negocioVista?id='+res.data.id)
                 res.data.role==='CLIENTE'&&history.push("/")
+                res.data.role==='REPARTIDOR'&&history.push("/")
             }
             
         } catch (err) {
