@@ -55,7 +55,7 @@ export const PlatoForm = () => {
         setIsLoading(true)
         axios({
             method: "POST",
-            url: `https://pedidosya-api.herokuapp.com/negocios/${sessionStorage.getItem('usuarioID')}/productos`,
+            url: `https://pedidosya-api.herokuapp.com/negocios/${idNegocio}/productos`,
             data: bodyFormData,
             headers: {
                 //'Content-Type': 'application/json',

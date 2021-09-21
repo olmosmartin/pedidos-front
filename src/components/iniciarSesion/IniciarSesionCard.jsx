@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 import { useHistory, Link } from "react-router-dom"
 
-import { getUsuario } from '../../api/usuariosServices';
+//import { getUsuario } from '../../api/usuariosServices';
 import { usuarioLogin } from '../../api/usuariosServices'
 import { Loading } from '../loading/Loading'
 
@@ -26,8 +26,9 @@ export const IniciarSesionCard = () => {
         
         try {
             setLoading(true)
+            console.log("usuario: "+JSON.stringify(usuario))
             const res = await usuarioLogin(usuario)
-            const res2 = await getUsuario(res.data.id); //id del negocio a partir de la id de usuario
+            //const res2 = await getUsuario(res.data.id); //id del negocio a partir de la id de usuario
 
             if (res.data.auth_token){
                 setLoading(false)
@@ -37,7 +38,7 @@ export const IniciarSesionCard = () => {
                 //const idUsuario =  res.data.id;
                 
                 toast.success("Bienvenido!")
-                res.data.role==='NEGOCIO'&&history.push('/negocioVista?id='+res2.data[0]._id+'')
+                res.data.role==='NEGOCIO'&&history.push('/negocioVista?id='+res.data.id)
                 res.data.role==='CLIENTE'&&history.push("/")
             }
             

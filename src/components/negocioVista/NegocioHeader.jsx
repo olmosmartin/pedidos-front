@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom"
 
 import './negocioHeader.css'
 import { getUsuario } from '../../api/usuariosServices';
+import { getNegocio } from '../../api/negocioServices'
 
 
 export const NegocioHeader = () => {
@@ -12,8 +13,8 @@ export const NegocioHeader = () => {
     const [negocio, setNegocio] = useState();
 
     const cargar = async (id)=>{
-        const res = await getUsuario(id);
-        setNegocio(res.data[0])
+        const res = await getNegocio(id);
+        setNegocio(res.data)
     }
 
     useEffect(() => {
