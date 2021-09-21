@@ -1,94 +1,36 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom"
-//import { useDispatch, useSelector } from 'react-redux';
 
-//import { registrarCliente } from '../../redux/actions/clienteAction';
 import { createRepartidor } from '../../api/repartidorServices';
-import { getNominatimReverse } from '../../api/nominatim';
 import logo from '../../static/img/pediloya.png';
-import { MapContainer, TileLayer, Marker} from 'react-leaflet';
 import { toast } from 'react-toastify';
 import { Loading } from '../loading/Loading';
 
-const center = {
-    lat: -34.734,
-    lng: -58.398,
-}
 
 const estadoInicialVacio = {
     nombre: " ",
     email: " ",
     password: " ",
     telefono: " ",
-  
 }
 
 export const RepartidorRegistroCard = () => {
   
     const history = useHistory()
-    let objeto={}
     const [repartidor, setRepartidor] = useState(estadoInicialVacio)
-    const [position, setPosition] = useState(center)
-    const [calleNombre, setCalleNombre] = useState(" ")
-    const [calleNumero, setCalleNumero] = useState(" ")
-    const [localidad, setLocalidad] = useState(" ")
     const [isLoading, setIsLoading] = useState(false)
-    
-    function DraggableMarker() {
-        const markerRef = useRef(null)
-        const eventHandlers = useMemo(
-            () => ({
-                dragend() {
-                    const marker = markerRef.current
-                    if (marker != null) {
-                        setPosition(marker.getLatLng())
-                    }
-                },
-            }),
-            [],
-        )
-
-        return (
-            <Marker
-                draggable={true}
-                eventHandlers={eventHandlers}
-                position={position}
-                ref={markerRef}>
-            </Marker>
-        )
-    }
-
-    const traerDireccion = async() => {
-        const direccionjson = await getNominatimReverse(position.lat, position.lng)
-        var numero = ""
-        JSON.stringify(direccionjson.data.address.house_number)? numero=JSON.stringify(direccionjson.data.address.house_number):numero = ""
-        var calle = JSON.stringify(direccionjson.data.address.road)
-        var ciudad = ""
-        JSON.stringify(direccionjson.data.address.town)?ciudad=JSON.stringify(direccionjson.data.address.town):ciudad=JSON.stringify(direccionjson.data.address.city)
-        setCalleNombre(calle.split('"').join(''))
-        setCalleNumero(numero.split('"').join(''))
-        setLocalidad(ciudad.split('"').join(''))
-
-        //setDireccion(""+calle+" "+numero+""+ciudad)
-
-    }
 
     const handleInputChange = (e) => {
         setRepartidor({ ...repartidor, [e.target.name]: e.target.value });
     }
 
-
     const handleSubmit = async(e) => {
         e.preventDefault();
-            objeto.nombre=repartidor.nombre
-            objeto.email=repartidor.email
-            objeto.password=repartidor.password
-            objeto.telefono=repartidor.telefono
-       
+
             try {
                 setIsLoading(true)
-                const res = await createRepartidor(objeto);
+                const res = await createRepartidor(repartidor);
     
                 if (res.status===200){
                     setIsLoading(false)
