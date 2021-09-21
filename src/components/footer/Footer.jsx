@@ -10,14 +10,15 @@ export const Footer = () => {
             {/*Grid column*/}
             <div className="col-lg-6 col-md-6 mb-4 mb-md-0">
               <ul className="list-unstyled mb-0">
-              <li>
-                  <a href="#!" className="text-dark">Link 3</a>
-                </li>
+              <h5 className="text-uppercase mb-0">Links</h5>
                 <li>
                 <a style={{ color: '#000' }} href='https://www.freepik.es/fotos/comida'>Foto de Comida creado por timolina - www.freepik.es</a>
                 </li>
                 <li>
                 <a style={{ color: '#000' }} href='https://www.freepik.es/fotos/comida'>Foto de Comida creado por timolina - www.freepik.es</a>
+                </li>
+                <li>
+                  <a href="#!" className="text-dark">Link 1</a>
                 </li>
                 <li>
                   <a href="#!" className="text-dark">Link 3</a>
@@ -27,7 +28,7 @@ export const Footer = () => {
             {/*Grid column*/}
             {/*Grid column*/}
             <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h5 className="text-uppercase">Registrarse</h5>
+              <h5 className="text-uppercase">Repartidores</h5>
               <ul className="list-unstyled mb-0">
                 <li>
                   <a href="/repartidorRegistro" className="text-dark">Registrarse como repartidor</a>
