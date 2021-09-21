@@ -18,8 +18,17 @@ export const createNegocio =async (negocio)=>{
     return await axios.post(`${path}negocios`, negocio);
 }
 
-export const agregarPlato =async (id, plato)=>{
-    return await axios.post(`${path}negocios/${id}/productos`, plato);
+export const agregarPlato =async (idNegocio, plato)=>{
+    
+    return await axios({
+        method: "POST",
+        url: `https://pedidosya-api.herokuapp.com/negocios/${idNegocio}/productos`,
+        data: plato,
+        headers: {
+            //'Content-Type': 'application/json',
+            "auth-token": sessionStorage.getItem('token')
+        }
+    })
 }
 
 /*

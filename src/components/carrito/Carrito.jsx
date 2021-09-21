@@ -25,7 +25,7 @@ export const Carrito = () => {
         <>
         <div className="card sticky-top mt-4"  style={{ flexDirection: 'column', padding: '10px', top: "100px"}}>
             {carrito.productos.length>=1?
-            <h4><i class="fa fa-shopping-cart" aria-hidden="true"></i>  Carrito</h4>
+            <h4><i className="fa fa-shopping-cart" aria-hidden="true"></i>  Carrito</h4>
             :<p style={{ textAlign: 'center'}}>Haz click en un producto para agregarlo</p>}
             {
             carrito.productos.map( (item, i) => {
@@ -38,8 +38,8 @@ export const Carrito = () => {
             Total: ${suma}
 
             <div className="column">
-                {carrito.productos.length>=1 && <button type="button" class="btn btn-success m-4" data-toggle="modal" data-target="#exampleModalCenter">Finalizar pedido</button>}
-                {carrito.productos.length>=1 && <button type="button" class="btn btn-danger m-4" onClick={ () => {dispatch(limpiarCarrito())} } >Borrar todo</button>}
+                {carrito.productos.length>=1 && <button type="button" className="btn btn-success m-4" data-toggle="modal" data-target="#exampleModalCenter">Finalizar pedido</button>}
+                {carrito.productos.length>=1 && <button type="button" className="btn btn-danger m-4" onClick={ () => {dispatch(limpiarCarrito())} } >Borrar todo</button>}
             </div>
 
         </div>

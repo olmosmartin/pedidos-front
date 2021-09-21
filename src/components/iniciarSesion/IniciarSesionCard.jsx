@@ -55,7 +55,7 @@ export const IniciarSesionCard = () => {
         isLoading? <Loading/>:
         <div className="card">
             <div className="card-body" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <h5 class="card-title">Iniciar sesion</h5>
+                <h5 className="card-title">Iniciar sesion</h5>
                 <form onSubmit={handleSubmit}>
                     <div className="form-floating w-100">
                         <input className="form-control"

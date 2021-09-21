@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { useHistory, useLocation } from "react-router-dom"
 import FormData from 'form-data';
 import { toast } from 'react-toastify';
-import axios from 'axios';
+//import axios from 'axios';
+import { agregarPlato } from '../../api/negocioServices';
 import { Loading } from '../loading/Loading';
 
 
@@ -20,20 +21,16 @@ export const PlatoForm = () => {
     const [archivo, setArchivo] = useState(" ")
     const [isLoading, setIsLoading] = useState(false)
 
-
     const handleChangeNombre = (e) => {
         setNombre(e.target.value)
     }
-
     const handleChangeDescripcion = (e) => {
         setDescripcion(e.target.value)
 
     }
-
     const handleChangePrecio = (e) => {
         setPrecio(e.target.value)
     }
-
     const handleFileChosen = (file) => {
         setArchivo(file)
     }
@@ -41,40 +38,28 @@ export const PlatoForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         bodyFormData.append('nombre', nombre)
-        console.log("nombre: " + nombre)
         bodyFormData.append('descripcion', descripcion)
-        console.log("descripcion: " + descripcion)
         bodyFormData.append('precio', precio)
-        console.log("precio: " + precio)
         bodyFormData.append('file', archivo)
-        console.log("file: " + archivo)
 
         for (var value of bodyFormData.values()) {
             console.log("BODYFORMDATA: " + value)
         }
+
         setIsLoading(true)
-        axios({
-            method: "POST",
-            url: `https://pedidosya-api.herokuapp.com/negocios/${idNegocio}/productos`,
-            data: bodyFormData,
-            headers: {
-                //'Content-Type': 'application/json',
-                "auth-token": sessionStorage.getItem('token')
-            }
-        })
+        agregarPlato(idNegocio, bodyFormData)
             .then(function (response) {
             //handle success
-            setIsLoading(false)
             console.log(JSON.stringify(response))
             toast.success("plato creado")
             console.log(response);
-        })
-            .catch(function (response) {
-                //handle error
-                setIsLoading(false)
-                toast.error("Problemas en la creacion")
-                console.log(response);
-            });
+        }).catch(function (response) {
+            //handle error
+            toast.error("Problemas en la creacion")
+            console.log(response);
+        }).finally(
+            setIsLoading(false)
+        )
         //history.push(`/negocioVista?id=${idNegocio}`);
     }
 
@@ -126,7 +111,6 @@ export const PlatoForm = () => {
                             <label htmlFor="formFile" className="form-label">Seleccionar imagen</label>
                             <input className="form-control" type="file" name="imagen" id="formFile" onChange={e => handleFileChosen(e.target.files[0])} />
                         </div>
-
 
                         <button type="submit" className="btn btn-danger">Guardar</button>
                     </form>

@@ -40,7 +40,7 @@ export const MenuListaBotones = () => {
                              
                             <div className="col">
                             <button className="btn btn-danger" type="submit" /*onClick={handleSubmit} */style={{marginTop: '25px',marginLeft:'10px'}}> Promociones</button>
-                            <button type="button" class="btn btn-secondary"style={{marginTop: '25px',marginLeft:'5px'}}>Ver Pedidos</button>
+                            <button type="button" className="btn btn-secondary"style={{marginTop: '25px',marginLeft:'5px'}}>Ver Pedidos</button>
                             </div>
                             <div className="col">
                                 {buscador.productos.length >= 1 && !buscador.error ?
@@ -58,7 +58,7 @@ export const MenuListaBotones = () => {
                                     
                                 }
                                 <div>
-                                    <button className="btn btn-danger" type="submit" onClick={handleClickAgregarPlato} style={{marginTop: '25px'}}><i class="fa fa-plus" aria-hidden="true"></i> Agregar plato al menú</button>
+                                    <button className="btn btn-danger" type="submit" onClick={handleClickAgregarPlato} style={{marginTop: '25px'}}><i className="fa fa-plus" aria-hidden="true"></i> Agregar plato al menú</button>
                                             
                                 </div>
                                 {
