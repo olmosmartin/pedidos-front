@@ -8,6 +8,7 @@ import { MenuCard } from '../negocioDetalle/MenuCard';
 import { FiltrosAcordeonNegocioDetalle } from '../negocioDetalle/FiltrosAcordeonNegocioDetalle';
 import { MenuCardBotones } from './MenuCard-Botones';
 import { Loading } from '../loading/Loading';
+import { PedidosCard } from '../negocioPedidos/pedidosCard';
 
 export const MenuListaBotones = () => {
     const buscador = useSelector((state) => state.productoReducer)
@@ -69,6 +70,22 @@ export const MenuListaBotones = () => {
                                 }
                             </div>
                             <div className="col">
+                                <h4>Pedidos</h4>
+                                {buscador.productos.length >= 1 && !buscador.error ?
+
+                                <div className="">
+                                    {buscador.productos[0]?.map((producto, i) => (
+                                        <PedidosCard key={i} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} descripcion={producto.descripcion} />
+                                    ))
+                                    }
+                                    
+                                </div>
+
+                                :
+                                null
+
+                                }
+                                
                             
                             </div>
                         </>

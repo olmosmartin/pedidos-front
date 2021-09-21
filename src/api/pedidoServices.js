@@ -15,3 +15,7 @@ export const crearPedido =async (pedido)=>{
     })
 
 }
+
+export const getPedidosNegocio = async (id)=>{
+    return await axios.get(`${path}pedidos/${id}`);
+}
