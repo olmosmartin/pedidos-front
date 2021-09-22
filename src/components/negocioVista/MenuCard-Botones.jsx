@@ -7,7 +7,7 @@ import './MenuCard-Botones'
 export const MenuCardBotones = (props) => {
 
   return (
-      <div className="card col mt-4" style={{ width: 400 }}>
+      <div className="card col mt-4" style={{  padding:20}}>
         <img className="img-fluid" src={props.imagen} alt="sans" width="100px" />
         <div className="card-body">
           <h4 className="card-title">{props.nombre}</h4>

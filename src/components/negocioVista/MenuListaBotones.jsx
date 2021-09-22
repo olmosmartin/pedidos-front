@@ -38,15 +38,13 @@ export const MenuListaBotones = () => {
                         <Loading/>
                         :
                         <>
-                             
-                            <div className="col">
-                            <button className="btn btn-danger" type="submit" /*onClick={handleSubmit} */style={{marginTop: '25px',marginLeft:'10px'}}> Promociones</button>
-                            <button type="button" className="btn btn-secondary"style={{marginTop: '25px',marginLeft:'5px'}}>Ver Pedidos</button>
-                            </div>
-                            <div className="col">
+                           
+                            <div className="col" >
+                              
                                 {buscador.productos.length >= 1 && !buscador.error ?
 
-                                    <div className="">
+                                    <div className="" style={{ marginLeft: 20, padding:10}}>   
+                                        <h4>Mi Menú:</h4>
                                         {buscador.productos[0]?.map((producto, i) => (
                                             <MenuCardBotones key={i} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} descripcion={producto.descripcion} />
                                         ))
@@ -58,7 +56,7 @@ export const MenuListaBotones = () => {
                                     null
                                     
                                 }
-                                <div>
+                                <div  className=" row justify-content-center">
                                     <button className="btn btn-danger" type="submit" onClick={handleClickAgregarPlato} style={{marginTop: '25px'}}><i className="fa fa-plus" aria-hidden="true"></i> Agregar plato al menú</button>
                                             
                                 </div>
@@ -70,23 +68,9 @@ export const MenuListaBotones = () => {
                                 }
                             </div>
                             <div className="col">
-                                <h4>Pedidos</h4>
-                                {buscador.productos.length >= 1 && !buscador.error ?
-
-                                <div className="">
-                                    {buscador.productos[0]?.map((producto, i) => (
-                                        <PedidosCard key={i} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} descripcion={producto.descripcion} />
-                                    ))
-                                    }
-                                    
+                                <div className="sticky-top " style={{ flexDirection: 'column', padding: '10px', top: "100px"}}>
+                                    <PedidosCard  />
                                 </div>
-
-                                :
-                                null
-
-                                }
-                                
-                            
                             </div>
                         </>
                 }

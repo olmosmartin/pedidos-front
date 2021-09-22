@@ -1,26 +1,64 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useHistory } from "react-router-dom"
 
-import './pedidosCard'
+import '../negocioDetalle/menuLista.css';
+import { fetchPedidosIdNegocio } from '../../redux/actions/pedidoAction';
 
+import { Loading } from '../loading/Loading';
+import { PedidosCardRow } from '../negocioPedidos/pedidosCardRow';
 
+export const PedidosCard = () => {
+    const buscador = useSelector((state) => state.pedidoReducer)
+    const dispatch = useDispatch();
 
-export const PedidosCard = (props) => {
+    const location = useLocation();
+    const { search } = useLocation();
+    const query = new URLSearchParams(search);
+    const idNegocio = query.get("id");
 
-  return (
-      <div className="card col mt-4" style={{ width: 400 }}>
-       {/*<img className="img-fluid" src={props.imagen} alt="sans" width="100px" />
-          <div className="card-body">
-          <h4 className="card-title">{props.nombre}</h4>
-          <p className="card-text">{props.descripcion}</p>
-          <p className="card-text">Precio: ${props.precio}</p>*/
-          }
-          <a className="btn btn-success" href="#">
-            <i className="fa fa-pencil-square-o"></i> Aceptar</a>
-          <a className="btn btn-danger" href="#" style={{marginRight: '5px'}}>
-            <i className="fa fa-trash-o fa-lg"></i> Rechazar</a>
+    useEffect(() => {
+        dispatch(fetchPedidosIdNegocio(idNegocio))
+    }, [location])
+
+    return (
+        <div className="col">
           
-          
-       {/* </div>*/}
-      </div>
-  )
+                {
+                    buscador.isLoading ?
+                        <Loading/>
+                        :
+                        <>
+                            <div> 
+                                <h4>Pedidos:</h4>
+                                {buscador.pedidos.length >= 1 && !buscador.error ?
+                                   
+                        
+                                    <div className="">
+                                        {buscador.pedidos[0]?.map((pedido, i) => (
+                                            <PedidosCardRow key={i} productos={pedido.productos} estado={pedido.estado} total={pedido.total}  />
+                                        ))
+                                        }
+                                        
+                                    </div>
+                                    
+                                    :
+                                    null
+                                    
+                                    }
+                               
+                                {
+                                    buscador.error !== '' && buscador.productos.length === 0 ?
+                                        <span className="text-danger"> {buscador.error} </span>
+                                        :
+                                        null
+                                }
+                            </div>
+                            
+                        </>
+                }
+
+            
+        </div>
+    )
 }
