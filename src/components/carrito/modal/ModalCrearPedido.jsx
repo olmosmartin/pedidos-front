@@ -40,7 +40,7 @@ export const ModalCrearPedido = () => {
       const res = await crearPedido(pedido);
 
       if (res.status === 200) {
-        toast.success("registro exitoso!")
+        toast.success("pedido exitoso!")
         history.push("/")
       }
 

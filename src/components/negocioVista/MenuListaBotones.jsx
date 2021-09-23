@@ -68,7 +68,7 @@ export const MenuListaBotones = () => {
                                 }
                             </div>
                             <div className="col">
-                                <div className="sticky-top " style={{ flexDirection: 'column', padding: '10px', top: "100px"}}>
+                                <div  style={{ flexDirection: 'column', padding: '10px', top: "100px"}}>
                                     <PedidosCard  />
                                 </div>
                             </div>

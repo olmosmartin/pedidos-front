@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useHistory } from "react-router-dom"
+import { useLocation} from "react-router-dom"
 
 import '../negocioDetalle/menuLista.css';
 import { fetchPedidosIdNegocio } from '../../redux/actions/pedidoAction';
@@ -36,7 +36,7 @@ export const PedidosCard = () => {
                         
                                     <div className="">
                                         {buscador.pedidos[0]?.map((pedido, i) => (
-                                            <PedidosCardRow key={i} productos={pedido.productos} estado={pedido.estado} total={pedido.total}  />
+                                            pedido.estado!=='RECHAZADO'&&<PedidosCardRow key={i} idNegocio={idNegocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total}  />
                                         ))
                                         }
                                         

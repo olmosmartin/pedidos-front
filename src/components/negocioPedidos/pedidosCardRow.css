@@ -7,7 +7,7 @@
 .cardPedido{
     box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.753) !important;
     flex-direction: row;
-    background-color: bisque;
+    background-color: rgb(248, 234, 217);
     padding-Right:10px; 
     padding-Left:10px; 
 }
