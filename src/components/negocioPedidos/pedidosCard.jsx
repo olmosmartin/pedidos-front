@@ -24,39 +24,42 @@ export const PedidosCard = () => {
     return (
         <div className="col">
           
-                {
-                    buscador.isLoading ?
-                        <Loading/>
-                        :
-                        <>
-                            <div> 
+            {
+                buscador.isLoading ?
+                    <Loading/>
+                    :
+                    <>
+                        <div> 
+                            <div className="row">
                                 <h4>Pedidos:</h4>
-                                {buscador.pedidos.length >= 1 && !buscador.error ?
-                                   
-                        
-                                    <div className="">
-                                        {buscador.pedidos[0]?.map((pedido, i) => (
-                                            pedido.estado!=='RECHAZADO'&&<PedidosCardRow key={i} idNegocio={idNegocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total}  />
-                                        ))
-                                        }
-                                        
-                                    </div>
+                                <button className="btn btn-success" onClick={()=>{dispatch(fetchPedidosIdNegocio(idNegocio))}}> <i className="fa fa-retweet" aria-hidden="true"></i>Actualizar</button>
+                            </div>
+                            {buscador.pedidos.length >= 1 && !buscador.error ?
+                                
+                    
+                                <div className="">
+                                    {buscador.pedidos[0]?.map((pedido, i) => (
+                                        pedido.estado!=='RECHAZADO'&&<PedidosCardRow key={i} idNegocio={idNegocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total}  />
+                                    ))
+                                    }
                                     
+                                </div>
+                                
+                                :
+                                null
+                                
+                                }
+                            
+                            {
+                                buscador.error !== '' && buscador.productos.length === 0 ?
+                                    <span className="text-danger"> {buscador.error} </span>
                                     :
                                     null
-                                    
-                                    }
-                               
-                                {
-                                    buscador.error !== '' && buscador.productos.length === 0 ?
-                                        <span className="text-danger"> {buscador.error} </span>
-                                        :
-                                        null
-                                }
-                            </div>
-                            
-                        </>
-                }
+                            }
+                        </div>
+                        
+                    </>
+            }
 
             
         </div>
