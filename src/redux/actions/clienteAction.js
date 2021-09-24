@@ -1,8 +1,7 @@
 //import axios from "axios"
-import { createCliente } from '../../api/clienteServices'
+import { getCliente } from '../../api/clienteServices'
 
 //types
-export const FETCH_CLIENTE_POST = 'FETCH_CLIENTE_POST'
 export const FETCH_CLIENTE_REQUEST = 'FETCH_CLIENTE_REQUEST'
 export const FETCH_CLIENTE_SUCCESS = 'FETCH_CLIENTE_SUCCESS'
 export const FETCH_CLIENTE_FAILURE = 'FETCH_CLIENTE_FAILURE'
@@ -11,15 +10,6 @@ export const FETCH_CLIENTE_FAILURE = 'FETCH_CLIENTE_FAILURE'
 const fetchClienteRequest = () => {
     return{
         type: FETCH_CLIENTE_REQUEST,
-        payload:{
-            
-        }
-    }
-}
-
-const attemptClientePost = () => {
-    return{
-        type: FETCH_CLIENTE_POST,
         payload:{
             
         }
@@ -44,10 +34,10 @@ const attemptClientePostFailure = (error) => {
     }
 }
 
-export const registrarCliente = (cliente) => {
+export const traerCliente = (id) => {
     return (dispatch) => {
-        dispatch( attemptClientePost() );
-        createCliente(cliente)
+        dispatch( fetchClienteRequest() );
+        getCliente(id)
         .then(response => {
             dispatch( attemptClientePostSucces([response.data]) );
         })

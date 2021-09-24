@@ -1,45 +1,55 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { PedidoRow } from './PedidoRow'
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation} from "react-router-dom"
-
-import '../negocioDetalle/menuLista.css';
-import { fetchPedidosIdNegocio } from '../../redux/actions/pedidoAction';
-
+import { fetchPedidosIdCliente } from '../../redux/actions/pedidoAction';
 import { Loading } from '../loading/Loading';
-import { PedidosCardRow } from '../negocioPedidos/pedidosCardRow';
+import { fetchNegocio } from '../../redux/actions/negocioAction';
 
-export const PedidosCard = () => {
+
+export const Pedidos = () => {
     const buscador = useSelector((state) => state.pedidoReducer)
     const dispatch = useDispatch();
+    const [idCliente, setIdCliente] = useState(sessionStorage.getItem('usuarioID'));
+    const [isLoading, setIsLoading] = useState(false)
 
-    const location = useLocation();
-    const { search } = useLocation();
-    const query = new URLSearchParams(search);
-    const idNegocio = query.get("id");
+    /*
+    const getNegocioNombre = async(id) => {
+        let negocio= await getNegocio(id).then(function (response) {
+            //handle success
+            setIsLoading(false)
+            console.log(response);
+        })
+        .catch(function (response) {
+            //handle error
+            setIsLoading(false)
+            console.log(response);
+        });
+        console.log("NEGOCIO:"+JSON.stringify(negocio.data.usuario.nombre))
+    }
+    */
 
     useEffect(() => {
-        dispatch(fetchPedidosIdNegocio(idNegocio))
+        dispatch(fetchNegocio())
+        dispatch(fetchPedidosIdCliente(idCliente))
     }, [])
 
     return (
-        <div className="col">
-          
+        <div>
             {
-                buscador.isLoading ?
+            buscador.isLoading ?
                     <Loading/>
                     :
                     <>
                         <div> 
                             <div className="row">
                                 <h4>Pedidos:</h4>
-                                <button className="btn btn-success" onClick={()=>{dispatch(fetchPedidosIdNegocio(idNegocio))}}> <i className="fa fa-retweet" aria-hidden="true"></i>Actualizar</button>
+                                <button className="btn btn-success" onClick={()=>{dispatch(fetchPedidosIdCliente(idCliente))}}> <i className="fa fa-retweet" aria-hidden="true"></i>Actualizar</button>
                             </div>
                             {buscador.pedidos.length >= 1 && !buscador.error ?
-                                
                     
                                 <div className="">
                                     {buscador.pedidos[0]?.map((pedido, i) => (
-                                        pedido.estado!=='RECHAZADO'&&<PedidosCardRow key={i} idNegocio={idNegocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total}  />
+                                        pedido.estado!=='CANCELADO'&&pedido.estado!=='FINALIZADO'&&pedido.estado!=='RECHAZADO'&&<PedidoRow key={i} idCliente={idCliente} negocioId={pedido.negocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total} />
                                     ))
                                     }
                                     
@@ -59,9 +69,8 @@ export const PedidosCard = () => {
                         </div>
                         
                     </>
-            }
-
             
+            }
         </div>
     )
 }

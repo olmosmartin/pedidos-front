@@ -1,4 +1,5 @@
 import { getNegocio } from '../../api/negocioServices'
+import { getCliente } from '../../api/clienteServices'
 
 //types
 export const FETCH_PEDIDO_REQUEST = 'FETCH_PEDIDO_REQUEST'
@@ -37,6 +38,19 @@ export const fetchPedidosIdNegocio = (id) => {
     return (dispatch) => {
         dispatch( fetchPedidoRequest() );
         getNegocio(id)
+        .then(response => {
+            dispatch( fetchPedidoSuccess([response?.data?.pedidos]) );
+        })
+        .catch(error => {
+            dispatch( fetchPedidoFailure('Pedidos no encontrados') )
+        })
+    }
+}
+
+export const fetchPedidosIdCliente = (id) => {
+    return (dispatch) => {
+        dispatch( fetchPedidoRequest() );
+        getCliente(id)
         .then(response => {
             dispatch( fetchPedidoSuccess([response?.data?.pedidos]) );
         })

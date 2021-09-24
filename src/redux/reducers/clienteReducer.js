@@ -1,4 +1,4 @@
-import { FETCH_CLIENTE_REQUEST, FETCH_CLIENTE_SUCCESS, FETCH_CLIENTE_FAILURE, FETCH_CLIENTE_POST } from '../actions/clienteAction'
+import { FETCH_CLIENTE_REQUEST, FETCH_CLIENTE_SUCCESS, FETCH_CLIENTE_FAILURE } from '../actions/clienteAction'
 
 
 const initialState = {
@@ -9,12 +9,6 @@ const initialState = {
 
 const clienteReducer = (state = initialState, action ) => {
     switch (action.type) {
-
-    case FETCH_CLIENTE_POST:
-        return { 
-            ...state,
-            isLoading: true 
-        }
     
     case FETCH_CLIENTE_REQUEST:
         return { 

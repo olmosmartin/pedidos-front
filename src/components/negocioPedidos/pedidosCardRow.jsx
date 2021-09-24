@@ -29,8 +29,6 @@ export const PedidosCardRow = (props) => {
         //handle error
         setIsLoading(false)
       });
-
-    console.log("aceptar")
   }
 
   const handleClickRechazar = () => {
@@ -45,8 +43,6 @@ export const PedidosCardRow = (props) => {
       //handle error
       setIsLoading(false)
     });
-
-    console.log("rechazar")
   }
 
   return (
