@@ -12,6 +12,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ClienteRegistro } from "./pages/clienteRegistro/clienteRegistro";
 import { RepartidorRegistro } from "./pages/repartidorRegistro/repartidorRegistro";
+import { HistorialPedidosScreen } from "./pages/historialPedidos/HistorialPedidosScreen"
 
 export default function Routes() {
     return (
@@ -27,6 +28,7 @@ export default function Routes() {
                 <Route exact path="/iniciarSesion" component={IniciarSesion}/>
                 <Route exact path="/clienteRegistro" component={ClienteRegistro}/>
                 <Route exact path="/repartidorRegistro" component={RepartidorRegistro}/>
+                <Route exact path="/pedidosRealizados" component={HistorialPedidosScreen}/>
             </Switch>
         </Router>
     )

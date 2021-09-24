@@ -6,7 +6,7 @@ import { Loading } from '../loading/Loading';
 import { fetchNegocio } from '../../redux/actions/negocioAction';
 
 
-export const Pedidos = () => {
+export const HistorialPedidos = () => {
     const buscador = useSelector((state) => state.pedidoReducer)
     const dispatch = useDispatch();
     const [idCliente, setIdCliente] = useState(sessionStorage.getItem('usuarioID'));
@@ -33,7 +33,7 @@ export const Pedidos = () => {
                     
                                 <div className="">
                                     {buscador.pedidos[0]?.map((pedido, i) => (
-                                        pedido.estado!=='CANCELADO'&&pedido.estado!=='FINALIZADO'&&pedido.estado!=='RECHAZADO'&&<PedidoRow key={i} idCliente={idCliente} negocioId={pedido.negocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total} />
+                                        pedido.estado!=='PREPARANDO'&&pedido.estado!=='PENDIENTE'&&<PedidoRow key={i} idCliente={idCliente} negocioId={pedido.negocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total} />
                                     ))
                                     }
                                     
