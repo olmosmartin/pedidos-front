@@ -58,9 +58,9 @@ export const NegocioRegistroCard = () => {
         var calle = JSON.stringify(direccionjson.data.address.road)
         var ciudad = ""
         JSON.stringify(direccionjson.data.address.town)?ciudad=JSON.stringify(direccionjson.data.address.town):ciudad=JSON.stringify(direccionjson.data.address.city)
-        setCalleNombre(calle.split('"').join(''))
-        setCalleNumero(numero.split('"').join(''))
-        setLocalidad(ciudad.split('"').join(''))
+        calle&&setCalleNombre(calle.split('"').join(''))
+        numero&&setCalleNumero(numero.split('"').join(''))
+        ciudad&&setLocalidad(ciudad.split('"').join(''))
 
         //setDireccion(""+calle+" "+numero+""+ciudad)
 
@@ -260,6 +260,7 @@ export const NegocioRegistroCard = () => {
                         </div>
 
                         <div className="form-floating mb-3">
+                        <small >{calleNumero&&"Número sugerido:"+calleNumero}</small>
                             <input className="form-control"
                                 type="text"
                                 name="calleNumero"
@@ -267,9 +268,9 @@ export const NegocioRegistroCard = () => {
                                 placeholder=" "
                                 //onChange={e => handleChangecalleNumero(e.target.value)}
                                 onChange={handleChangecalleNumero}
-                                value={calleNumero}
+                                //value={calleNumero}
                                 required
-                                disabled
+                                //disabled
                             />
                             <label htmlFor="InputTel">Numero</label>
                         </div>

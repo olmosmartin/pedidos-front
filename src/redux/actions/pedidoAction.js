@@ -1,4 +1,4 @@
-import { getNegocio } from '../../api/negocioServices'
+import { getNegocio, getNegocioLocalidad } from '../../api/negocioServices'
 import { getCliente } from '../../api/clienteServices'
 
 //types
@@ -56,6 +56,33 @@ export const fetchPedidosIdCliente = (id) => {
         })
         .catch(error => {
             dispatch( fetchPedidoFailure('Pedidos no encontrados') )
+        })
+    }
+}
+
+export const fetchPedidosLocalidad = (localidad) => {
+    return (dispatch) => {
+        dispatch( fetchPedidoRequest() );
+
+        getNegocioLocalidad(localidad).then(response=>{
+            let array = []
+            response?.data.map((negocio)=>{
+                //traigo los negocios
+                getNegocio(negocio._id)
+                .then(response2 => {
+                    response2?.data?.pedidos.map((pedido)=>{
+                        //traigo los pedidos del negocio
+                        array=[...array, pedido]
+                    })
+                    dispatch( fetchPedidoSuccess([array]) );
+                })
+                .catch(error => {
+                    dispatch( fetchPedidoFailure('Pedidos no encontrados') )
+                })
+
+            })
+        }).catch(error => {
+            dispatch( fetchPedidoFailure('localidad sin negocios') )
         })
     }
 }

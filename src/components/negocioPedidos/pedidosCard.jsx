@@ -12,7 +12,6 @@ export const PedidosCard = () => {
     const buscador = useSelector((state) => state.pedidoReducer)
     const dispatch = useDispatch();
 
-    const location = useLocation();
     const { search } = useLocation();
     const query = new URLSearchParams(search);
     const idNegocio = query.get("id");

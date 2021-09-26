@@ -11,9 +11,11 @@ export const PedidosCardRow = (props) => {
   const buscador = useSelector((state) => state.pedidoReducer)
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false)
+  /*
   var date = props.productos[1].producto.date;
   var fecha = date.substring(0, 10);
   var hora = date.substring(16, 11)
+  */
 
 
 

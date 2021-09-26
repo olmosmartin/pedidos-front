@@ -69,14 +69,14 @@ export const ClienteRegistroCard = () => {
 
     const traerDireccion = async() => {
         const direccionjson = await getNominatimReverse(position.lat, position.lng)
-        var numero = ""
-        JSON.stringify(direccionjson.data.address.house_number)? numero=JSON.stringify(direccionjson.data.address.house_number):numero = ""
+        var numero = " "
+        JSON.stringify(direccionjson.data.address.house_number)? numero=JSON.stringify(direccionjson.data.address.house_number):numero = " "
         var calle = JSON.stringify(direccionjson.data.address.road)
-        var ciudad = ""
+        var ciudad = " "
         JSON.stringify(direccionjson.data.address.town)?ciudad=JSON.stringify(direccionjson.data.address.town):ciudad=JSON.stringify(direccionjson.data.address.city)
-        setCalleNombre(calle.split('"').join(''))
-        setCalleNumero(numero.split('"').join(''))
-        setLocalidad(ciudad.split('"').join(''))
+        calle&&setCalleNombre(calle.split('"').join(''))
+        numero&&setCalleNumero(numero.split('"').join(''))
+        ciudad&&setLocalidad(ciudad.split('"').join(''))
 
         //setDireccion(""+calle+" "+numero+""+ciudad)
 
@@ -225,6 +225,7 @@ export const ClienteRegistroCard = () => {
                         </div>
 
                         <div className="form-floating mb-3">
+                        <small>{calleNumero&&"Número sugerido:"+calleNumero}</small>
                             <input className="form-control"
                                 type="text"
                                 name="numero"
@@ -232,13 +233,14 @@ export const ClienteRegistroCard = () => {
                                 placeholder=" "
                                 //onChange={e => handleChangecalleNumero(e.target.value)}
                                 onChange={handleInputChange}
-                                value={calleNumero}
+                                //value={calleNumero}
                                 required
-                                disabled
-                                
+                                //disabled
                             />
+                            
                             <label htmlFor="InputNum">Número</label>
                         </div>
+                        
 
                         <div className="form-floating mb-3">
                             <input className="form-control"
