@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 
 import { Loading } from '../loading/Loading'
 
 
 export const PedidosRow = (props) => {
+    const history = useHistory()
     const negocios = useSelector((state) => state.negocioReducer)
     let nombre=""
 
@@ -14,6 +16,10 @@ export const PedidosRow = (props) => {
         //console.log(negocio.usuario.nombre + negocio._id)
         negocio._id === props.negocioId? nombre=negocio.usuario.nombre:null
     ))
+
+    const handleClickDetalle = () => {
+        history.push(`/pedidoDetalleRepartidor?id=${props.id}`);
+    }
     
     return (
         isLoading ? <Loading /> :
@@ -36,8 +42,11 @@ export const PedidosRow = (props) => {
                         }
                         <div className="card-body justify-content-center">
                         </div>
-
-                    </div> :
+                    
+                        <button className="btn btn-success" onClick={handleClickDetalle}><i className="fa fa-check-square-o fa-lg"></i> Detalle</button>
+                       
+                    </div>
+                    :
                     null}
 
             </div>

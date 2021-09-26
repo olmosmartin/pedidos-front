@@ -1,10 +1,12 @@
 import { getNegocio, getNegocioLocalidad } from '../../api/negocioServices'
 import { getCliente } from '../../api/clienteServices'
+import { getPedido } from '../../api/pedidoServices'
 
 //types
 export const FETCH_PEDIDO_REQUEST = 'FETCH_PEDIDO_REQUEST'
 export const FETCH_PEDIDO_SUCCESS = 'FETCH_PEDIDO_SUCCESS'
 export const FETCH_PEDIDO_FAILURE = 'FETCH_PEDIDO_FAILURE'
+export const SET_PEDIDO_SELECTED = 'SET_PEDIDO_SELECTED'
 
 //actions
 const fetchPedidoRequest = () => {
@@ -12,6 +14,15 @@ const fetchPedidoRequest = () => {
         type: FETCH_PEDIDO_REQUEST,
         payload:{
             
+        }
+    }
+}
+
+const setPedidoSelected = (pedido) => {
+    return{
+        type: SET_PEDIDO_SELECTED,
+        payload:{
+            pedidoSelected:pedido
         }
     }
 }
@@ -83,6 +94,20 @@ export const fetchPedidosLocalidad = (localidad) => {
             })
         }).catch(error => {
             dispatch( fetchPedidoFailure('localidad sin negocios') )
+        })
+    }
+}
+
+export const setPedidoSeleccionado = (id) => {
+    return (dispatch) => {
+        dispatch( fetchPedidoRequest() );
+        getPedido(id)
+        .then(response => {
+            console.log("PEDIDO: "+JSON.stringify(response?.data))
+            dispatch( setPedidoSelected(response?.data) );
+        })
+        .catch(error => {
+            dispatch( fetchPedidoFailure('Pedidos no encontrados') )
         })
     }
 }

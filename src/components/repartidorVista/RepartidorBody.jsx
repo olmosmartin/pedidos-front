@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Pedidos } from './Pedidos'
+import { useDispatch } from 'react-redux';
 import { getNominatimReverse } from '../../api/nominatim';
-
+import { fetchPedidosLocalidad } from '../../redux/actions/pedidoAction';
 
 export const RepartidorBody = () => {
+    const dispatch = useDispatch();
     const [position, setPosition] = useState({ longitud: 0, latitud: 0 })
     const [errorPosition, setErrorPosition] = useState(true)
     const [localidad, setLocalidad] = useState("")
@@ -34,6 +36,7 @@ export const RepartidorBody = () => {
 
     const handleSubmitAutodetect = async (e) => {
         e.preventDefault()
+        dispatch(fetchPedidosLocalidad(localidad))
         traerDireccion()
     }
     

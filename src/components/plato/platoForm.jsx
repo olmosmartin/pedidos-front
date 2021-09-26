@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory, useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 import FormData from 'form-data';
 import { toast } from 'react-toastify';
 //import axios from 'axios';
@@ -8,7 +8,6 @@ import { Loading } from '../loading/Loading';
 
 
 export const PlatoForm = () => {
-    const history = useHistory()
     var bodyFormData = new FormData();
 
     const { search } = useLocation();

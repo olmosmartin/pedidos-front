@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { PedidosRow } from './PedidosRow'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPedidosLocalidad, fetchPedidosIdNegocio } from '../../redux/actions/pedidoAction';
+import { fetchPedidosLocalidad } from '../../redux/actions/pedidoAction';
 import { fetchNegocio } from '../../redux/actions/negocioAction';
 import { Loading } from '../loading/Loading';
 

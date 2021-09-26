@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import { TextoPresentacion } from '../../components/home/TextoPresentacion';
-import { useHistory, } from "react-router-dom" // para cambiar de ruta
+import { useHistory, } from "react-router-dom" 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { getNominatimReverse } from '../../api/nominatim';
