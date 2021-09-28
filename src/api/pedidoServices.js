@@ -30,8 +30,6 @@ export const aceptarPedido = async (id)=>{
             "auth-token": sessionStorage.getItem('token')
         }
     })
-
-    //return await axios.put(`${path}pedidos/${id}/aceptar`);
 }
 
 export const rechazarPedido = async (id)=>{
@@ -44,6 +42,40 @@ export const rechazarPedido = async (id)=>{
             "auth-token": sessionStorage.getItem('token')
         }
     })
+}
+////////////////////////////////////////////////////////
+export const listoPedido = async (id)=>{
 
-    //return await axios.put(`${path}pedidos/${id}/rechazar`);
+    return await axios({
+        method: "PUT",
+        url: `${path}pedidos/${id}/listo`,
+        headers: {
+            //'Content-Type': 'application/json',
+            "auth-token": sessionStorage.getItem('token')
+        }
+    })
+}
+
+export const enCaminoPedido = async (id)=>{
+
+    return await axios({
+        method: "PUT",
+        url: `${path}pedidos/${id}/encaminar`,
+        headers: {
+            //'Content-Type': 'application/json',
+            "auth-token": sessionStorage.getItem('token')
+        }
+    })
+}
+
+export const finalizarPedido = async (id)=>{
+
+    return await axios({
+        method: "PUT",
+        url: `${path}pedidos/${id}/finalizar`,
+        headers: {
+            //'Content-Type': 'application/json',
+            "auth-token": sessionStorage.getItem('token')
+        }
+    })
 }

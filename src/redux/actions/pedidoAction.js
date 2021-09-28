@@ -1,12 +1,14 @@
 import { getNegocio, getNegocioLocalidad } from '../../api/negocioServices'
 import { getCliente } from '../../api/clienteServices'
 import { getPedido } from '../../api/pedidoServices'
+import { getRepartidor } from '../../api/repartidorServices'
 
 //types
 export const FETCH_PEDIDO_REQUEST = 'FETCH_PEDIDO_REQUEST'
 export const FETCH_PEDIDO_SUCCESS = 'FETCH_PEDIDO_SUCCESS'
 export const FETCH_PEDIDO_FAILURE = 'FETCH_PEDIDO_FAILURE'
 export const SET_PEDIDO_SELECTED = 'SET_PEDIDO_SELECTED'
+export const SET_PEDIDO_REPARTIDOR = 'SET_PEDIDO_REPARTIDOR'
 
 //actions
 const fetchPedidoRequest = () => {
@@ -23,6 +25,15 @@ const setPedidoSelected = (pedido) => {
         type: SET_PEDIDO_SELECTED,
         payload:{
             pedidoSelected:pedido
+        }
+    }
+}
+
+const setPedidosRepartidor = (pedido) => {
+    return{
+        type: SET_PEDIDO_REPARTIDOR,
+        payload:{
+            pedidoRepartidor:pedido
         }
     }
 }
@@ -71,6 +82,31 @@ export const fetchPedidosIdCliente = (id) => {
     }
 }
 
+export const fetchPedidosIdRepartidor = (id) => {
+    return (dispatch) => {
+        dispatch( fetchPedidoRequest() );
+
+        getRepartidor(id).then(response => {
+            let array2 = []
+            //console.log(response?.data)
+            response?.data?.pedidos?.map(idPedido => {
+                getPedido(idPedido)
+                .then(response2 => {
+                    array2=[...array2, response2.data]
+                    console.log("response2: "+JSON.stringify(response2.data))
+                    dispatch(setPedidosRepartidor(array2))
+                })
+                .catch(error => {
+                    dispatch( fetchPedidoFailure('Pedidos no encontrados2') )
+                })
+            })
+        })
+        .catch(error => {
+            dispatch( fetchPedidoFailure('Pedidos no encontrados') )
+        })
+    }
+}
+
 export const fetchPedidosLocalidad = (localidad) => {
     return (dispatch) => {
         dispatch( fetchPedidoRequest() );
@@ -109,5 +145,11 @@ export const setPedidoSeleccionado = (id) => {
         .catch(error => {
             dispatch( fetchPedidoFailure('Pedidos no encontrados') )
         })
+    }
+}
+
+export const limpiarPedidosRepartidorYSeleccionado = (id) => {
+    return (dispatch) => {
+        
     }
 }

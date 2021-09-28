@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux';
 
+import { enCaminoPedido, finalizarPedido } from '../../../api/pedidoServices';
 import { setPedidoSeleccionado } from '../../../redux/actions/pedidoAction';
 import { MapVista } from './map/MapVista';
 import { Loading } from '../../loading/Loading'
@@ -14,14 +15,38 @@ export const PedidoDetalleRepartidorCard = () => {
     const query = new URLSearchParams(search);
     const idPedido = query.get("id"); 
 
-    //const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         dispatch(setPedidoSeleccionado(idPedido))
     }, [])
 
     const handleClickEnReparto = () => {
-        console.log("en reparto")
+        setIsLoading(true)
+        enCaminoPedido(idPedido)
+          .then(function (response) {
+            //handle success
+            dispatch(setPedidoSeleccionado(idPedido))
+            setIsLoading(false)
+          })
+          .catch(function (response) {
+            //handle error
+            setIsLoading(false)
+          });
+    }
+    
+    const handleClickFinalizar = () => {
+        setIsLoading(true)
+        finalizarPedido(idPedido)
+          .then(function (response) {
+            //handle success
+            dispatch(setPedidoSeleccionado(idPedido))
+            setIsLoading(false)
+          })
+          .catch(function (response) {
+            //handle error
+            setIsLoading(false)
+          });
     }
 
     return (
@@ -40,8 +65,20 @@ export const PedidoDetalleRepartidorCard = () => {
                         })
                     }
                     <p>total: ${pedidoREDUX.pedidoSelected?.total}</p>
+                    {
+                    pedidoREDUX.pedidoSelected?.estado==='LISTO'&&
+                    <>
                     <small>Recuarda que primero debes ir al Negocio y retirar en el local con el numero de pedido </small>
                     <p><button className="btn btn-success" onClick={handleClickEnReparto}><i className="fa fa-check-square-o fa-lg"></i>Lo tengo!</button></p>
+                    </>
+                    }
+                    {
+                    pedidoREDUX.pedidoSelected?.estado==='EN_CAMINO'&&
+                    <>
+                    <small>Una vez entregado preciona aquí</small>
+                    <p><button className="btn btn-success" onClick={handleClickFinalizar}><i className="fa fa-check-square-o fa-lg"></i>Finalizar</button></p>
+                    </>
+                    }
                 </div>
             </div>
         </div>

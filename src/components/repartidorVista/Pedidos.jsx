@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { PedidosRow } from './PedidosRow'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPedidosLocalidad } from '../../redux/actions/pedidoAction';
+import { fetchPedidosLocalidad, fetchPedidosIdRepartidor } from '../../redux/actions/pedidoAction';
 import { fetchNegocio } from '../../redux/actions/negocioAction';
 import { Loading } from '../loading/Loading';
 
@@ -9,11 +9,12 @@ import { Loading } from '../loading/Loading';
 export const Pedidos = (props) => {
     const buscador = useSelector((state) => state.pedidoReducer)
     const dispatch = useDispatch();
+    //const [isLoading, setIsLoading] = useState(false)
+
 
     useEffect(() => {
-        //Remedios de Escalada
-        //Lanús Este
         dispatch(fetchNegocio())
+        //dispatch(fetchPedidosIdRepartidor(sessionStorage.getItem('usuarioID')))
         props.localidad&&dispatch(fetchPedidosLocalidad(props.localidad))
     }, [])
 
@@ -25,7 +26,8 @@ export const Pedidos = (props) => {
                     : 
                     props.localidad?
                     <>
-                        <div>
+                        <div className="row">
+                        <div className="col">
                             <div className="row">
                                 <h4>Pedidos:</h4>
                                 <button className="btn btn-success" onClick={() => { dispatch(fetchPedidosLocalidad(props.localidad)) }}> <i className="fa fa-retweet" aria-hidden="true"></i>Actualizar</button>
@@ -34,7 +36,7 @@ export const Pedidos = (props) => {
 
                                 <div className="">
                                     {buscador.pedidos[0]?.map((pedido, i) => (
-                                        /*pedido.estado==='LISTO'&&*/<PedidosRow key={pedido._id} idCliente={pedido.cliente} negocioId={pedido.negocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total} />
+                                        pedido.estado==='LISTO'&&<PedidosRow key={i} idCliente={pedido.cliente} negocioId={pedido.negocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total} />
                                     ))
                                     }
 
@@ -44,7 +46,7 @@ export const Pedidos = (props) => {
                                 null
 
                             }
-
+                            </div>
                             {
                                 buscador.error !== '' && buscador.productos.length === 0 ?
                                     <span className="text-danger"> {buscador.error} </span>
@@ -52,7 +54,16 @@ export const Pedidos = (props) => {
                                     null
                             }
                         </div>
+                        <div className="col">
+                            <div className="">
+                                {buscador.pedidoRepartidor.map((pedido, i) => (
+                                    //console.log("PEDIODO"+pedido)
+                                    <PedidosRow key={i} idCliente={pedido.cliente} negocioId={pedido.negocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total} />
+                                ))
+                                }
 
+                            </div>
+                        </div>
                     </>
                     :
                     <>

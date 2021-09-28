@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Pedidos } from './Pedidos'
 import { useDispatch } from 'react-redux';
 import { getNominatimReverse } from '../../api/nominatim';
-import { fetchPedidosLocalidad } from '../../redux/actions/pedidoAction';
+import { fetchPedidosLocalidad, fetchPedidosIdRepartidor } from '../../redux/actions/pedidoAction';
 
 export const RepartidorBody = () => {
     const dispatch = useDispatch();
@@ -37,17 +37,19 @@ export const RepartidorBody = () => {
     const handleSubmitAutodetect = async (e) => {
         e.preventDefault()
         dispatch(fetchPedidosLocalidad(localidad))
+        dispatch(fetchPedidosIdRepartidor(sessionStorage.getItem('usuarioID')))
         traerDireccion()
     }
     
     return (
         <div>
-             <form onSubmit={handleSubmitAutodetect}>
-                <div className="input-group-append">
-                    {errorPosition ? <h4 >Habilita la ubicación para buscar por tu ciudad</h4> : <button className="btn btn-danger m-2 p-2" style={{ borderRadius: 30 }} type="submit">Buscar en mi ubicación</button>}
-                    <p>Ubicación:{localidad}</p>
-                </div>
-            </form>
+            {
+            <div className="input-group-append">
+                {errorPosition ? <h4 >Habilita la ubicación para buscar por tu ciudad</h4> : <button onClick={handleSubmitAutodetect} className="btn btn-danger m-2 p-2" style={{ borderRadius: 30 }} type="submit">Buscar en mi ubicación</button>}
+                
+            </div>
+            }
+            <p>Ubicación:{localidad}</p>
             <Pedidos localidad={localidad}/>
         </div>
     )

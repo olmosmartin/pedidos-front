@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './pedidosCardRow.css'
-import { Link } from "react-router-dom";
-import { aceptarPedido, rechazarPedido } from '../../api/pedidoServices';
+import { aceptarPedido, rechazarPedido, listoPedido } from '../../api/pedidoServices';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPedidosIdNegocio } from '../../redux/actions/pedidoAction';
 import { Loading } from '../loading/Loading'
@@ -47,6 +46,20 @@ export const PedidosCardRow = (props) => {
     });
   }
 
+  const handleClickListo = () => {
+    setIsLoading(true)
+    listoPedido(props.id)
+    .then(function (response) {
+      //handle success
+      dispatch(fetchPedidosIdNegocio(props.idNegocio))
+      setIsLoading(false)
+    })
+    .catch(function (response) {
+      //handle error
+      setIsLoading(false)
+    });
+  }
+
   return (
     isLoading ? <Loading /> :
       <div className="cardPedido col mt-4" style={props.estado === 'RECHAZADO'?{backgroundColor:'rgb(247, 126, 89)'}:props.estado === 'PREPARANDO'?{backgroundColor:'rgb(251, 252, 184)'}:null} >
@@ -75,7 +88,7 @@ export const PedidosCardRow = (props) => {
               {
                 props.estado === 'PREPARANDO' &&
                 <>
-                  <button className="btn btn-success" ><i className="fa fa-check-square-o fa-lg"></i>Listo</button>
+                  <button className="btn btn-success" onClick={handleClickListo}><i className="fa fa-check-square-o fa-lg"></i>Listo</button>
                 </>
               }
               {

@@ -1,10 +1,11 @@
-import { FETCH_PEDIDO_REQUEST, FETCH_PEDIDO_SUCCESS, FETCH_PEDIDO_FAILURE, SET_PEDIDO_SELECTED } from '../actions/pedidoAction'
+import { FETCH_PEDIDO_REQUEST, FETCH_PEDIDO_SUCCESS, FETCH_PEDIDO_FAILURE, SET_PEDIDO_SELECTED, SET_PEDIDO_REPARTIDOR } from '../actions/pedidoAction'
 
 
 const initialState = {
     isLoading: false,
     pedidos: [],
     pedidoSelected: "",
+    pedidoRepartidor: [],
     error: ''
 }
 
@@ -22,6 +23,13 @@ const pedidoReducer = (state = initialState, action ) => {
         ...state,
         isLoading: false,
         pedidoSelected: action.payload.pedidoSelected
+    }
+
+    case SET_PEDIDO_REPARTIDOR:
+    return { 
+        ...state,
+        isLoading: false,
+        pedidoRepartidor: action.payload.pedidoRepartidor
     }
     
     case FETCH_PEDIDO_SUCCESS:
