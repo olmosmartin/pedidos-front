@@ -46,7 +46,7 @@ export const MenuListaBotones = () => {
                                     <div className="" style={{ marginLeft: 20, padding:10}}>   
                                         <h4>Mi Menú:</h4>
                                         {buscador.productos[0]?.map((producto, i) => (
-                                            <MenuCardBotones key={i} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} descripcion={producto.descripcion} />
+                                            <MenuCardBotones key={i} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} descripcion={producto.descripcion} id={producto._id} />
                                         ))
                                         }
                                         
