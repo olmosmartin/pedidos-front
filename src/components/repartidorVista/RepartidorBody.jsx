@@ -8,7 +8,7 @@ export const RepartidorBody = () => {
     const dispatch = useDispatch();
     const [position, setPosition] = useState({ longitud: 0, latitud: 0 })
     const [errorPosition, setErrorPosition] = useState(true)
-    const [localidad, setLocalidad] = useState("")
+    const [localidad, setLocalidad] = useState(null)
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
@@ -29,16 +29,16 @@ export const RepartidorBody = () => {
 
     const traerDireccion = async () => {
         const direccionjson = await getNominatimReverse(position.latitud, position.longitud)
-        var ciudad = "Lste"
-        //JSON.stringify(direccionjson.data.address.town) ? ciudad = JSON.stringify(direccionjson.data.address.town) : ciudad = JSON.stringify(direccionjson.data.address.city)
+        var ciudad = ""
+        JSON.stringify(direccionjson.data.address.town) ? ciudad = JSON.stringify(direccionjson.data.address.town) : ciudad = JSON.stringify(direccionjson.data.address.city)
         ciudad&&setLocalidad( ciudad.split('"').join('') )
         }
 
     const handleSubmitAutodetect = async (e) => {
         e.preventDefault()
+        traerDireccion()
         dispatch(fetchPedidosLocalidad(localidad))
         dispatch(fetchPedidosIdRepartidor(sessionStorage.getItem('usuarioID')))
-        traerDireccion()
     }
     
     return (
