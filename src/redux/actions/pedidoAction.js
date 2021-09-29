@@ -1,6 +1,6 @@
 import { getNegocio, getNegocioLocalidad } from '../../api/negocioServices'
 import { getCliente } from '../../api/clienteServices'
-import { getPedido } from '../../api/pedidoServices'
+import { getPedido, getPedidoLocalidad } from '../../api/pedidoServices'
 import { getRepartidor } from '../../api/repartidorServices'
 
 //types
@@ -88,12 +88,10 @@ export const fetchPedidosIdRepartidor = (id) => {
 
         getRepartidor(id).then(response => {
             let array2 = []
-            //console.log(response?.data)
             response?.data?.pedidos?.map(idPedido => {
                 getPedido(idPedido)
                 .then(response2 => {
                     array2=[...array2, response2.data]
-                    console.log("response2: "+JSON.stringify(response2.data))
                     dispatch(setPedidosRepartidor(array2))
                 })
                 .catch(error => {
@@ -107,6 +105,7 @@ export const fetchPedidosIdRepartidor = (id) => {
     }
 }
 
+/*
 export const fetchPedidosLocalidad = (localidad) => {
     return (dispatch) => {
         dispatch( fetchPedidoRequest() );
@@ -128,6 +127,20 @@ export const fetchPedidosLocalidad = (localidad) => {
                 })
 
             })
+        }).catch(error => {
+            dispatch( fetchPedidoFailure('localidad sin negocios') )
+        })
+    }
+}
+*/
+
+export const fetchPedidosLocalidad = (localidad) => {
+    return (dispatch) => {
+        dispatch( fetchPedidoRequest() );
+
+        getPedidoLocalidad(localidad).then(response=>{
+            console.log("PEDIDO: "+JSON.stringify(response?.data))
+            dispatch( fetchPedidoSuccess([response?.data]));
         }).catch(error => {
             dispatch( fetchPedidoFailure('localidad sin negocios') )
         })

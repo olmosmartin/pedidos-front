@@ -29,8 +29,8 @@ export const RepartidorBody = () => {
 
     const traerDireccion = async () => {
         const direccionjson = await getNominatimReverse(position.latitud, position.longitud)
-        var ciudad = ""
-        JSON.stringify(direccionjson.data.address.town) ? ciudad = JSON.stringify(direccionjson.data.address.town) : ciudad = JSON.stringify(direccionjson.data.address.city)
+        var ciudad = "Lste"
+        //JSON.stringify(direccionjson.data.address.town) ? ciudad = JSON.stringify(direccionjson.data.address.town) : ciudad = JSON.stringify(direccionjson.data.address.city)
         ciudad&&setLocalidad( ciudad.split('"').join('') )
         }
 

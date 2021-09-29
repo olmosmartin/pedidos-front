@@ -20,6 +20,10 @@ export const getPedido = async (id)=>{
     return await axios.get(`${path}pedidos/${id}`);
 }
 
+export const getPedidoLocalidad = async (localidad)=>{
+    return await axios.get(`${path}pedidos?ciudad=${localidad}`);
+}
+
 export const aceptarPedido = async (id)=>{
     
     return await axios({
