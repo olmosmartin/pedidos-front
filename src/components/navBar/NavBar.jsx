@@ -45,7 +45,7 @@ export const NavBar = () => {
                                 </li>
                             }
 
-                            {sessionStorage.getItem('role')==='CLIENTE'&&                            
+                            {(!sessionStorage.getItem('role') || sessionStorage.getItem('role')==='CLIENTE') &&                       
                                 <li>
                                     <button className="badge rounded-pill bg-secondary p-2 mt-2" type="submit" onClick={handleSubmit}>Registrá tu negocio</button>
                                 </li>
