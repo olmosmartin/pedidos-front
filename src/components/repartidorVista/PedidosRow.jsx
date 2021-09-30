@@ -9,7 +9,7 @@ export const PedidosRow = (props) => {
     const history = useHistory()
     const negocios = useSelector((state) => state.negocioReducer)
     let nombre=""
-
+    
     const [isLoading, setIsLoading] = useState(false)
 
     negocios.negocio[0]?.map((negocio, i) => (
@@ -28,7 +28,7 @@ export const PedidosRow = (props) => {
                 {props.productos.length >= 1 ?
                     
                     <div className="card-body">
-                        <h5 className="card-title">{props.estado} {/*-- {hora} -- {fecha}*/}</h5>
+                        <h5 className="card-title">{props.estado}{/* -- {hora} -- {fecha}*/}</h5>
                         {nombre}
                         {props.productos?.map((productosArray) => (
                             <div className="row g-1" style={{ borderStyle: 'solid', borderWidth: 'thin', margin: 3 }} >

@@ -6,6 +6,7 @@ import { enCaminoPedido, finalizarPedido } from '../../../api/pedidoServices';
 import { setPedidoSeleccionado } from '../../../redux/actions/pedidoAction';
 import { MapVista } from './map/MapVista';
 import { Loading } from '../../loading/Loading'
+import { FechaHora } from '../../negocioPedidos/fechaHora';
 
 
 export const PedidoDetalleRepartidorCard = () => {
@@ -14,9 +15,9 @@ export const PedidoDetalleRepartidorCard = () => {
     const {search} = useLocation();
     const query = new URLSearchParams(search);
     const idPedido = query.get("id"); 
-
     const [isLoading, setIsLoading] = useState(false)
 
+    
     useEffect(() => {
         dispatch(setPedidoSeleccionado(idPedido))
     }, [])
@@ -56,6 +57,9 @@ export const PedidoDetalleRepartidorCard = () => {
                 <div className="card-body" >
                     <h5 className="card-title" >Pedido listo para entregar</h5>
                     <p>Pedido numero: {idPedido}</p>
+
+                   <p>Hora y Fecha: {pedidoREDUX.pedidoSelected?.fecha &&<FechaHora fecha= {pedidoREDUX.pedidoSelected?.fecha}/>}</p>
+                    
                     <MapVista/>
                     {
                         pedidoREDUX.pedidoSelected?.productos?.map((producto, i)=>{

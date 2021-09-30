@@ -33,7 +33,7 @@ export const HistorialPedidos = () => {
                     
                                 <div className="">
                                     {buscador.pedidos[0]?.map((pedido, i) => (
-                                        pedido.estado!=='PREPARANDO'&&pedido.estado!=='PENDIENTE'&&<PedidoRow key={i} idCliente={idCliente} negocioId={pedido.negocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total} />
+                                        pedido.estado!=='PREPARANDO'&&pedido.estado!=='PENDIENTE'&&<PedidoRow key={i} idCliente={idCliente} negocioId={pedido.negocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total} fecha={pedido.fecha}/>
                                     ))
                                     }
                                     

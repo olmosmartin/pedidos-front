@@ -2,17 +2,19 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 
 import { Loading } from '../loading/Loading'
+import { FechaHora } from '../negocioPedidos/fechaHora';
 
 export const PedidoRow = (props) => {
     const negocios = useSelector((state) => state.negocioReducer)
     let nombre=""
 
     const [isLoading, setIsLoading] = useState(false)
-
+    
     negocios.negocio[0]?.map((negocio, i) => (
         //console.log(negocio.usuario.nombre + negocio._id)
         negocio._id === props.negocioId? nombre=negocio.usuario.nombre:null
     ))
+    
     
 
     const handleClickCancelar = () => {
@@ -26,7 +28,7 @@ export const PedidoRow = (props) => {
                 {props.productos.length >= 1 ?
                     
                     <div className="card-body">
-                        <h5 className="card-title">{props.estado} {/*-- {hora} -- {fecha}*/}</h5>
+                        <h5 className="card-title">{props.estado} -- {props.fecha &&<FechaHora fecha= {props.fecha}/>}</h5>
                         {nombre}
                         {props.productos?.map((productosArray) => (
                             <div className="row g-1" style={{ borderStyle: 'solid', borderWidth: 'thin', margin: 3 }} >

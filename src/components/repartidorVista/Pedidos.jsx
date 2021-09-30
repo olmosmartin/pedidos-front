@@ -58,7 +58,7 @@ export const Pedidos = (props) => {
                             <div className="">
                                 {buscador.pedidoRepartidor.map((pedido, i) => (
                                     //console.log("PEDIODO"+pedido)
-                                    pedido.estado==='EN_CAMINO'&&<PedidosRow key={i} idCliente={pedido.cliente} negocioId={pedido.negocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total} />
+                                    pedido.estado==='EN_CAMINO'&&<PedidosRow key={i} idCliente={pedido.cliente} negocioId={pedido.negocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total} fecha={pedido.fecha}/>
                                 ))
                                 }
 

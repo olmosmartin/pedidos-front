@@ -4,19 +4,14 @@ import { aceptarPedido, rechazarPedido, listoPedido } from '../../api/pedidoServ
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPedidosIdNegocio } from '../../redux/actions/pedidoAction';
 import { Loading } from '../loading/Loading'
+import { FechaHora } from './fechaHora';
 
 
 export const PedidosCardRow = (props) => {
   const buscador = useSelector((state) => state.pedidoReducer)
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false)
-  /*
-  var date = props.productos[1].producto.date;
-  var fecha = date.substring(0, 10);
-  var hora = date.substring(16, 11)
-  */
-
-
+ 
 
   const handleClickAceptar = () => {
     setIsLoading(true)
@@ -62,11 +57,13 @@ export const PedidosCardRow = (props) => {
 
   return (
     isLoading ? <Loading /> :
+    
       <div className="cardPedido col mt-4" style={props.estado === 'RECHAZADO'?{backgroundColor:'rgb(247, 126, 89)'}:props.estado === 'PREPARANDO'?{backgroundColor:'rgb(251, 252, 184)'}:null} >
         {props.productos.length >= 1 ?
 
           <div className="card-body">
-            <h5 className="card-title">{props.estado} {/*-- {hora} -- {fecha}*/}</h5>
+          
+            <h5 className="card-title">{props.estado} -- {props.fecha &&<FechaHora fecha= {props.fecha}/>}</h5>
             {props.productos?.map((productosArray) => (
               <div className="row g-1" style={{ borderStyle: 'solid', borderWidth: 'thin', margin: 3 }} >
                 <div className="col-6">
