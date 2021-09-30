@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { Pedidos } from './Pedidos'
 import { useDispatch } from 'react-redux';
+import { useLocation } from "react-router-dom"
+
+import { Pedidos } from './Pedidos'
 import { getNominatimReverse } from '../../api/nominatim';
 import { fetchPedidosLocalidad, fetchPedidosIdRepartidor } from '../../redux/actions/pedidoAction';
+import { limpiarPedidosRepartidor } from '../../redux/actions/pedidoAction';
+
 
 export const RepartidorBody = () => {
     const dispatch = useDispatch();
     const [position, setPosition] = useState({ longitud: 0, latitud: 0 })
     const [errorPosition, setErrorPosition] = useState(true)
     const [localidad, setLocalidad] = useState(null)
+    const location = useLocation();
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
@@ -26,6 +31,11 @@ export const RepartidorBody = () => {
         )
 
     }, [])
+
+    useEffect(() => {
+        dispatch(limpiarPedidosRepartidor())
+        console.log('Location changed');
+    }, [location]);
 
     const traerDireccion = async () => {
         const direccionjson = await getNominatimReverse(position.latitud, position.longitud)

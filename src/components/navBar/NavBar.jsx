@@ -16,11 +16,15 @@ export const NavBar = () => {
         history.push(`/negocioRegistro`);
     }
 
-    //const idUsuario = sessionStorage.getItem('usuarioID')
     const handleNegocio = async() => {
         //const res = await getUsuario(idUsuario); //id del negocio a partir de la id de usuario
         //const idNegocio=res.data[0]._id
         history.push(`/negocioVista?id=${sessionStorage.getItem('usuarioID')}`);
+    }
+
+    const handleRepartidor = () => {
+
+        history.push(`/repartidorVista?id=${sessionStorage.getItem('usuarioID')}`);
     }
 
     
@@ -35,17 +39,22 @@ export const NavBar = () => {
                     <div className="container m-2">
                     <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                         <ul className="navbar-nav">
-                            {sessionStorage.getItem('role')==='NEGOCIO'?
-                            <li>
-                                <button className="badge rounded-pill btn-danger  p-2 mt-2" type="submit" onClick={handleNegocio} style={{marginRight: '5px'}}>Mi negocio</button>   
-                            </li>
-                            :
-                            sessionStorage.getItem('role')==='CLIENTE'?
-                            null
-                            :
-                            <li>
-                                <button className="badge rounded-pill bg-secondary p-2 mt-2" type="submit" onClick={handleSubmit}>Registrá tu negocio</button>
-                            </li>
+                            {sessionStorage.getItem('role')==='NEGOCIO'&&
+                                <li>
+                                    <button className="badge rounded-pill btn-danger  p-2 mt-2" type="submit" onClick={handleNegocio} style={{marginRight: '5px'}}>Mi negocio</button>   
+                                </li>
+                            }
+
+                            {sessionStorage.getItem('role')==='CLIENTE'&&                            
+                                <li>
+                                    <button className="badge rounded-pill bg-secondary p-2 mt-2" type="submit" onClick={handleSubmit}>Registrá tu negocio</button>
+                                </li>
+                            }
+
+                            {sessionStorage.getItem('role')==='REPARTIDOR'&&                            
+                                <li>
+                                    <button className="badge rounded-pill bg-secondary p-2 mt-2" type="submit" onClick={handleRepartidor}>Ver Pedidos</button>
+                                </li>
                             }
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle px-5" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" to="#"> <img src={logoMin} alt="logomin" width="20"/> </Link>
@@ -54,7 +63,6 @@ export const NavBar = () => {
                                     {sessionStorage.getItem('usuarioID')?<LogOut/>:<Link className="dropdown-item" to="/iniciarSesion">Iniciar Sesion</Link>}
                                     {sessionStorage.getItem('role')==='CLIENTE'&&<Link className="dropdown-item" to="/pedidosRealizados"><i class="fa fa-history" aria-hidden="true"></i>  Historial Pedidos</Link>}
                                     {!sessionStorage.getItem('usuarioID')&&<Link className="dropdown-item" to="/clienteRegistro">Registrarse</Link>}
-                                    {/*<Link className="dropdown-item" to="/clienteRegistro"><i class="fa fa-user-plus" aria-hidden="true"></i>  Registrarse</Link>*/}
                                 </ul>
                                 
                             </li>

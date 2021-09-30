@@ -1,4 +1,4 @@
-import { FETCH_PEDIDO_REQUEST, FETCH_PEDIDO_SUCCESS, FETCH_PEDIDO_FAILURE, SET_PEDIDO_SELECTED, SET_PEDIDO_REPARTIDOR } from '../actions/pedidoAction'
+import { FETCH_PEDIDO_REQUEST, FETCH_PEDIDO_SUCCESS, FETCH_PEDIDO_FAILURE, SET_PEDIDO_SELECTED, SET_PEDIDO_REPARTIDOR, LIMPIAR_PEDIDOS_REPARTIDOR } from '../actions/pedidoAction'
 
 
 const initialState = {
@@ -45,6 +45,11 @@ const pedidoReducer = (state = initialState, action ) => {
             isLoading: false,
             pedidos: [],
             error: action.payload.error
+        }
+    case LIMPIAR_PEDIDOS_REPARTIDOR:
+        return{
+            ...state,
+            pedidoRepartidor: []
         }
 
     default:

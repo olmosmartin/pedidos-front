@@ -9,6 +9,7 @@ export const FETCH_PEDIDO_SUCCESS = 'FETCH_PEDIDO_SUCCESS'
 export const FETCH_PEDIDO_FAILURE = 'FETCH_PEDIDO_FAILURE'
 export const SET_PEDIDO_SELECTED = 'SET_PEDIDO_SELECTED'
 export const SET_PEDIDO_REPARTIDOR = 'SET_PEDIDO_REPARTIDOR'
+export const LIMPIAR_PEDIDOS_REPARTIDOR = 'LIMPIAR_PEDIDOS_REPARTIDOR'
 
 //actions
 const fetchPedidoRequest = () => {
@@ -52,6 +53,15 @@ const fetchPedidoFailure = (error) => {
         type: FETCH_PEDIDO_FAILURE,
         payload:{
             error: error
+        }
+    }
+}
+
+export const limpiarPedidosRepartidor = () => {
+    return{
+        type: LIMPIAR_PEDIDOS_REPARTIDOR,
+        payload:{
+            pedidoRepartidor: []
         }
     }
 }
@@ -139,7 +149,6 @@ export const fetchPedidosLocalidad = (localidad) => {
         dispatch( fetchPedidoRequest() );
 
         getPedidoLocalidad(localidad).then(response=>{
-            console.log("PEDIDO: "+JSON.stringify(response?.data))
             dispatch( fetchPedidoSuccess([response?.data]));
         }).catch(error => {
             dispatch( fetchPedidoFailure('localidad sin negocios') )
@@ -152,17 +161,10 @@ export const setPedidoSeleccionado = (id) => {
         dispatch( fetchPedidoRequest() );
         getPedido(id)
         .then(response => {
-            console.log("PEDIDO: "+JSON.stringify(response?.data))
             dispatch( setPedidoSelected(response?.data) );
         })
         .catch(error => {
             dispatch( fetchPedidoFailure('Pedidos no encontrados') )
         })
-    }
-}
-
-export const limpiarPedidosRepartidorYSeleccionado = (id) => {
-    return (dispatch) => {
-        
     }
 }
