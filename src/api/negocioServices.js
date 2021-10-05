@@ -32,13 +32,23 @@ export const agregarPlato =async (idNegocio, plato)=>{
 }
 
 export const eliminarPlato =async (idNegocio, idProducto)=>{
-    
     return await axios({
         method: "DELETE",
         url: `https://pedidosya-api.herokuapp.com/negocios/${idNegocio}/productos/${idProducto}`,
         
         headers: {
             //'Content-Type': 'application/json',
+            "auth-token": sessionStorage.getItem('token')
+        }
+    })
+}
+
+export const modificarPlato =async (idNegocio, idProducto, plato)=>{
+    return await axios({
+        method: "PUT",
+        url: `https://pedidosya-api.herokuapp.com/negocios/${idNegocio}/productos/${idProducto}`,
+        data:plato,
+        headers: {
             "auth-token": sessionStorage.getItem('token')
         }
     })

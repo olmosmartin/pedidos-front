@@ -3,30 +3,36 @@ import { useLocation } from "react-router-dom"
 import FormData from 'form-data';
 import { toast } from 'react-toastify';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { NavBar } from '../../../components/navBar/NavBar'
+import { Footer } from '../../../components/footer/Footer'
+import { modificarPlato } from '../../../api/negocioServices';
+import { Loading } from '../../loading/Loading';
 
-//import axios from 'axios';
-import { agregarPlato } from '../../api/negocioServices';
-import { Loading } from '../loading/Loading';
 
-
-export const PlatoForm = () => {
+export const ModificarPlato = () => {
     var bodyFormData = new FormData();
     const [isLoading, setIsLoading] = useState(false)
     const [archivo, setArchivo] = useState(" ")
 
     const { search } = useLocation();
     const query = new URLSearchParams(search);
-    const idNegocio = query.get("id");
+    const idPlato = query.get("idPlato");
+    const idNegocio = query.get("idNegocio");
+
+    console.log("idPlato: "+idPlato +"idNegocio: "+idNegocio)
 
     const handleFileChosen = (file) => {
         setArchivo(file)
     }
 
     return (
+
         isLoading ? <Loading /> :
-            <div className="card" style={{ width: "50%", left: "25%", textAlign: "center" }}>
+        <>
+            <NavBar/>
+            <div className="card" style={{ width: "50%", left: "25%", textAlign: "center", marginTop:"10%" }}>
                 <div className="card-body" >
-                    <h5 className="card-title" >Ingrese su plato</h5>
+                    <h5 className="card-title" >Modificar</h5>
                     <Formik
                         initialValues={{
                             nombre: "",
@@ -73,16 +79,17 @@ export const PlatoForm = () => {
                             bodyFormData.append('precio', plato.precio)
                             bodyFormData.append('file', archivo)
 
+                            
                             setIsLoading(true)
-                            agregarPlato(idNegocio, bodyFormData)
+                            modificarPlato(idNegocio, idPlato, bodyFormData)
                                 .then(function (response) {
                                     //handle success
                                     console.log(JSON.stringify(response))
-                                    toast.success("plato creado")
+                                    toast.success("Plato modificado")
                                     console.log(response);
                                 }).catch(function (response) {
                                     //handle error
-                                    toast.error("Problemas en la creacion")
+                                    toast.error("Problemas en la modificación")
                                     console.log(response);
                                 }).finally(
                                     setIsLoading(false)
@@ -141,7 +148,7 @@ export const PlatoForm = () => {
                     </Formik>
                 </div>
             </div>
-
+            <Footer/>
+            </>
     )
 }
-

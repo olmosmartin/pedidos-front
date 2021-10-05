@@ -63,7 +63,7 @@ export const RepartidorRegistroCard = () => {
                             //validacion telefono
                             if (!valores.telefono){
                                 errores.telefono="Ingrese un telefono"
-                            } else if (!/^[1-9\s]{1,20}$/.test(valores.telefono)){
+                            } else if (!/^[0-9\s]{1,20}$/.test(valores.telefono)){
                                 errores.telefono="El telefono solo puede contener numeros sin espacios"
                             }
 

@@ -15,6 +15,7 @@ import { RepartidorRegistro } from "./pages/repartidorRegistro/repartidorRegistr
 import { HistorialPedidosScreen } from "./pages/historialPedidos/HistorialPedidosScreen"
 import { RepartidorVista } from "./pages/repartidorVista/RepartidorVista";
 import { PedidoDetalleRepartidorCard } from "./components/repartidorVista/pedidoRepartidorDetalle/PedidoDetalleRepartidorCard";
+import { ModificarPlato } from "./components/plato/modificarPlato/ModificarPlato";
 
 
 export default function Routes() {
@@ -34,6 +35,7 @@ export default function Routes() {
                 <Route exact path="/pedidosRealizados" component={HistorialPedidosScreen}/>
                 <Route exact path="/repartidorVista" component={RepartidorVista}/>
                 <Route exact path="/pedidoDetalleRepartidor" component={PedidoDetalleRepartidorCard}/>
+                <Route exact path="/modificarPlato" component={ModificarPlato}/>
             </Switch>
         </Router>
     )
