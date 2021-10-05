@@ -17,7 +17,7 @@ export const PedidoRow = (props) => {
 
     return (
         isLoading ? <Loading /> :
-            <div className="cardPedido col mt-4" style={props.estado === 'RECHAZADO' ? { backgroundColor: 'rgb(247, 126, 89)' } : props.estado === 'PREPARANDO' ? { backgroundColor: 'rgb(251, 252, 184)' } : null} >
+            <div className="cardPedido col mt-4" style={props.estado === 'FINALIZADO' ? { backgroundColor: 'rgb(160, 226, 160)' } : null} >
                 
                 {props.productos.length >= 1 ?
                     
@@ -36,7 +36,8 @@ export const PedidoRow = (props) => {
                         }
                         <div className="card-body justify-content-center">
                         </div>
-
+                        <button className="btn btn-success">Puntuar</button>
+                        <button className="btn btn-warning">No puntuar</button>
                     </div> :
                     null}
 

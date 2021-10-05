@@ -31,51 +31,22 @@ export const ModificarPlatoCard = (propsPlato) => {
                                 //validacion nombre
                                 nombre: Yup.string()
                                 .max(20, "Debe tener 100 caracteres o menos")
-                                .matches(/^[a-zA-ZÀ-ÿ\s]{1,48}$/, "El nombre solo puede contener letras y espacios"),
+                                .matches(/^[a-zA-ZÀ-ÿ\s]{1,48}$/, "El nombre solo puede contener letras y espacios")
+                                .required("complete este campo"),
 
                                 //validacion descripcion
                                 descripcion: Yup.string()
-                                .matches(/^[a-zA-ZÀ-ÿ1-9\s]{1,100}$/, "descripción incorrecta"),
+                                .matches(/^[a-zA-ZÀ-ÿ1-9\s]{1,100}$/, "descripción incorrecta")
+                                .required("complete este campo"),
 
-                                /*
-                                precio: Yup.number()
-                                .matches(/^[0-9\s]{1,20}$/, "El precio solo puede contener numeros"),
-                                */
-
+                                precio: Yup.string()
+                                .matches(/^[0-9\s]{1,20}$/, "El precio solo puede contener numeros")
+                                .required("complete este campo"),
+                                
                                 descuento: Yup.number()
                                 .max(100, "Debe ser menor a 100")
                             })
                         }
-
-                        validate={(valores) => {
-                            let errores = {};
-
-                            /*
-                            //validacion descripcion
-                            if (!valores.descripcion) {
-                                errores.descripcion = "Ingrese una descripcion"
-                            } else if (!/^[a-zA-ZÀ-ÿ1-9\s]{1,80}$/.test(valores.descripcion)) {
-                                errores.descripcion = "descripción incorrecta"
-                            }
-                            */
-
-                            //validacion precio
-                            if (!valores.precio) {
-                                errores.precio = "Ingrese un precio"
-                            } else if (!/^[0-9\s]{1,20}$/.test(valores.precio)) {
-                                errores.precio = "El precio solo puede contener numeros"
-                            }
-                            
-                            /*
-                            //validacion descuento
-                            if ( (!/^[0-9\s]{0,3}$/.test(valores.descuento) || (valores.descuento>100)) ) {
-                                errores.descuento = "El descuento solo puede contener numeros y ser menor a 100"
-                            }
-                            */
-                            
-
-                            return errores;
-                        }}
 
                         onSubmit={async (valores, { resetForm }) => {
                             let plato = {
