@@ -18,6 +18,18 @@ export const createNegocio =async (negocio)=>{
     return await axios.post(`${path}negocios`, negocio);
 }
 
+export const getPlato =async (idNegocio, idProducto)=>{
+    
+    return await axios({
+        method: "get",
+        url: `${path}negocios/${idNegocio}/productos/${idProducto}`,
+        headers: {
+            //'Content-Type': 'application/json',
+            "auth-token": sessionStorage.getItem('token')
+        }
+    })
+}
+
 export const agregarPlato =async (idNegocio, plato)=>{
     
     return await axios({
