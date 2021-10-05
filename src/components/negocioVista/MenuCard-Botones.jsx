@@ -6,7 +6,7 @@ import './MenuCard-Botones'
 import { fetchNegocioId } from '../../redux/actions/negocioAction';
 import { fetchProductosIdNegocio } from '../../redux/actions/productoAction';
 import { Loading } from '../loading/Loading';
-
+import { descuento } from '../../utils/funciones';
 
 
 export const MenuCardBotones = (props) => {
@@ -43,6 +43,8 @@ export const MenuCardBotones = (props) => {
           <h4 className="card-title">{props.nombre}</h4>
           <p className="card-text">{props.descripcion}</p>
           <p className="card-text">Precio: ${props.precio}</p>
+          {props.descuento&&<p className="card-text">Descuento: %{props.descuento}</p>}
+          {props.descuento&&<p className="card-text">Precio final: ${descuento(props.precio, props.descuento)}</p>}
           <button className="btn btn-danger" style={{ marginRight: '5px' }} onClick={handleClickEliminar}>
             <i className="fa fa-trash-o fa-lg"></i> Eliminar</button>
           <button className="btn btn-secondary" onClick={handleClickModificar}>

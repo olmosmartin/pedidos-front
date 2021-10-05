@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import FormData from 'form-data';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { modificarPlato, getPlato } from '../../../api/negocioServices';
+import * as Yup from 'yup';
+import { modificarPlato } from '../../../api/negocioServices';
 import { toast } from 'react-toastify';
 
 export const ModificarPlatoCard = (propsPlato) => {
@@ -22,25 +23,41 @@ export const ModificarPlatoCard = (propsPlato) => {
                             nombre: propsPlato.nombre,
                             descripcion: propsPlato.descripcion,
                             precio: propsPlato.precio,
-                            descuento: propsPlato.descuento,
+                            descuento: propsPlato.descuento || "",
                         }}
+
+                        validationSchema={
+                            Yup.object({
+                                //validacion nombre
+                                nombre: Yup.string()
+                                .max(20, "Debe tener 100 caracteres o menos")
+                                .matches(/^[a-zA-ZÀ-ÿ\s]{1,48}$/, "El nombre solo puede contener letras y espacios"),
+
+                                //validacion descripcion
+                                descripcion: Yup.string()
+                                .matches(/^[a-zA-ZÀ-ÿ1-9\s]{1,100}$/, "descripción incorrecta"),
+
+                                /*
+                                precio: Yup.number()
+                                .matches(/^[0-9\s]{1,20}$/, "El precio solo puede contener numeros"),
+                                */
+
+                                descuento: Yup.number()
+                                .max(100, "Debe ser menor a 100")
+                            })
+                        }
 
                         validate={(valores) => {
                             let errores = {};
 
-                            //validacion nombre
-                            if (!valores.nombre) {
-                                errores.nombre = "Ingrese un nombre"
-                            } else if (!/^[a-zA-ZÀ-ÿ\s]{1,48}$/.test(valores.nombre)) {
-                                errores.nombre = "El nombre solo puede contener letras y espacios"
-                            }
-
+                            /*
                             //validacion descripcion
                             if (!valores.descripcion) {
                                 errores.descripcion = "Ingrese una descripcion"
                             } else if (!/^[a-zA-ZÀ-ÿ1-9\s]{1,80}$/.test(valores.descripcion)) {
                                 errores.descripcion = "descripción incorrecta"
                             }
+                            */
 
                             //validacion precio
                             if (!valores.precio) {
@@ -72,7 +89,7 @@ export const ModificarPlatoCard = (propsPlato) => {
                             bodyFormData.append('descripcion', plato.descripcion)
                             bodyFormData.append('precio', plato.precio)
                             bodyFormData.append('file', archivo)
-                            //bodyFormData.append('descuento', plato.descuento)
+                            bodyFormData.append('descuento', plato.descuento)
                             
                             for (var value of bodyFormData.values()){
                                 console.log("BODYFORMDATA: "+value)

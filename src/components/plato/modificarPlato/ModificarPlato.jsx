@@ -37,7 +37,14 @@ export const ModificarPlato = () => {
         isLoading ? <Loading /> :
         <>
             <NavBar/>
-            <ModificarPlatoCard imagen={plato.imagen} nombre={plato.nombre} descripcion={plato.descripcion} precio={plato.precio} descuento={plato.descuento} idNegocio={idNegocio} idPlato={idPlato}/>
+            <ModificarPlatoCard 
+                imagen={plato.imagen}
+                nombre={plato.nombre}
+                descripcion={plato.descripcion}
+                precio={plato.precio}
+                descuento={plato.descuento}
+                idNegocio={idNegocio}
+                idPlato={idPlato}/>
             <Footer/>
             </>
     )

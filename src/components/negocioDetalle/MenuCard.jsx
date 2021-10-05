@@ -2,6 +2,7 @@ import React from 'react'
 //import { Link} from "react-router-dom" 
 import { useDispatch, useSelector } from 'react-redux';
 import { agregarProductoAction, sumarUno } from '../../redux/actions/carritoAction';
+import { descuento } from '../../utils/funciones';
 
 
 import './menuCard.css'
@@ -14,7 +15,8 @@ export const MenuCard = (props) => {
     {
         id: props.id,
         nombre: props.nombre,
-        precio: props.precio,
+        //precio: props.precio,
+        precio: props.descuento?descuento(props.precio, props.descuento):props.precio,
         descripcion: props.descripcion,
         cantidad: 1
     }
@@ -38,6 +40,8 @@ export const MenuCard = (props) => {
           <h4 className="card-title">{props.nombre}</h4>
           <p className="card-text">{props.descripcion}</p>
           <p className="card-text">Precio: ${props.precio}</p>
+          {props.descuento&&<p className="card-text">Descuento: %{props.descuento}</p>}
+          {props.descuento&&<p className="card-text">Precio final: ${descuento(props.precio, props.descuento)}</p>}
           <button type="button" className="btn btn-success" style={{borderRadius:10}} onClick={handleClick}><i className="fa fa-cart-plus fa-lg" aria-hidden="true"> Añadir al carrito</i></button>
         </div>
         
