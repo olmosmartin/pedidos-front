@@ -67,6 +67,7 @@ export const limpiarPedidosRepartidor = () => {
 }
 
 export const fetchPedidosIdNegocio = (id) => {
+    
     return (dispatch) => {
         dispatch( fetchPedidoRequest() );
         getNegocio(id)
@@ -93,21 +94,22 @@ export const fetchPedidosIdCliente = (id) => {
 }
 
 export const fetchPedidosIdRepartidor = (id) => {
+    
     return (dispatch) => {
         dispatch( fetchPedidoRequest() );
 
-        getRepartidor(id).then(response => {
-            let array2 = []
-            response?.data?.pedidos?.map(idPedido => {
-                getPedido(idPedido)
-                .then(response2 => {
-                    array2=[...array2, response2.data]
-                    dispatch(setPedidosRepartidor(array2))
-                })
-                .catch(error => {
-                    dispatch( fetchPedidoFailure('Pedidos no encontrados2') )
-                })
-            })
+
+       
+
+        getRepartidor(id)
+        .then(response => {
+            dispatch( fetchPedidoSuccess([response?.data?.pedidos]) );
+           
+                let array2 = []
+           
+                array2=[...array2, response?.data?.pedidos]
+                dispatch(setPedidosRepartidor(array2))
+        
         })
         .catch(error => {
             dispatch( fetchPedidoFailure('Pedidos no encontrados') )
