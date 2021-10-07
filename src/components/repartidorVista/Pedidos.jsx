@@ -15,8 +15,9 @@ export const Pedidos = (props) => {
     useEffect(() => {
         dispatch(fetchNegocio())
         //dispatch(fetchPedidosIdRepartidor(sessionStorage.getItem('usuarioID')))
-        props.localidad&&dispatch(fetchPedidosLocalidad(props.localidad))
-    }, [])
+        props.localidad&&
+        dispatch(fetchPedidosLocalidad(props.localidad))
+    }, [props.localidad, dispatch])
 
     return (
         <div>
