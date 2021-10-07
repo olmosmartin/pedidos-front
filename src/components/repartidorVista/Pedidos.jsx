@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { PedidosRow } from './PedidosRow'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPedidosLocalidad, fetchPedidosIdRepartidor } from '../../redux/actions/pedidoAction';
+import { fetchPedidosLocalidad } from '../../redux/actions/pedidoAction';
 import { fetchNegocio } from '../../redux/actions/negocioAction';
 import { Loading } from '../loading/Loading';
 
@@ -37,7 +37,7 @@ export const Pedidos = (props) => {
 
                                 <div className="">
                                     {buscador.pedidos[0]?.map((pedido, i) => (
-                                        pedido.estado==='LISTO'&&<PedidosRow key={i} idCliente={pedido.cliente} negocioId={pedido.negocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total} />
+                                        pedido.estado==='LISTO'&&<PedidosRow key={pedido._id} idCliente={pedido.cliente} negocioId={pedido.negocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total} />
                                     ))
                                     }
 

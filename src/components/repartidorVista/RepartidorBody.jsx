@@ -35,7 +35,7 @@ export const RepartidorBody = () => {
     useEffect(() => {
         dispatch(limpiarPedidosRepartidor())
         console.log('Location changed');
-    }, [location]);
+    }, [location, dispatch]);
 
     const traerDireccion = async () => {
         const direccionjson = await getNominatimReverse(position.latitud, position.longitud)

@@ -1,4 +1,4 @@
-import { getNegocio, getNegocioLocalidad } from '../../api/negocioServices'
+import { getNegocio } from '../../api/negocioServices'
 import { getCliente } from '../../api/clienteServices'
 import { getPedido, getPedidoLocalidad } from '../../api/pedidoServices'
 import { getRepartidor } from '../../api/repartidorServices'
