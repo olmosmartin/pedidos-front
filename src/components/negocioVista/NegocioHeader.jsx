@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from "react-router-dom"
 
 import './negocioHeader.css'
-import { getUsuario } from '../../api/usuariosServices';
 import { getNegocio } from '../../api/negocioServices'
 
 
@@ -19,7 +18,7 @@ export const NegocioHeader = () => {
 
     useEffect(() => {
         cargar(idNegocio)
-    }, [])
+    }, [idNegocio])
 
     return (
         <div className="fondoNegocioDetalle">

@@ -4,7 +4,6 @@ import { useLocation, useHistory } from "react-router-dom"
 
 import '../negocioDetalle/menuLista.css';
 import { fetchProductosIdNegocio } from '../../redux/actions/productoAction';
-import { MenuCard } from '../negocioDetalle/MenuCard';
 import { FiltrosAcordeonNegocioDetalle } from '../negocioDetalle/FiltrosAcordeonNegocioDetalle';
 import { MenuCardBotones } from './MenuCard-Botones';
 import { Loading } from '../loading/Loading';
@@ -27,7 +26,7 @@ export const MenuListaBotones = () => {
     
     useEffect(() => {
         dispatch(fetchProductosIdNegocio(idNegocio))
-    }, [location])
+    }, [location, dispatch, idNegocio])
 
     return (
         <div className="">

@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './pedidosCardRow.css'
 import { aceptarPedido, rechazarPedido, listoPedido } from '../../api/pedidoServices';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchPedidosIdNegocio } from '../../redux/actions/pedidoAction';
 import { Loading } from '../loading/Loading'
 import { FechaHora } from './fechaHora';
 
 
 export const PedidosCardRow = (props) => {
-  const buscador = useSelector((state) => state.pedidoReducer)
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false)
  

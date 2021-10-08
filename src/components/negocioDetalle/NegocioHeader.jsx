@@ -19,7 +19,7 @@ export const NegocioHeader = () => {
 
     useEffect(() => {
         cargar(idNegocio)
-    }, [])
+    }, [idNegocio])
 
     return (
         <div className="fondoNegocioDetalle">

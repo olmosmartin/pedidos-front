@@ -5,7 +5,6 @@ import logoMin from '../../static/img/lap.png'
 import { useHistory, } from "react-router-dom" // para cambiar de ruta
 import './NavBar.css'
 import LogOut from '../logOut/LogOut';
-//import { getUsuario } from '../../api/usuariosServices';
 
 
 export const NavBar = () => {
@@ -17,8 +16,6 @@ export const NavBar = () => {
     }
 
     const handleNegocio = async() => {
-        //const res = await getUsuario(idUsuario); //id del negocio a partir de la id de usuario
-        //const idNegocio=res.data[0]._id
         history.push(`/negocioVista?id=${sessionStorage.getItem('usuarioID')}`);
     }
 

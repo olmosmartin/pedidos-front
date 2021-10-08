@@ -16,7 +16,7 @@ export const RepartidorHeader = () => {
 
     useEffect(() => {
         cargar(idRepartidor)
-    }, [])
+    }, [idRepartidor])
 
     return (
         <div className="fondoNegocioDetalle">

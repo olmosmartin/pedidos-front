@@ -13,7 +13,6 @@ export const PedidosRow = (props) => {
     const [isLoading, setIsLoading] = useState(false)
 
     negocios.negocio[0]?.map((negocio, i) => (
-        //console.log(negocio.usuario.nombre + negocio._id)
         negocio._id === props.negocioId? nombre=negocio.usuario.nombre:null
     ))
 

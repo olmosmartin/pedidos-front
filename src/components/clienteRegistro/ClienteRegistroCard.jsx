@@ -1,9 +1,7 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom"
-//import { useDispatch, useSelector } from 'react-redux';
 
-//import { registrarCliente } from '../../redux/actions/clienteAction';
 import { createCliente } from '../../api/clienteServices';
 import { getNominatimReverse } from '../../api/nominatim';
 import logo from '../../static/img/pediloya.png';

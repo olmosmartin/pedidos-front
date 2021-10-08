@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux';
 import { useLocation, useHistory } from "react-router-dom"
 import { crearPedido } from '../../../api/pedidoServices';

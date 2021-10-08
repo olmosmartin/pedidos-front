@@ -17,7 +17,7 @@ const ListaNegocios = (props) => {
         //dispatch(fetchNegocio())
         //dispatch(fetchNegocioLocalidad(props.ciudad))
 
-    }, [])
+    }, [dispatch, props.ciudad])
 
     return (
         <div className="container">

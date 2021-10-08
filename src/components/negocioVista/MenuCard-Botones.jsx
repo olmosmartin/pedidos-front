@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { eliminarPlato } from '../../api/negocioServices';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useLocation, useHistory } from "react-router-dom"
 import './MenuCard-Botones'
-import { fetchNegocioId } from '../../redux/actions/negocioAction';
 import { fetchProductosIdNegocio } from '../../redux/actions/productoAction';
 import { Loading } from '../loading/Loading';
 import { descuento } from '../../utils/funciones';

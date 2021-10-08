@@ -42,7 +42,7 @@ export const CarritoRow = (props) => {
                     </div>
                     <div className="col-6">
                         <button type="button" className="btn btn-success" onClick={handleClickAdd}>+</button>
-                        <a className="btn btn-default" >{props.cantidad}</a>
+                        <div className="btn btn-default" >{props.cantidad}</div>
                         <button type="button" className="btn btn-danger" onClick={handleClickDelete}>-</button>
 
                     </div>

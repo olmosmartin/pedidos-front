@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom"
 import './menuLista.css';
 import { fetchProductosIdNegocio } from '../../redux/actions/productoAction';
 import { MenuCard } from './MenuCard';
-import { FiltrosAcordeonNegocioDetalle } from './FiltrosAcordeonNegocioDetalle'
 import { Carrito } from '../carrito/Carrito';
 import { limpiarCarrito } from '../../redux/actions/carritoAction';
 import { Loading } from '../loading/Loading';
@@ -23,12 +22,12 @@ export const MenuListaREDU = () => {
    
     useEffect(() => {
         dispatch(fetchProductosIdNegocio(idNegocio))
-    }, [])
+    }, [idNegocio, dispatch])
 
     useEffect(() => {
         dispatch(limpiarCarrito())
         console.log('Location changed');
-    }, [location]);
+    }, [location, dispatch]);
 
     return (
         <div className="">

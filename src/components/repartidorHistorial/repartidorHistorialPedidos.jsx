@@ -10,12 +10,11 @@ export const RepartidorHistorialPedidos = () => {
     const buscador = useSelector((state) => state.pedidoReducer)
     const dispatch = useDispatch();
     const [idRepartidor, setIdRepartidor] = useState(sessionStorage.getItem('usuarioID'));
-    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         dispatch(fetchNegocio())
         dispatch(fetchPedidosIdRepartidor(idRepartidor))
-    }, [])
+    }, [dispatch, idRepartidor])
 
     return (
         <div>
@@ -33,7 +32,7 @@ export const RepartidorHistorialPedidos = () => {
                                 
                                 <div className="">
                                     {buscador.pedidos[0]?.map((pedido, i) => (
-                                        pedido.estado=='FINALIZADO'&&<PedidoRow key={i} idRepartidor={idRepartidor} negocioId={pedido.negocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total} fecha={pedido.fecha}/>
+                                        pedido.estado === 'FINALIZADO'&&<PedidoRow key={i} idRepartidor={idRepartidor} negocioId={pedido.negocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total} fecha={pedido.fecha}/>
                                     ))
                                     }
                                     

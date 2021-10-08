@@ -4,7 +4,6 @@ import FormData from 'form-data';
 import { toast } from 'react-toastify';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-//import axios from 'axios';
 import { agregarPlato } from '../../api/negocioServices';
 import { Loading } from '../loading/Loading';
 

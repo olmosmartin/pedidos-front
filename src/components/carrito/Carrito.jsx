@@ -5,17 +5,6 @@ import { limpiarCarrito } from '../../redux/actions/carritoAction';
 import { CarritoRow } from './CarritoRow'
 import { ModalCrearPedido } from './modal/ModalCrearPedido';
 
-/*
-const productoPrueba = [
-    {
-        id:1,
-        nombre:"prueba1",
-        precio: 123,
-        cantidad: 1
-    }
-]
-*/
-
 export const Carrito = () => {
     var suma=0
     const dispatch = useDispatch();

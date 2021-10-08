@@ -10,12 +10,11 @@ export const HistorialPedidos = () => {
     const buscador = useSelector((state) => state.pedidoReducer)
     const dispatch = useDispatch();
     const [idCliente, setIdCliente] = useState(sessionStorage.getItem('usuarioID'));
-    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         dispatch(fetchNegocio())
         dispatch(fetchPedidosIdCliente(idCliente))
-    }, [])
+    }, [idCliente, dispatch])
 
     return (
         <div>

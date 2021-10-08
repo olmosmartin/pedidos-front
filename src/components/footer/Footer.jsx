@@ -1,5 +1,6 @@
 import React from 'react'
-import { useHistory, } from "react-router-dom" // para cambiar de ruta
+
+
 export const Footer = () => {
     return (
         <footer className="text-center text-white mt-5" style={{backgroundColor: 'rgb(196,21,8)'}}>

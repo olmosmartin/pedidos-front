@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useLocation } from "react-router-dom"
 import { NavBar } from '../../../components/navBar/NavBar'
 import { Footer } from '../../../components/footer/Footer'
-import { modificarPlato, getPlato } from '../../../api/negocioServices';
+import { getPlato } from '../../../api/negocioServices';
 import { Loading } from '../../loading/Loading';
 import { ModificarPlatoCard } from './ModificarPlatoCard';
 
@@ -15,8 +15,6 @@ export const ModificarPlato = () => {
     const query = new URLSearchParams(search);
     const idPlato = query.get("idPlato");
     const idNegocio = query.get("idNegocio");
-
-    /*console.log("idPlato: "+idPlato +"idNegocio: "+idNegocio)*/
 
     useEffect(() => {
         const fetchPlato = async()=> {

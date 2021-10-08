@@ -4,8 +4,6 @@ import { MenuListaREDU } from './MenuListaREDU'
 
 export const NegocioBody = () => {
     return (
-
-            <MenuListaREDU/>
-
+        <MenuListaREDU/>
     )
 }

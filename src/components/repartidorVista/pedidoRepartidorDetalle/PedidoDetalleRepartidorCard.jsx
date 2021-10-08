@@ -20,7 +20,7 @@ export const PedidoDetalleRepartidorCard = () => {
     
     useEffect(() => {
         dispatch(setPedidoSeleccionado(idPedido))
-    }, [])
+    }, [idPedido, dispatch])
 
     const handleClickEnReparto = () => {
         setIsLoading(true)

@@ -18,7 +18,7 @@ export const PedidosCard = () => {
 
     useEffect(() => {
         dispatch(fetchPedidosIdNegocio(idNegocio))
-    }, [])
+    }, [idNegocio, dispatch])
 
     return (
         <div className="col">

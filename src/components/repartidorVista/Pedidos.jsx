@@ -9,12 +9,10 @@ import { Loading } from '../loading/Loading';
 export const Pedidos = (props) => {
     const buscador = useSelector((state) => state.pedidoReducer)
     const dispatch = useDispatch();
-    //const [isLoading, setIsLoading] = useState(false)
 
 
     useEffect(() => {
         dispatch(fetchNegocio())
-        //dispatch(fetchPedidosIdRepartidor(sessionStorage.getItem('usuarioID')))
         props.localidad&&
         dispatch(fetchPedidosLocalidad(props.localidad))
     }, [props.localidad, dispatch])
