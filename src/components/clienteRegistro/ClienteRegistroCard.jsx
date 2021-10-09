@@ -1,6 +1,8 @@
 import React, { useState, useRef, useMemo } from 'react';
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom"
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 import { createCliente } from '../../api/clienteServices';
 import { getNominatimReverse } from '../../api/nominatim';
@@ -14,27 +16,20 @@ const center = {
     lng: -58.398,
 }
 
-const estadoInicialVacio = {
-    nombre: " ",
-    email: " ",
-    password: " ",
-    telefono: " ",
-    latitud: 0,
-    longitud: 0,
-    ciudad: " ",
-    calle: " ",
-    numero: 0
-}
-
 export const ClienteRegistroCard = () => {
-    /*
-    const buscador = useSelector((state) => state.clienteReducer)
-    const dispatch = useDispatch();
-    */
 
     const history = useHistory()
-    let objeto={}
-    const [cliente, setCliente] = useState(estadoInicialVacio)
+    let objeto={
+        nombre: " ",
+        email: " ",
+        password: " ",
+        telefono: " ",
+        latitud: 0,
+        longitud: 0,
+        ciudad: " ",
+        calle: " ",
+        numero: ""
+    }
     const [position, setPosition] = useState(center)
     const [calleNombre, setCalleNombre] = useState(" ")
     const [calleNumero, setCalleNumero] = useState(" ")
@@ -76,48 +71,6 @@ export const ClienteRegistroCard = () => {
         numero&&setCalleNumero(numero.split('"').join(''))
         ciudad&&setLocalidad(ciudad.split('"').join(''))
 
-        //setDireccion(""+calle+" "+numero+""+ciudad)
-
-    }
-
-    const handleInputChange = (e) => {
-        setCliente({ ...cliente, [e.target.name]: e.target.value });
-    }
-
-
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-            objeto.nombre=cliente.nombre
-            objeto.email=cliente.email
-            objeto.password=cliente.password
-            objeto.telefono=cliente.telefono
-            objeto.calle=calleNombre
-            objeto.numero= calleNumero
-            objeto.ciudad= localidad
-            objeto.latitud= position.lat
-            objeto.longitud= position.lng
-            
-            //dispatch( registrarCliente(objeto) )
-            //console.log("buscador: "+ JSON.stringify(buscador))
-            try {
-                setIsLoading(true)
-                const res = await createCliente(objeto);
-    
-                if (res.status===200){
-                    setIsLoading(false)
-                    toast.success("registro exitoso!")
-                    history.push("/")
-                }
-                
-            } catch (err) {
-                setIsLoading(false)
-                if (err.response && err.response.data) {
-                    toast.error("error, intente nuevamente")
-                    console.log(err.response.data.message) // error message
-                }
-            } finally{
-                setIsLoading(false)
-            }
     }
 
     return (
@@ -129,136 +82,225 @@ export const ClienteRegistroCard = () => {
                         <Link to="/"> <img src={logo} alt="logo" /> </Link>
                     </div>
                     <h5 className="card-title" >Registrarse</h5>
-                    <form onSubmit={(e) => handleSubmit(e)}>
-                        <div className="form-floating mb-3">
-                            <input
-                                type="text"
-                                name="nombre"
-                                className="form-control"
-                                id="floatingInput1"
-                                placeholder="Ingrese su nombre"
-                                onChange={handleInputChange}
-                                required
-                            />
-                            <label htmlFor="floatingInput1">Ingrese su nombre</label>
-                        </div>
+                    <Formik
+                        initialValues={{
+                            nombre: "",
+                            email: "",
+                            password: "",
+                            password2:"",
+                            telefono: "",
+                            latitud: 0,
+                            longitud: 0,
+                            ciudad: "",
+                            calle: "",
+                            numero: ""
+                        }}
 
-                        <div className="form-floating mb-3">
-                            <input className="form-control"
-                                type="email"
-                                name="email"
-                                id="InputEmail1"
-                                aria-describedby="emailHelp"
-                                placeholder="Ingrese su dirección de email"
-                                onChange={handleInputChange}
-                                required
-                            />
-                            <label htmlFor="InputEmail1">Correo electrónico</label>
-                        </div>
+                        validationSchema={
+                            Yup.object({
+                                //validacion nombre
+                                nombre: Yup.string()
+                                .max(20, "Debe tener 100 caracteres o menos")
+                                .matches(/^[a-zA-ZÀ-ÿ\s]{1,48}$/, "El nombre solo puede contener letras y espacios")
+                                .required("complete este campo"),
 
-                        <div className="form-floating mb-3">
-                            <input
-                                type="password"
-                                name="password"
-                                className="form-control"
-                                id="floatingInput2"
-                                placeholder="Ingrese contraseña"
-                                onChange={handleInputChange}
-                                minLength="8"
-                                required
-                            />
-                            <label htmlFor="floatingInput2">Ingrese contraseña</label>
-                        </div>
+                                email: Yup.string()
+                                .email("Debe ingresar un email válido")
+                                .required("complete este campo"),
 
-                        <div className="form-floating mb-3">
-                            <input
-                                type="password"
-                                name=" "
-                                className="form-control"
-                                id="floatingInput3"
-                                placeholder="Ingrese contraseña"
-                                //onChange={}
-                                minLength="8"
-                                required
-                            />
-                            <label htmlFor="floatingInput3">Confirmar contraseña</label>
-                        </div>
+                                numero: Yup.number()
+                                .required("complete este campo")
 
-                        <div className="form-floating mb-3">
-                            <input className="form-control"
-                                type="text"
-                                name="telefono"
-                                id="InputTel"
-                                aria-describedby="Tel"
-                                placeholder="Ingrese su número de teléfono "
-                                onChange={handleInputChange}
-                                required
-                            />
-                            <label htmlFor="InputTel">Teléfono</label>
-                        </div>
-                        <small>Arrastra el marcador y preciona traer dirección</small>
-                        <MapContainer center={center} zoom={11} scrollWheelZoom={true}>
-                            <TileLayer
-                                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                            />
-                            <DraggableMarker />
-                        </MapContainer>
+                            })
+                        }
 
-                        <p className="btn btn-danger" onClick={traerDireccion}>Traer Direccion</p>
+                        validate={(valores)=>{
+                            let errores = {};
 
-                        <div className="form-floating mb-3">
-                            <input className="form-control"
-                                type="text"
-                                name="calle"
-                                id="InputTel"
-                                placeholder=" "
-                                //onChange={e => handleChangeCalleNombre(e.target.value)}
-                                onChange={handleInputChange}
-                                value={calleNombre}
-                                required
-                                disabled
-                            />
-                            <label htmlFor="InputTel">Calle</label>
-                        </div>
+                            //validacion contraseña
+                            if (!valores.password){
+                                errores.password="Ingrese una contraseña"
+                            }
 
-                        <div className="form-floating mb-3">
-                        <small>{calleNumero&&"Número sugerido:"+calleNumero}</small>
-                            <input className="form-control"
-                                type="text"
-                                name="numero"
-                                id="InputNum"
-                                placeholder=" "
-                                //onChange={e => handleChangecalleNumero(e.target.value)}
-                                onChange={handleInputChange}
-                                //value={calleNumero}
-                                required
-                                //disabled
-                            />
+                            if (!valores.password2){
+                                errores.password2="Ingrese una contraseña"
+                            } else if(valores.password!==valores.password2){
+                                errores.password2="Las contraseñas deben coincidir"
+                            }
+
+                            //validacion telefono
+                            if (!valores.telefono){
+                                errores.telefono="Ingrese un telefono"
+                            } else if (!/^[0-9\s]{1,20}$/.test(valores.telefono)){
+                                errores.telefono="El telefono solo puede contener numeros sin espacios"
+                            }
+
+                            return errores;
+                        }}
+
+                        onSubmit={async (valores)=>{
+                            objeto.nombre=valores.nombre
+                            objeto.email=valores.email
+                            objeto.password=valores.password
+                            objeto.telefono=valores.telefono
+                            objeto.calle=calleNombre
+                            objeto.numero= calleNumero
+                            objeto.ciudad= localidad
+                            objeto.latitud= position.lat
+                            objeto.longitud= position.lng
+                            console.log("objeto: "+JSON.stringify(objeto))
                             
-                            <label htmlFor="InputNum">Número</label>
-                        </div>
-                        
+                            try {
+                                setIsLoading(true)
+                                const res = await createCliente(objeto);
+                    
+                                if (res.status===200){
+                                    setIsLoading(false)
+                                    toast.success("registro exitoso!")
+                                    history.push("/")
+                                }
+                                
+                            } catch (err) {
+                                setIsLoading(false)
+                                if (err.response && err.response.data) {
+                                    toast.error("error, intente nuevamente")
+                                    console.log(err.response.data.message) // error message
+                                }
+                            } finally{
+                                setIsLoading(false)
+                            }
+                            
+                        }}
 
-                        <div className="form-floating mb-3">
-                            <input className="form-control"
-                                type="text"
-                                name="ciudad"
-                                id="InputTel"
-                                placeholder=" "
-                                onChange={handleInputChange}
-                                value={localidad}
-                                required
-                                disabled
-                            />
-                            <label htmlFor="InputTel">Localidad</label>
-                        </div>
+                    >
+                        {(props) => (
+                            <Form >
+                                <div className="form-floating mb-3">
+                                    <Field
+                                        type="text"
+                                        name="nombre"
+                                        className="form-control"
+                                        id="floatingInput1"
+                                        placeholder="Ingrese su nombre"
+                                        required
+                                    />
+                                    <ErrorMessage name="nombre" component={() => { return <p className="text-danger">{props.errors.nombre}</p> }} />
+                                    <label htmlFor="floatingInput1">Ingrese su nombre</label>
+                                </div>
 
-                        <input type="hidden" value={position.lat}/>
-                        <input type="hidden" value={position.lgn}/>
+                                <div className="form-floating mb-3">
+                                    <Field className="form-control"
+                                        type="email"
+                                        name="email"
+                                        id="InputEmail1"
+                                        aria-describedby="emailHelp"
+                                        placeholder="Ingrese su dirección de email"
+                                        required
+                                    />
+                                    <ErrorMessage name="email" component={() => { return <p className="text-danger">{props.errors.email}</p> }} />
+                                    <label htmlFor="InputEmail1">Correo electrónico</label>
+                                </div>
 
-                        <button type="submit" className="btn btn-danger">Comenzar</button>
-                    </form>
+                                <div className="form-floating mb-3">
+                                    <Field
+                                        type="password"
+                                        name="password"
+                                        className="form-control"
+                                        id="floatingInput2"
+                                        placeholder="Ingrese contraseña"
+                                        minLength="8"
+                                        required
+                                    />
+                                    <ErrorMessage name="password" component={() => { return <p className="text-danger">{props.errors.password}</p> }} />
+                                    <label htmlFor="floatingInput2">Ingrese contraseña</label>
+                                </div>
+
+                                <div className="form-floating mb-3">
+                                    <Field
+                                        type="password"
+                                        name="password2"
+                                        className="form-control"
+                                        id="floatingInput3"
+                                        placeholder="Ingrese contraseña"
+                                        minLength="8"
+                                        required
+                                    />
+                                    <ErrorMessage name="password2" component={() => { return <p className="text-danger">{props.errors.password2}</p> }} />
+                                    <label htmlFor="floatingInput3">Confirmar contraseña</label>
+                                </div>
+
+                                <div className="form-floating mb-3">
+                                    <Field className="form-control"
+                                        type="text"
+                                        name="telefono"
+                                        id="InputTel"
+                                        aria-describedby="Tel"
+                                        placeholder="Ingrese su número de teléfono "
+                                        required
+                                    />
+                                    <ErrorMessage name="telefono" component={() => { return <p className="text-danger">{props.errors.telefono}</p> }} />
+                                    <label htmlFor="InputTel">Teléfono</label>
+                                </div>
+                                <small>Arrastra el marcador y preciona traer dirección</small>
+                                <MapContainer center={center} zoom={11} scrollWheelZoom={true}>
+                                    <TileLayer
+                                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                    />
+                                    <DraggableMarker />
+                                </MapContainer>
+
+                                <p className="btn btn-danger" onClick={traerDireccion}>Traer Direccion</p>
+
+                                <div className="form-floating mb-3">
+                                    <Field className="form-control"
+                                        type="text"
+                                        name="calle"
+                                        id="Inputcalle"
+                                        placeholder=" "
+                                        value={calleNombre}
+                                        required
+                                        disabled
+                                    />
+                                    <ErrorMessage name="calle" component={() => { return <p className="text-danger">{props.errors.calle}</p> }} />
+                                    <label htmlFor="Inputcalle">Calle</label>
+                                </div>
+
+                                <div className="form-floating mb-3">
+                                <small>{calleNumero&&"Número sugerido:"+calleNumero}</small>
+                                    <Field className="form-control"
+                                        type="text"
+                                        name="numero"
+                                        id="InputNum"
+                                        placeholder=" "
+                                        required
+                                    />
+                                    <ErrorMessage name="numero" component={() => { return <p className="text-danger">{props.errors.numero}</p> }} />
+                                    <label htmlFor="InputNum">Número</label>
+                                </div>
+                                
+
+                                <div className="form-floating mb-3">
+                                    <Field className="form-control"
+                                        type="text"
+                                        name="ciudad"
+                                        id="Inputciudad"
+                                        placeholder=" "
+                                        value={localidad}
+                                        required
+                                        disabled
+                                    />
+                                    <ErrorMessage name="ciudad" component={() => { return <p className="text-danger">{props.errors.ciudad}</p> }} />
+                                    <label htmlFor="Inputciudad">Localidad</label>
+                                </div>
+
+                                <Field type="hidden" value={position.lat}/>
+                                <Field type="hidden" value={position.lng}/>
+
+                                <button type="submit" className="btn btn-danger">Comenzar</button>
+                            </Form>
+                        )}
+                    </Formik>
                 </div>
             </div>
         </div>
