@@ -1,14 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 
 import { Loading } from '../loading/Loading'
 import { FechaHora } from '../negocioPedidos/fechaHora';
+import { Puntuar } from './Puntuar';
+
 
 export const PedidoRow = (props) => {
     const negocios = useSelector((state) => state.negocioReducer)
     let nombre=""
     
     const [isLoading, setIsLoading] = useState(false)
+    const [toglePuntuar, setToglePuntuar] = useState(false)
+
+    const handleClickPuntuar = () => {
+        toglePuntuar? setToglePuntuar(false): setToglePuntuar(true)
+    }
+
+    useEffect(() => {
+        
+    }, [toglePuntuar])
 
     negocios.negocio[0]?.map((negocio, i) => (
         //console.log(negocio.usuario.nombre + negocio._id)
@@ -36,8 +47,12 @@ export const PedidoRow = (props) => {
                         }
                         <div className="card-body justify-content-center">
                         </div>
-                        <button className="btn btn-success">Puntuar</button>
-                        <button className="btn btn-warning">No puntuar</button>
+                        {!props.puntuacion&&
+                        <>
+                        {toglePuntuar?<button className="btn btn-danger" onClick={handleClickPuntuar}>Cerrar</button>:<button className="btn btn-success" onClick={handleClickPuntuar}>Puntuar</button>}
+                        </>
+                        }
+                        {toglePuntuar&&<Puntuar idPedido={props.id}/>}
                     </div> :
                     null}
 

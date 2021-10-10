@@ -42,6 +42,7 @@ export const RepartidorBody = () => {
         var ciudad = ""
         JSON.stringify(direccionjson.data.address.town) ? ciudad = JSON.stringify(direccionjson.data.address.town) : ciudad = JSON.stringify(direccionjson.data.address.city)
         ciudad&&setLocalidad( ciudad.split('"').join('') )
+        //ciudad&&setLocalidad( "Remedios de Escalada" )
         }
 
     const handleSubmitAutodetect = async (e) => {

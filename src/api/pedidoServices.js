@@ -24,6 +24,18 @@ export const getPedidoLocalidad = async (localidad)=>{
     return await axios.get(`${path}pedidos?ciudad=${localidad}`);
 }
 
+export const puntuarPedido = async (id, puntuacion)=>{
+    return await axios({
+        method: "POST",
+        url: `${path}pedidos/${id}/puntuar`,
+        data:puntuacion,
+        headers: {
+            //'Content-Type': 'application/json',
+            "auth-token": sessionStorage.getItem('token')
+        }
+    })
+}
+
 export const aceptarPedido = async (id)=>{
     
     return await axios({
