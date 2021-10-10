@@ -51,8 +51,7 @@ const ListaNegocios = (props) => {
                                 }
                             </div>
                             <div className="col">
-                                {/*<MapVista />*/}
-                                <p>Mapa proximamente:</p>
+                                <MapVista />
                             </div>
                         </>
                 }

@@ -6,7 +6,8 @@ export const Positions = () => {
 
     const marcadores = buscador.negocio[0]?.map((negocio) => {
         return {
-            name: negocio.nombre,
+            name: negocio.usuario.nombre,
+            direccion: negocio?.direccion?.calle + negocio?.direccion?.numero,
             geometry:[ negocio.direccion?.latitud, negocio.direccion?.longitud ]
         }
     })

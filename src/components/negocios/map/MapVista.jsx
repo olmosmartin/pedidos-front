@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 
 import Markers from './Markers';
 import './mapVista.css'
@@ -9,6 +9,8 @@ import { Positions } from './Positions'
 export const MapVista = () => {
 
     return (
+        <>
+        <small>Negocios:</small>
         <MapContainer center={{ lat: '-34.713210', lon: '-58.379101' }} zoom={12}>
             <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -16,5 +18,6 @@ export const MapVista = () => {
             />
             <Markers places={ Positions().places } />
         </MapContainer>
+        </>
     )
 }
