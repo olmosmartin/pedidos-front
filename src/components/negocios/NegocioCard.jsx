@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom" // para cambiar de ruta
 
 import './negocioCard.css'
+import { VerPuntuacion } from './VerPuntuacion'
 
 
 export const NegocioCard = (props) => {
@@ -13,8 +14,9 @@ export const NegocioCard = (props) => {
       <Link to={`/negocio?id=${props.id}`} className="stretched-link"></Link>
         <img className="img-fluid" src={props.imagen} alt="sans" width="100px" />
         <div className="card-body">
-          <h4 className="card-title">{props.nombre}</h4>
+          <h4 className="card-title">{props.nombre}  <VerPuntuacion puntuacion={4.5}/*{props.puntuacion}*/ /></h4>
           <p className="card-text">{props.email}</p>
+         
         </div>
       </div>
 
