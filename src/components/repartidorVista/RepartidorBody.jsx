@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useLocation } from "react-router-dom"
 
+import { fetchNegocioLocalidad } from '../../redux/actions/negocioAction';
 import { Pedidos } from './Pedidos'
 import { getNominatimReverse } from '../../api/nominatim';
 import { fetchPedidosLocalidad, fetchPedidosIdRepartidor } from '../../redux/actions/pedidoAction';
 import { limpiarPedidosRepartidor } from '../../redux/actions/pedidoAction';
+import { MapVista } from './map/MapVista';
 
 
 export const RepartidorBody = () => {
@@ -50,18 +52,26 @@ export const RepartidorBody = () => {
         traerDireccion()
         dispatch(fetchPedidosLocalidad(localidad))
         dispatch(fetchPedidosIdRepartidor(sessionStorage.getItem('usuarioID')))
+        localidad&&dispatch(fetchNegocioLocalidad(localidad))
     }
     
     return (
         <div>
-            {
-            <div className="input-group-append">
-                {errorPosition ? <h4 >Habilita la ubicación para buscar por tu ciudad</h4> : <button onClick={handleSubmitAutodetect} className="btn btn-danger m-2 p-2" style={{ borderRadius: 30 }} type="submit">Buscar en mi ubicación</button>}
-                
+            <div className="row justify-content-center mt-4">
+                {
+                <div className="input-group-append">
+                    {errorPosition ? <h4 >Habilita la ubicación para buscar por tu ciudad</h4> : <button onClick={handleSubmitAutodetect} className="btn btn-danger m-2 p-2" style={{ borderRadius: 30 }} type="submit">Buscar en mi ubicación</button>}
+                    
+                </div>
+                }
+                <p>Ubicación:{localidad}</p>
+                <div className="col">
+                <Pedidos localidad={localidad}/>
+                </div>
+                <div className="col">
+                    {localidad&&<MapVista />}
+                </div>
             </div>
-            }
-            <p>Ubicación:{localidad}</p>
-            <Pedidos localidad={localidad}/>
         </div>
     )
 }
