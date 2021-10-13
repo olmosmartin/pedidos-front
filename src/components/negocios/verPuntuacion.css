@@ -15,7 +15,7 @@
     margin: 0px 0px 1px 12px;
     padding: 1px 5px 3px 4px;
     box-sizing: border-box;
-    background-color: rgba(255, 0, 0, 0.75);
+    background-color: rgba(255, 145, 0, 0.75);
    
 }
 .colorYellow{
@@ -25,7 +25,7 @@
     margin: 0px 0px 1px 12px;
     padding: 1px 5px 3px 4px;
     box-sizing: border-box;
-    background-color: rgba(255, 0, 0, 0.75);
+    background-color: rgba(255, 233, 0, 0.75);
    
 }
 .colorLightGreen{
@@ -35,7 +35,7 @@
     margin: 0px 0px 1px 12px;
     padding: 1px 5px 3px 4px;
     box-sizing: border-box;
-    background-color: rgba(144, 243, 78, 0.75);
+    background-color: rgba(145, 255, 2, 0.75);
    
 }
 .colorGreen{
@@ -45,6 +45,6 @@
     margin: 0px 0px 1px 12px;
     padding: 1px 5px 3px 4px;
     box-sizing: border-box;
-    background-color: rgba(255, 0, 0, 0.75);
+    background-color: rgba(0, 255, 0, 0.75);
    
 }
