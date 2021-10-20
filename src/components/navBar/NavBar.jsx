@@ -57,7 +57,7 @@ export const NavBar = () => {
                                 <Link className="nav-link dropdown-toggle px-5" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" to="#"> <img src={logoMin} alt="logomin" width="20"/> </Link>
                                 
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    {sessionStorage.getItem('usuarioID')?<LogOut/>:<Link className="dropdown-item" to="/iniciarSesion">Iniciar Sesion</Link>}
+                                    {sessionStorage.getItem('usuarioID')?<><LogOut/>  <Link className="dropdown-item" to="/passwordReset">Cambiar contraseña</Link></>:<Link className="dropdown-item" to="/iniciarSesion">Iniciar Sesion</Link>}
                                     {sessionStorage.getItem('role')==='CLIENTE'&&<Link className="dropdown-item" to="/pedidosRealizados"><i className="fa fa-history" aria-hidden="true"></i>  Historial Pedidos</Link>}
                                     {sessionStorage.getItem('role')==='REPARTIDOR'&&<Link className="dropdown-item" to="/repartidorHistorial">  Pedidos Entregados</Link>}
                                     {!sessionStorage.getItem('usuarioID')&&<Link className="dropdown-item" to="/clienteRegistro">Registrarse</Link>}

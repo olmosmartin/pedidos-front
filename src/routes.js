@@ -17,6 +17,8 @@ import { RepartidorVista } from "./pages/repartidorVista/RepartidorVista";
 import { PedidoDetalleRepartidorCard } from "./components/repartidorVista/pedidoRepartidorDetalle/PedidoDetalleRepartidorCard";
 import { ModificarPlato } from "./components/plato/modificarPlato/ModificarPlato";
 import { RepartidorHistorialPedidosScreen } from "./pages/repartidorHistorialPedidos/RepartidorHistorialScreen";
+import { PaswordResetScreen } from "./pages/passwordReset/PaswordResetScreen";
+import { RecuperarContraseñaScreen } from "./pages/recuperarContraseña/RecuperarContraseñaScreen";
 
 
 export default function Routes() {
@@ -38,6 +40,8 @@ export default function Routes() {
                 <Route exact path="/pedidoDetalleRepartidor" component={PedidoDetalleRepartidorCard}/>
                 <Route exact path="/modificarPlato" component={ModificarPlato}/>
                 <Route exact path="/repartidorHistorial" component={RepartidorHistorialPedidosScreen}/>
+                <Route exact path="/passwordReset" component={PaswordResetScreen}/>
+                <Route exact path="/recuperarContraseña" component={RecuperarContraseñaScreen}/>
             </Switch>
         </Router>
     )

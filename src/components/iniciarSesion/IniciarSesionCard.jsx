@@ -88,6 +88,8 @@ export const IniciarSesionCard = () => {
                     <button type="submit" className="btn btn-danger mt-4">Comenzar</button>
 
                     <p className="mt-4"><Link to={"/clienteRegistro"}>Registrarse</Link></p>
+
+                    <p className="mt-4"><Link to={"/recuperarContraseña"}>Recuperar contraseña</Link></p>
                 </form>
             </div>
         </div>

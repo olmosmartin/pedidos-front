@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useLocation, useHistory } from "react-router-dom"
 import { crearPedido } from '../../../api/pedidoServices';
@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 
 
 export const ModalCrearPedido = () => {
+  const [state, setstate] = useState([])
   const history = useHistory()
   const carrito = useSelector((state) => state.carritoShopping)
   var pedido = {
@@ -15,13 +16,20 @@ export const ModalCrearPedido = () => {
         id: "",
         cantidad: ""
       },
-    ]
+    ],
+    medio_de_pago: ""
   }
   var sum = 0;
   const { search } = useLocation();
   const query = new URLSearchParams(search);
   const idNegocio = query.get("id");
   const idCliente = sessionStorage.getItem('usuarioID')
+
+  const onValueChange = (event) => {
+    setstate({
+      selectedOption: event.target.value
+    });
+  }
 
   const handleClick = () => {
     console.log("click")
@@ -34,7 +42,7 @@ export const ModalCrearPedido = () => {
     carrito.productos.map((item, i) => {
       pedido.productos[i] = { id: item.id, cantidad: item.cantidad }
     })
-
+    pedido.medio_de_pago = state.selectedOption
     try {
       //setIsLoading(true)
       const res = await crearPedido(pedido);
@@ -79,6 +87,45 @@ export const ModalCrearPedido = () => {
               }
               <p>Total a pagar: ${sum}</p>
             </div>
+
+            <div style={{marginLeft: 10}}>
+              <div className="form-check mb-3">
+                <input
+                  type="radio"
+                  name="picked"
+                  className="form-check-input"
+                  id="1"
+                  value="Tarjeta Débito"
+                  onChange={onValueChange}
+                />
+                <label htmlFor="1">Tarjeta Débito</label>
+              </div>
+
+              <div className="form-check mb-3">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="picked"
+                  id="2"
+                  value="Tarjeta crédito"
+                  onChange={onValueChange}
+                />
+                <label htmlFor="2">Tarjeta crédito</label>
+              </div>
+
+              <div className="form-check mb-3">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="picked"
+                  id="3"
+                  value="Efectivo"
+                  onChange={onValueChange}
+                />
+                <label htmlFor="3">Efectivo</label>
+              </div>
+            </div>
+
             <div className="modal-footer">
               <button type="button" className="btn btn-danger" data-dismiss="modal">Volver</button>
               {idCliente ? <button type="button" className="btn btn-success" data-dismiss="modal" onClick={handleClickConfirmar}>Confirmar</button>
