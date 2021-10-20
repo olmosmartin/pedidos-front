@@ -49,7 +49,7 @@ export const PedidoRow = (props) => {
                         </div>
                         {!props.puntuacion&&
                         <>
-                        {toglePuntuar?<button className="btn btn-danger" onClick={handleClickPuntuar}>Cerrar</button>:<button className="btn btn-success" onClick={handleClickPuntuar}>Puntuar</button>}
+                        {toglePuntuar?<button className="btn btn-danger" onClick={handleClickPuntuar}>Cerrar</button>:<button className="btn btn-success" onClick={handleClickPuntuar}>Puntuar y Comentar </button>}
                         </>
                         }
                         {toglePuntuar&&<Puntuar idPedido={props.id}/>}
