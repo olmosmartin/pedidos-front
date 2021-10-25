@@ -24,6 +24,7 @@ export const ModificarPlatoCard = (propsPlato) => {
                             descripcion: propsPlato.descripcion,
                             precio: propsPlato.precio,
                             descuento: propsPlato.descuento || "",
+                            tipo: propsPlato.tipo || ""
                         }}
 
                         validationSchema={
@@ -53,7 +54,8 @@ export const ModificarPlatoCard = (propsPlato) => {
                                 nombre: valores.nombre,
                                 descripcion: valores.descripcion,
                                 precio: valores.precio,
-                                descuento: valores.descuento
+                                descuento: valores.descuento,
+                                tipo: valores.tipo
                             }
                             resetForm();
                             bodyFormData.append('nombre', plato.nombre)
@@ -61,6 +63,7 @@ export const ModificarPlatoCard = (propsPlato) => {
                             bodyFormData.append('precio', plato.precio)
                             bodyFormData.append('file', archivo)
                             bodyFormData.append('descuento', plato.descuento)
+                            bodyFormData.append('tipo_comida', plato.tipo)
                             
                             for (var value of bodyFormData.values()){
                                 console.log("BODYFORMDATA: "+value)
@@ -121,6 +124,14 @@ export const ModificarPlatoCard = (propsPlato) => {
                                     <ErrorMessage name="precio" component={() => { return <p className="text-danger">{props.errors.precio}</p> }} />
                                     <label htmlFor="floatingInput3">Precio</label>
                                 </div>
+
+                                <Field className="form-select" as="select" name="tipo" aria-label="Tipo de comida">
+                                    <option value=""></option>
+                                    <option value="sin TACC">sin TACC</option>
+                                    <option value="vegana">Vegana</option>
+                                </Field>
+                                <ErrorMessage name="tipo" component={() => { return <p className="text-danger">{props.errors.tipo}</p> }} />
+
                                 <p>Imagen actual:</p>
                                 <img className="img-fluid" src={propsPlato.imagen} alt="sans" width="100px" />
 

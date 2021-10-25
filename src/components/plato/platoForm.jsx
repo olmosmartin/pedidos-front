@@ -31,6 +31,7 @@ export const PlatoForm = () => {
                             nombre: "",
                             descripcion: "",
                             precio: "",
+                            tipo: "sin TACC",
                         }}
 
                         validate={(valores) => {
@@ -65,13 +66,17 @@ export const PlatoForm = () => {
                                 nombre: valores.nombre,
                                 descripcion: valores.descripcion,
                                 precio: valores.precio,
+                                tipo: valores.tipo
                             }
                             resetForm();
                             bodyFormData.append('nombre', plato.nombre)
                             bodyFormData.append('descripcion', plato.descripcion)
                             bodyFormData.append('precio', plato.precio)
                             bodyFormData.append('file', archivo)
+                            bodyFormData.append('tipo_comida', plato.tipo)
 
+                            //console.log("plato: "+JSON.stringify(plato))
+                            
                             setIsLoading(true)
                             agregarPlato(idNegocio, bodyFormData)
                                 .then(function (response) {
@@ -86,6 +91,7 @@ export const PlatoForm = () => {
                                 }).finally(
                                     setIsLoading(false)
                                 )
+                            
                             //history.push(`/negocioVista?id=${idNegocio}`);
                         }}
                     >
@@ -98,7 +104,6 @@ export const PlatoForm = () => {
                                         className="form-control"
                                         id="floatingInput1"
                                         placeholder="Ingrese el nombre del plato"
-                                    //onChange={handleChangeNombre}
                                     />
                                     <ErrorMessage name="nombre" component={() => { return <p className="text-danger">{props.errors.nombre}</p> }} />
                                     <label htmlFor="floatingInput1">Ingrese nombre del plato</label>
@@ -111,7 +116,6 @@ export const PlatoForm = () => {
                                         id="floatingInput2"
                                         aria-describedby="descripcion"
                                         placeholder="Ingrese la descripción de su plato"
-                                    //onChange={handleChangeDescripcion}
                                     />
                                     <ErrorMessage name="descripcion" component={() => { return <p className="text-danger">{props.errors.descripcion}</p> }} />
                                     <label htmlFor="floatingInput2">Descripción</label>
@@ -124,10 +128,16 @@ export const PlatoForm = () => {
                                         id="floatingInput3"
                                         aria-describedby="precio"
                                         placeholder="Ingrese el precio de su plato"
-                                    //onChange={handleChangePrecio}
                                     />
                                     <ErrorMessage name="precio" component={() => { return <p className="text-danger">{props.errors.precio}</p> }} />
                                     <label htmlFor="floatingInput3">Precio</label>
+
+                                    <Field className="form-select" as="select" name="tipo" aria-label="Tipo de comida">
+                                        <option value="sin TACC">sin TACC</option>
+                                        <option value="vegana">Vegana</option>
+                                    </Field>
+                                    <ErrorMessage name="tipo" component={() => { return <p className="text-danger">{props.errors.tipo}</p> }} />
+
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="formFile" className="form-label">Seleccionar imagen</label>

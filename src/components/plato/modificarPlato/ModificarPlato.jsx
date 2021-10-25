@@ -26,9 +26,7 @@ export const ModificarPlato = () => {
         fetchPlato()
     }, [idNegocio, idPlato])
 
-    console.log("plato: "+JSON.stringify(plato))
-
-
+    //console.log("plato: "+JSON.stringify(plato))
 
     return (
 
@@ -41,6 +39,7 @@ export const ModificarPlato = () => {
                 descripcion={plato.descripcion}
                 precio={plato.precio}
                 descuento={plato.descuento}
+                tipo={plato.tipo_comida}
                 idNegocio={idNegocio}
                 idPlato={idPlato}/>
             <Footer/>
