@@ -5,6 +5,8 @@ import { getNegocios, getNegocio, getNegocioLocalidad } from '../../api/negocioS
 export const FETCH_NEGOCIO_REQUEST = 'FETCH_NEGOCIO_REQUEST'
 export const FETCH_NEGOCIO_SUCCESS = 'FETCH_NEGOCIO_SUCCESS'
 export const FETCH_NEGOCIO_FAILURE = 'FETCH_NEGOCIO_FAILURE'
+export const ORDENAR_RANKING = 'ORDENAR_RANKING'
+export const ORDENAR_ALFABETICO = 'ORDENAR_ALFABETICO'
 
 //actions
 const fetchNegocioRequest = () => {
@@ -30,6 +32,22 @@ const fetchNegocioFailure = (error) => {
         type: FETCH_NEGOCIO_FAILURE,
         payload:{
             error: error
+        }
+    }
+}
+
+export const ordenarRanking = () => {
+    return{
+        type: ORDENAR_RANKING,
+        payload:{
+        }
+    }
+}
+
+export const ordenarAlfabeticamente = () => {
+    return{
+        type: ORDENAR_ALFABETICO,
+        payload:{
         }
     }
 }

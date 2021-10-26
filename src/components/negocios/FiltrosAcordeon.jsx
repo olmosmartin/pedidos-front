@@ -1,6 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { useDispatch } from 'react-redux';
+import { ordenarRanking } from '../../redux/actions/negocioAction';
+
 
 export const FiltrosAcordeon = () => {
+    const dispatch = useDispatch();
+    const [buttonFilterPress, setButtonFilterPress] = useState(false)
+
+    const handleClickOrdenarRanking = () => {
+        dispatch(ordenarRanking())
+        setButtonFilterPress(true)
+    }
+
+    const quitarFiltro = () => {
+        dispatch(ordenarRanking())
+        setButtonFilterPress(false)
+    }
     return (
         <>
             <div className="accordion accordion-flush col" id="accordionFlushExample">
@@ -11,7 +26,9 @@ export const FiltrosAcordeon = () => {
                         </button>
                     </h2>
                     <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                        <div className="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+                        <div className="accordion-body">
+                            Contenido proximamente...
+                        </div>
                     </div>
                 </div>
                 <div className="accordion-item">
@@ -21,7 +38,10 @@ export const FiltrosAcordeon = () => {
                         </button>
                     </h2>
                     <div id="flush-collapseTwo" className="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                        <div className="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                        <div className="accordion-body">
+                            {!buttonFilterPress&&<button className="btn btn-primary m-2" onClick={handleClickOrdenarRanking}>Ranking</button>}
+                            {buttonFilterPress&&<button className="btn btn-danger" onClick={quitarFiltro}>Quitar orden</button>}
+                        </div>
                     </div>
                 </div>
                 {/*

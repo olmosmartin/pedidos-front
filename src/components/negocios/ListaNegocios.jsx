@@ -14,7 +14,6 @@ const ListaNegocios = (props) => {
 
     useEffect(() => {
         props.ciudad === 'Ver todos' ? dispatch(fetchNegocio()) : dispatch(fetchNegocioLocalidad(props.ciudad))
-        //dispatch(fetchNegocio())
         //dispatch(fetchNegocioLocalidad(props.ciudad))
 
     }, [dispatch, props.ciudad])
@@ -29,7 +28,7 @@ const ListaNegocios = (props) => {
                         <Loading/>
                         :
                         <>
-                            {/*<FiltrosAcordeon />*/}
+                            {<FiltrosAcordeon />}
                             <div className="col">
                                 {buscador.negocio.length >= 1 && !buscador.error ?
 
