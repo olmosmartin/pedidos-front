@@ -1,10 +1,11 @@
-import { FETCH_NEGOCIO_REQUEST, FETCH_NEGOCIO_SUCCESS, FETCH_NEGOCIO_FAILURE, ORDENAR_RANKING, ORDENAR_ALFABETICO } from '../actions/negocioAction'
+import { FETCH_NEGOCIO_REQUEST, FETCH_NEGOCIO_SUCCESS, FETCH_NEGOCIO_FAILURE, ORDENAR_RANKING, ORDENAR_ALFABETICO, TOP_NEGOCIOS } from '../actions/negocioAction'
 
 
 const initialState = {
     isLoading: false,
     negocio: [],
-    error: ''
+    error: '',
+    topNegocios: []
 }
 
 const negocioReducer = (state = initialState, action ) => {
@@ -32,9 +33,6 @@ const negocioReducer = (state = initialState, action ) => {
         }
     
     case ORDENAR_RANKING:
-        state.negocio[0].map(elemento => {
-            console.log("puntuacion: "+ (parseFloat(elemento.puntuacionAvg)>2.0))
-        })
         state.negocio[0].sort((a, b) =>
         (parseFloat(a.puntuacionAvg) > parseFloat(b.puntuacionAvg)) ? -1 :
         (parseFloat(a.puntuacionAvg) < parseFloat(b.puntuacionAvg)) ? 1 :
@@ -52,6 +50,21 @@ const negocioReducer = (state = initialState, action ) => {
 
         return { 
             ...state,
+        }
+
+    case TOP_NEGOCIOS:
+        let listanueva=[]
+        listanueva=[...listanueva, state.negocio[0].filter( negocio => negocio.puntuacionAvg!==undefined )]
+    
+        listanueva[0].sort((a, b) =>
+        (parseFloat(a.puntuacionAvg) > parseFloat(b.puntuacionAvg)) ? 1 :
+        (parseFloat(a.puntuacionAvg) < parseFloat(b.puntuacionAvg)) ? -1 :
+        0)
+    
+        console.log("listanueva: "+listanueva)
+        return { 
+            ...state,
+            topNegocios: listanueva
         }
 
     default:
