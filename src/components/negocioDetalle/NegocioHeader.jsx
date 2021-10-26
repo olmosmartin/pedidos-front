@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from "react-router-dom"
+import { useLocation , Link,useHistory} from "react-router-dom"
 
 import './negocioHeader.css'
 import { getNegocio } from '../../api/negocioServices';
 
 
 export const NegocioHeader = () => {
+
+    const history = useHistory()
     const [negocio, setNegocio] = useState();
     const {search} = useLocation();
     const query = new URLSearchParams(search);
@@ -16,11 +18,14 @@ export const NegocioHeader = () => {
         const res = await getNegocio(id);
         setNegocio(res.data)
     }
+    const handleNegocio = async() => {
+        history.push(`/negocioPerfil?id=${idNegocio}`);
+    }
 
     useEffect(() => {
         cargar(idNegocio)
     }, [idNegocio])
-
+    
     return (
         <div className="fondoNegocioDetalle">
             <div className="container mb-3">
@@ -28,6 +33,10 @@ export const NegocioHeader = () => {
                 <small>{ negocio?.usuario?.email }</small>
                 <br></br>
                 <small>{ negocio?.usuario?.telefono }</small>
+                <br></br>
+                <small>
+                <button className="" onClick={handleNegocio}>Mas Informacion...</button>
+                </small>
             </div>
         </div>
     )

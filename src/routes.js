@@ -19,6 +19,7 @@ import { ModificarPlato } from "./components/plato/modificarPlato/ModificarPlato
 import { RepartidorHistorialPedidosScreen } from "./pages/repartidorHistorialPedidos/RepartidorHistorialScreen";
 import { PaswordResetScreen } from "./pages/passwordReset/PaswordResetScreen";
 import { RecuperarContraseñaScreen } from "./pages/recuperarContraseña/RecuperarContraseñaScreen";
+import { NegocioPerfil } from "./pages/negocioPerfil/NegocioPerfil";
 
 
 export default function Routes() {
@@ -42,6 +43,7 @@ export default function Routes() {
                 <Route exact path="/repartidorHistorial" component={RepartidorHistorialPedidosScreen}/>
                 <Route exact path="/passwordReset" component={PaswordResetScreen}/>
                 <Route exact path="/recuperarContraseña" component={RecuperarContraseñaScreen}/>
+                <Route exact path="/negocioPerfil" component={NegocioPerfil}/>
             </Switch>
         </Router>
     )
