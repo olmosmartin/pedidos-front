@@ -4,6 +4,7 @@ import { getNegocio } from '../../api/negocioServices'
 export const FETCH_PRODUCTO_REQUEST = 'FETCH_PRODUCTO_REQUEST'
 export const FETCH_PRODUCTO_SUCCESS = 'FETCH_PRODUCTO_SUCCESS'
 export const FETCH_PRODUCTO_FAILURE = 'FETCH_PRODUCTO_FAILURE'
+export const FILTRAR_POR_TIPO = 'FILTRAR_POR_TIPO'
 
 //actions
 const fetchProductoRequest = () => {
@@ -29,6 +30,15 @@ const fetchProductoFailure = (error) => {
         type: FETCH_PRODUCTO_FAILURE,
         payload:{
             error: error
+        }
+    }
+}
+
+export const filtrarProductoPorTipo = (tipo) => {
+    return{
+        type: FILTRAR_POR_TIPO,
+        payload:{
+            tipo: tipo
         }
     }
 }

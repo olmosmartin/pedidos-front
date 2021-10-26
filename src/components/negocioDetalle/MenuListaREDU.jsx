@@ -8,6 +8,7 @@ import { MenuCard } from './MenuCard';
 import { Carrito } from '../carrito/Carrito';
 import { limpiarCarrito } from '../../redux/actions/carritoAction';
 import { Loading } from '../loading/Loading';
+import { FiltrosAcordeonNegocioDetalle } from './FiltrosAcordeonNegocioDetalle'
 
 
 export const MenuListaREDU = () => {
@@ -38,11 +39,11 @@ export const MenuListaREDU = () => {
                         <Loading/>
                         :
                         <>
-                            {/*<FiltrosAcordeonNegocioDetalle />*/}
-                            
+                            {<FiltrosAcordeonNegocioDetalle idNegocio={idNegocio}/>}
+                            {console.log("buscador.productos.length: "+buscador.productos[0]?.length)}
                             <div className="col">
-                                {buscador.productos.length >= 1 && !buscador.error ?
-
+                                {buscador.productos[0]?.length >= 1 && !buscador.error ?
+                                    
                                     <div className="">
                                         {buscador.productos[0]?.map((producto, i) => (
                                             <MenuCard key={i} id={producto._id} descuento={producto.descuento} nombre={producto.nombre} imagen={producto.imagen} precio={producto.precio} descripcion={producto.descripcion} />
