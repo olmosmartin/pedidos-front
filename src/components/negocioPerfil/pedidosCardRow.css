@@ -1,0 +1,17 @@
+.card:hover{
+    box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.753) !important;
+    transition: all 0.5s linear;
+    text-decoration: none;
+}
+
+.cardPedido{
+    box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.753) !important;
+    flex-direction: row;
+    background-color: rgb(248, 234, 217);
+    padding-Right:10px; 
+    padding-Left:10px; 
+}
+.cardPedidoItem{
+    border-style: ridge;
+    width: -webkit-fill-available;
+}

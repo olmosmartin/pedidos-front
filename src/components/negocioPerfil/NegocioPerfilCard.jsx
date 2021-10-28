@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom"
 import { getNegocio } from '../../api/negocioServices'
 import { VerPuntuacion } from '../negocios/VerPuntuacion';
 import { MapVista } from './map/MapVista';
+import { PedidosCard } from './pedidosCard';
 
 
 export const NegocioPerfilCard = () => {
@@ -42,6 +43,7 @@ export const NegocioPerfilCard = () => {
                     
                 </div>
                 <MapVista/>
+                <PedidosCard/>
             </div>
         </div> 
        
