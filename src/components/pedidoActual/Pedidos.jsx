@@ -11,10 +11,12 @@ export const Pedidos = () => {
     const dispatch = useDispatch();
     const [idCliente, setIdCliente] = useState(sessionStorage.getItem('usuarioID'));
 
+    /*
     useEffect(() => {
         dispatch(fetchNegocio())
         dispatch(fetchPedidosIdCliente(idCliente))
     }, [idCliente, dispatch])
+    */
 
     return (
         <div>
