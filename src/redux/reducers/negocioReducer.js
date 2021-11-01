@@ -1,11 +1,12 @@
-import { FETCH_NEGOCIO_REQUEST, FETCH_NEGOCIO_SUCCESS, FETCH_NEGOCIO_FAILURE, ORDENAR_RANKING, ORDENAR_ALFABETICO, TOP_NEGOCIOS } from '../actions/negocioAction'
+import { FETCH_NEGOCIO_REQUEST, FETCH_NEGOCIO_SUCCESS, FETCH_NEGOCIO_FAILURE, ORDENAR_RANKING, ORDENAR_ALFABETICO, TOP_NEGOCIOS, NEGOCIO_SELECTED } from '../actions/negocioAction'
 
 
 const initialState = {
     isLoading: false,
     negocio: [],
     error: '',
-    topNegocios: []
+    topNegocios: [],
+    negocioSelected: ""
 }
 
 const negocioReducer = (state = initialState, action ) => {
@@ -30,6 +31,13 @@ const negocioReducer = (state = initialState, action ) => {
             isLoading: false,
             negocio: [],
             error: action.payload.error
+        }
+
+    case NEGOCIO_SELECTED:
+        return {
+            ...state,
+            isLoading: false,
+            negocioSelected: action.payload.negocio
         }
     
     case ORDENAR_RANKING:

@@ -2,15 +2,13 @@ import { useSelector } from 'react-redux';
 
 
 export const Positions = () => {
-    const buscador = useSelector((state) => state.negocioReducer)
+    const negocioSelected = useSelector(state => state.negocioReducer.negocioSelected);
 
-    const marcadores = buscador.negocio[0]?.map((negocio) => {
-        return {
-            name: negocio.usuario.nombre,
-            direccion: negocio?.direccion?.calle + negocio?.direccion?.numero,
-            geometry:[ negocio.direccion?.latitud, negocio.direccion?.longitud ]
-        }
-    })
+    const marcadores = {
+            name: negocioSelected?.usuario?.nombre,
+            direccion: negocioSelected?.direccion?.calle + negocioSelected?.direccion?.numero,
+            geometry:[ negocioSelected.direccion?.latitud, negocioSelected.direccion?.longitud ]
+    }
 
 
     return {

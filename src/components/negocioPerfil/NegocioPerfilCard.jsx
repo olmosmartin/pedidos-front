@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from "react-router-dom"
-
+import { useDispatch, useSelector } from 'react-redux';
 
 import { getNegocio } from '../../api/negocioServices'
 import { VerPuntuacion } from '../negocios/VerPuntuacion';
 import { MapVista } from './map/MapVista';
 import { PedidosCard } from './pedidosCard';
+import { setNegocioSelected } from '../../redux/actions/negocioAction';
+import { Loading } from '../loading/Loading';
 
 
 export const NegocioPerfilCard = () => {
+    const dispatch = useDispatch();
+    const loading = useSelector(state => state.negocioReducer.isLoading);
+
     const {search} = useLocation();
     const query = new URLSearchParams(search);
     const idNegocio = query.get("id"); 
@@ -20,11 +25,12 @@ export const NegocioPerfilCard = () => {
     }
 
     useEffect(() => {
+        dispatch(setNegocioSelected(idNegocio));
         cargar(idNegocio)
-    }, [idNegocio])
+    }, [idNegocio, dispatch])
 
     return (
-    <>
+    loading? <Loading/>:<>
         <div className="card text-center mb-3" style={{ marginTop:'80px',marginLeft:'25%',marginRigth:'25%',width: "30rem",  }}>
         
         
@@ -42,7 +48,7 @@ export const NegocioPerfilCard = () => {
                     
                     
                 </div>
-                <MapVista/>
+                {loading? <Loading/>:<MapVista/>}
                 <PedidosCard/>
             </div>
         </div> 

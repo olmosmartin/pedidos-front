@@ -8,6 +8,7 @@ export const FETCH_NEGOCIO_FAILURE = 'FETCH_NEGOCIO_FAILURE'
 export const ORDENAR_RANKING = 'ORDENAR_RANKING'
 export const ORDENAR_ALFABETICO = 'ORDENAR_ALFABETICO'
 export const TOP_NEGOCIOS = 'TOP_NEGOCIOS'
+export const NEGOCIO_SELECTED = 'NEGOCIO_SELECTED'
 
 //actions
 const fetchNegocioRequest = () => {
@@ -41,6 +42,15 @@ export const ordenarRanking = () => {
     return{
         type: ORDENAR_RANKING,
         payload:{
+        }
+    }
+}
+
+const negocioSelected = (negocio) => {
+    return{
+        type: NEGOCIO_SELECTED,
+        payload:{
+            negocio: negocio
         }
     }
 }
@@ -97,7 +107,20 @@ export const fetchNegocioId = (id) => {
             dispatch( fetchNegocioSuccess([response.data]) );
         })
         .catch(error => {
-            dispatch( fetchNegocioFailure('negocios no encontrados') )
+            dispatch( fetchNegocioFailure('negocio no encontrado') )
+        })
+    }
+}
+
+export const setNegocioSelected = (id) => {
+    return (dispatch) => {
+        dispatch( fetchNegocioRequest() );
+        getNegocio(id)
+        .then(response => {
+            dispatch( negocioSelected(response?.data) );
+        })
+        .catch(error => {
+            dispatch( fetchNegocioFailure('negocio no encontrados') )
         })
     }
 }

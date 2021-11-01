@@ -5,17 +5,17 @@ import { Marker, Popup } from 'react-leaflet';
 function Markers(props) {
     const {places} = props
 
-    const marcadores = places.map( (place, i) => (
+    const marcadores = (
         <Marker
-        key={i}
-        position={place.geometry}
+        key={1}
+        position={places.geometry}
         >
         <Popup>
-        {place.name + " "}
-        {place.direccion}
+        {places.name + " "}
+        {places.direccion}
         </Popup>
         </Marker>
-    ))
+    )
     
     return marcadores
 }
