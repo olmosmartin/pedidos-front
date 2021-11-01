@@ -13,7 +13,7 @@ export const Footer = () => {
               <ul className="list-unstyled mb-0">
               <h5 className="text-uppercase mb-0">Links</h5>
                 <li>
-                <a style={{ color: '#000' }} href='https://www.freepik.es/fotos/comida'>Foto de Comida creado por timolina - www.freepik.es</a>
+                <a style={{ color: '#000' }} href='/about'>Acerca de...</a>
                 </li>
                 <li>
                 <a style={{ color: '#000' }} href='https://www.freepik.es/fotos/comida'>Foto de Comida creado por timolina - www.freepik.es</a>
@@ -65,7 +65,7 @@ export const Footer = () => {
         {/* Grid container */}
         {/* Copyright */}
         <div className="text-center p-3" style={{backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
-          © 2020 Copyright:
+          © 2021 Copyright:
           <p>Grupo C</p>
         </div>
         {/* Copyright */}
