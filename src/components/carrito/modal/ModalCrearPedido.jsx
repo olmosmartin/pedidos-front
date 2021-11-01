@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useLocation, useHistory } from "react-router-dom"
 import { crearPedido } from '../../../api/pedidoServices';
 import { toast } from 'react-toastify';
-
+import { TarjetaForm } from './TarjetaForm';
 
 export const ModalCrearPedido = () => {
   const [state, setstate] = useState([])
@@ -125,6 +125,8 @@ export const ModalCrearPedido = () => {
                 <label htmlFor="3">Efectivo</label>
               </div>
             </div>
+
+            {(state.selectedOption==="Tarjeta crédito" || state.selectedOption==="Tarjeta Débito") && <TarjetaForm Opction={state.selectedOption}/>}
 
             <div className="modal-footer">
               <button type="button" className="btn btn-danger" data-dismiss="modal">Volver</button>
