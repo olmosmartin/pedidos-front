@@ -58,7 +58,7 @@ export const PedidoDetalleRepartidorCard = () => {
                     <h5 className="card-title" >Pedido listo para entregar</h5>
                     <p>Pedido numero: {idPedido}</p>
 
-                   <p>Hora y Fecha: {pedidoREDUX.pedidoSelected?.fecha &&<FechaHora fecha= {pedidoREDUX.pedidoSelected?.fecha}/>}</p>
+                   <p>Hora y Fecha: {pedidoREDUX.pedidoSelected?.createdAt &&<FechaHora fecha= {pedidoREDUX.pedidoSelected?.createdAt}/>}</p>
                     
                     <MapVista/>
                     {

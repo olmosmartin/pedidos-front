@@ -39,7 +39,7 @@ export const PedidosCard = () => {
                                 <div className="">
                                     {buscador.pedidos[0]?.map((pedido, i) => (
                                         
-                                        pedido.estado!=='RECHAZADO'&&<PedidosCardRow key={i} idNegocio={idNegocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total}  fecha={pedido.fecha}/>
+                                        pedido.estado!=='RECHAZADO'&&<PedidosCardRow key={i} idNegocio={idNegocio} id={pedido._id} productos={pedido.productos} estado={pedido.estado} total={pedido.total}  fecha={pedido.createdAt}/>
                                     ))
                                     
                                     }
