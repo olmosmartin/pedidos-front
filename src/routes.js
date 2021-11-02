@@ -21,6 +21,7 @@ import { PaswordResetScreen } from "./pages/passwordReset/PaswordResetScreen";
 import { RecuperarContraseñaScreen } from "./pages/recuperarContraseña/RecuperarContraseñaScreen";
 import { NegocioPerfil } from "./pages/negocioPerfil/NegocioPerfil";
 import { About } from "./pages/footer/about";
+import { TerminosCondiciones } from "./pages/footer/terminos";
 
 
 export default function Routes() {
@@ -46,6 +47,7 @@ export default function Routes() {
                 <Route exact path="/recuperarContraseña" component={RecuperarContraseñaScreen}/>
                 <Route exact path="/negocioPerfil" component={NegocioPerfil}/>
                 <Route exact path="/about" component={About}/>
+                <Route exact path="/legales" component={TerminosCondiciones}/>
             </Switch>
         </Router>
     )

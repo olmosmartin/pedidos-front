@@ -11,18 +11,20 @@ export const Footer = () => {
             {/*Grid column*/}
             <div className="col-lg-6 col-md-6 mb-4 mb-md-0">
               <ul className="list-unstyled mb-0">
-              <h5 className="text-uppercase mb-0">Links</h5>
+              <h5 className="text-uppercase mb-0">Nosotros</h5>
                 <li>
                 <a style={{ color: '#000' }} href='/about'>Acerca de...</a>
                 </li>
                 <li>
-                <a style={{ color: '#000' }} href='https://www.freepik.es/fotos/comida'>Foto de Comida creado por timolina - www.freepik.es</a>
+                <a style={{ color: '#000' }} href='/legales'>Terminos y condiciones</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-dark">Link 1</a>
+                  {//<a href="#!" className="text-dark">Link 1</a>
+                  }
                 </li>
                 <li>
-                  <a href="#!" className="text-dark">Link 3</a>
+                  {//<a href="#!" className="text-dark">Link 3</a>
+                  }
                 </li>
               </ul>
             </div>
@@ -35,27 +37,24 @@ export const Footer = () => {
                   <a href="/repartidorRegistro" className="text-dark">Registrarse como repartidor</a>
                 </li>
                 <li>
-                  <a href="#!" className="text-dark">Link 2</a>
+                  {//<a href="#!" className="text-dark">Link 2</a>
+                  }
                 </li>
                 <li>
-                  <a href="#!" className="text-dark">Link 3</a>
+                  {//<a href="#!" className="text-dark">Link 3</a>
+                  }
                 </li>
               </ul>
             </div>
             {/*Grid column*/}
             {/*Grid column*/}
             <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-              <h5 className="text-uppercase mb-0">Links</h5>
+              <h5 className="text-uppercase mb-0">Negocios</h5>
               <ul className="list-unstyled">
                 <li>
-                  <a href="#!" className="text-dark">Link 1</a>
+                <a href="/negocioRegistro" className="text-dark">Registrarse como negocio</a>
                 </li>
-                <li>
-                  <a href="#!" className="text-dark">Link 2</a>
-                </li>
-                <li>
-                  <a href="#!" className="text-dark">Link 3</a>
-                </li>
+            
               </ul>
             </div>
             {/*Grid column*/}
